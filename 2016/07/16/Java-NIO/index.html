@@ -674,17 +674,17 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user-circle-o"></i>
+      访问人数<i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
+      人
     </span>
   
 
   
     <span class="site-pv">
-      
+      访问次数<i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
+      次
     </span>
   
 </div>
@@ -1292,17 +1292,34 @@ function showTime(Counter) {
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
 		query.equalTo("url", url);
+		var regx = /\d+/;
 		query.find({
 			success: function(results) {
 				if (results.length == 0) {
-					var content = $(document.getElementById(url)).text() + ': 0';
-					$(document.getElementById(url)).text(content);
+					var content = $(document.getElementById(url)).text();
+	
+					if(!regx.text(content)){
+						 content = content + ': 10';
+						 console.log(content);
+						$(document.getElementById(url)).text(content);
+					}else{
+
+						console.log("......");
+					}
+					
 					return;
 				}
 				for (var i = 0; i < results.length; i++) {
 					var object = results[i];
-					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
-					$(document.getElementById(url)).text(content);
+					var content = $(document.getElementById(url)).text();
+					
+					
+					if(!regx.test(content)){
+						content = content + ' ' + object.get('time');
+						$(document.getElementById(url)).text(content);
+					}
+					
+					
 				}
 			},
 			error: function(object, error) {
