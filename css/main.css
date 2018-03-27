@@ -1937,7 +1937,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fbf645;
+  background: #f08f9e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2608,5 +2608,5 @@ embed {
 .site-nav .menu {
   padding-top: 0;
   margin-top: 0;
-  padding-left: 100px;
+  padding-left: 20px;
 }
