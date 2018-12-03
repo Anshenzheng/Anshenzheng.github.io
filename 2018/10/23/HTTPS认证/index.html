@@ -117,7 +117,7 @@
 <meta property="og:image" content="https://ask.qcloudimg.com/http-save/developer-news/w3xn200qg9.jpeg">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542553793131&di=4e09f8f1eacb2029a228ec7be7217ccc&imgtype=0&src=http%3A%2F%2Fs3.51cto.com%2Fwyfs02%2FM00%2FA5%2F15%2FwKioL1m3inPgUUgQAAFabDvTsYI063.png">
 <meta property="og:image" content="https://ask.qcloudimg.com/http-save/developer-news/9qgvflez67.jpeg">
-<meta property="og:updated_time" content="2018-12-03T17:46:21.015Z">
+<meta property="og:updated_time" content="2018-12-03T17:53:48.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTPS Basic">
 <meta name="twitter:description" content="目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。 本文会从一下几方面讲解HTTPS认证的相关内容： 12345678910111213141516171. 基础概念	1.1 加密 Vs Hash	1.2 对称加密 Vs 非对称加密3. SSL/">
@@ -526,6 +526,91 @@
 <li>SFTP</li>
 <li>Git免密提交</li>
 </ul>
+<h4 id="代码中使用"><a href="#代码中使用" class="headerlink" title="代码中使用"></a>代码中使用</h4><p>添加信任所有证书(不做处理)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.security.cert.CertificateException;</span><br><span class="line"><span class="keyword">import</span> java.security.cert.X509Certificate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.X509TrustManager;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 信任所有证书</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> hp</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AllTrustManager</span> <span class="keyword">implements</span> <span class="title">X509TrustManager</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkClientTrusted</span><span class="params">(X509Certificate[] arg0, String arg1)</span> <span class="keyword">throws</span> CertificateException </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkServerTrusted</span><span class="params">(X509Certificate[] arg0, String arg1)</span> <span class="keyword">throws</span> CertificateException </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> X509Certificate[] getAcceptedIssuers() &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用HttpsURLConnection发送POST请求（默认443端口）</p>
+<pre><code class="Java"><span class="keyword">import</span> java.io.BufferedReader;
+<span class="keyword">import</span> java.io.File;
+<span class="keyword">import</span> java.io.FileInputStream;
+<span class="keyword">import</span> java.io.IOException;
+<span class="keyword">import</span> java.io.InputStreamReader;
+<span class="keyword">import</span> java.io.PrintWriter;
+<span class="keyword">import</span> java.net.URL;
+<span class="keyword">import</span> java.security.KeyManagementException;
+<span class="keyword">import</span> java.security.KeyStore;
+<span class="keyword">import</span> java.security.KeyStoreException;
+<span class="keyword">import</span> java.security.NoSuchAlgorithmException;
+<span class="keyword">import</span> java.security.SecureRandom;
+<span class="keyword">import</span> java.security.UnrecoverableKeyException;
+<span class="keyword">import</span> java.security.cert.CertificateException;
+
+<span class="keyword">import</span> javax.net.ssl.HttpsURLConnection;
+<span class="keyword">import</span> javax.net.ssl.KeyManagerFactory;
+<span class="keyword">import</span> javax.net.ssl.SSLContext;
+<span class="keyword">import</span> javax.net.ssl.SSLSocketFactory;
+<span class="keyword">import</span> javax.net.ssl.TrustManager;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpsRequest</span> </span>{
+    <span class="comment">//测试url</span>
+    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String URL_TEST=<span class="string">"https://www.baidu.com"</span>;
+    <span class="comment">//客户端证书路径</span>
+    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String PATH=<span class="string">"c://xxxx"</span>;
+    <span class="comment">//证书密码</span>
+    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String psw=<span class="string">"123456"</span>;
+    <span class="comment">/**</span>
+<span class="comment">     * 发送POST请求</span>
+<span class="comment">     * <span class="doctag">@param</span> agrs</span>
+<span class="comment">     * <span class="doctag">@return</span></span>
+<span class="comment">     * <span class="doctag">@throws</span> IOException</span>
+<span class="comment">     * <span class="doctag">@throws</span> KeyManagementException</span>
+<span class="comment">     * <span class="doctag">@throws</span> KeyStoreException</span>
+<span class="comment">     * <span class="doctag">@throws</span> NoSuchAlgorithmException</span>
+<span class="comment">     * <span class="doctag">@throws</span> CertificateException</span>
+<span class="comment">     * <span class="doctag">@throws</span> UnrecoverableKeyException</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">public</span> String <span class="title">doPost</span><span class="params">(String agrs)</span> <span class="keyword">throws</span> IOException, KeyManagementException, KeyStoreException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException</span>{
+        <span class="comment">//导入客户端证书</span>
+        KeyStore ks=KeyStore.getInstance(<span class="string">"pkcs12"</span>);
+        FileInputStream instream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(PATH));
+        ks.load(instream, psw.toCharArray());
+        KeyManagerFactory kmf=KeyManagerFactory.getInstance(<span class="string">"SunX509"</span>);
+        kmf.init(ks, psw.toCharArray());
+        <span class="comment">//添加信任证书</span>
+        TrustManager[] tm={<span class="keyword">new</span> AllTrustManager()};<span class="comment">//AllTrustManager()为信任所有证书</span>
+
+        SSLContext ctx=SSLContext.getInstance(<span class="string">"SSL"</span>);<span class="comment">//创建ssl上下文</span>
+        <span class="comment">//初始化 ；参数1为null，则不上传客户端证书（通常情况都是如此）；</span>
+        ctx.init(kmf.getKeyManagers(), tm, <span class="keyword">new</span> SecureRandom());
+        <span class="comment">//ctx.init(kmf.getKeyManagers(), null, new SecureRandom());//验证系统默认证书</span>
+        <span class="comment">//ctx.init(kmf.getKeyManagers(), TrustManager[] tm, new SecureRandom());//导出服务端证书，然后按照keymanager一样实现trustmanager</span>
+        SSLSocketFactory sf=ctx.getSocketFactory();
+
+        URL _url=<span class="keyword">new</span> URL(URL_TEST);
+        HttpsURLConnection conn=(HttpsURLConnection) _url.openConnection();
+        conn.setRequestMethod(<span class="string">"POST"</span>);<span class="comment">//设定请求方法</span>
+        conn.setConnectTimeout(<span class="number">20000</span>);
+        conn.setReadTimeout(<span class="number">20000</span>);
+        conn.setDoInput(<span class="keyword">true</span>);<span class="comment">//打开输入流</span>
+        conn.setDoOutput(<span class="keyword">true</span>);<span class="comment">//打开输出流写入写出参数必需</span>
+        conn.setSSLSocketFactory(sf);<span class="comment">//添加ssl参数</span>
+        <span class="comment">//输出参数</span>
+        PrintWriter pw=<span class="keyword">new</span> PrintWriter(conn.getOutputStream());
+        pw.write(agrs);
+        pw.flush();
+        <span class="comment">//获取输入流</span>
+        BufferedReader br=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(conn.getInputStream()));
+        StringBuffer result=<span class="keyword">new</span> StringBuffer();
+        String s=br.readLine();
+        <span class="keyword">while</span>(s!=<span class="keyword">null</span>){
+            result.append(s);
+            s=br.readLine();
+        }
+        pw.close();
+        br.close();
+        <span class="keyword">return</span> result.toString();
+    }
+}
+
+</code></pre>
 
       
     </div>
@@ -845,7 +930,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础概念"><span class="nav-number">1.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加密-Vs-Hash"><span class="nav-number">1.1.</span> <span class="nav-text">加密 Vs Hash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对称加密-Vs-非对称加密"><span class="nav-number">1.2.</span> <span class="nav-text">对称加密 Vs 非对称加密</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLS-SSL"><span class="nav-number">2.</span> <span class="nav-text">TLS/SSL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL协议功能"><span class="nav-number">2.1.</span> <span class="nav-text">SSL协议功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书"><span class="nav-number">3.</span> <span class="nav-text">证书</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#证书链"><span class="nav-number">3.1.</span> <span class="nav-text">证书链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信赖方"><span class="nav-number">3.2.</span> <span class="nav-text">信赖方</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准"><span class="nav-number">3.3.</span> <span class="nav-text">标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CAB"><span class="nav-number">3.4.</span> <span class="nav-text">CAB</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keytool"><span class="nav-number">4.</span> <span class="nav-text">keytool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keystore-Vs-trustsotre"><span class="nav-number">5.</span> <span class="nav-text">keystore Vs trustsotre</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS-单向认证"><span class="nav-number">6.</span> <span class="nav-text">HTTPS 单向认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS-双向认证"><span class="nav-number">7.</span> <span class="nav-text">HTTPS 双向认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">8.</span> <span class="nav-text">其它</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH"><span class="nav-number">8.1.</span> <span class="nav-text">SSH</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础概念"><span class="nav-number">1.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加密-Vs-Hash"><span class="nav-number">1.1.</span> <span class="nav-text">加密 Vs Hash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对称加密-Vs-非对称加密"><span class="nav-number">1.2.</span> <span class="nav-text">对称加密 Vs 非对称加密</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLS-SSL"><span class="nav-number">2.</span> <span class="nav-text">TLS/SSL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL协议功能"><span class="nav-number">2.1.</span> <span class="nav-text">SSL协议功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书"><span class="nav-number">3.</span> <span class="nav-text">证书</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#证书链"><span class="nav-number">3.1.</span> <span class="nav-text">证书链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信赖方"><span class="nav-number">3.2.</span> <span class="nav-text">信赖方</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准"><span class="nav-number">3.3.</span> <span class="nav-text">标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CAB"><span class="nav-number">3.4.</span> <span class="nav-text">CAB</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keytool"><span class="nav-number">4.</span> <span class="nav-text">keytool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keystore-Vs-trustsotre"><span class="nav-number">5.</span> <span class="nav-text">keystore Vs trustsotre</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS-单向认证"><span class="nav-number">6.</span> <span class="nav-text">HTTPS 单向认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS-双向认证"><span class="nav-number">7.</span> <span class="nav-text">HTTPS 双向认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">8.</span> <span class="nav-text">其它</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH"><span class="nav-number">8.1.</span> <span class="nav-text">SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码中使用"><span class="nav-number">8.2.</span> <span class="nav-text">代码中使用</span></a></li></ol></li></ol></div>
             
 
           </div>
