@@ -357,6 +357,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2018/10/23/HTTPS认证/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Annan An">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知乐园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/23/HTTPS认证/" itemprop="url">HTTPS Basic</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T19:14:41+08:00">2018-10-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端/" itemprop="url" rel="index"><span itemprop="name">后端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/23/HTTPS认证/" class="leancloud_visitors" data-flag-title="HTTPS Basic">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542553667416&amp;di=265e20c12afd5f9e5cc9c98e7bef1575&amp;imgtype=0&amp;src=http%3A%2F%2Ftxt6.book118.com%2F2016%2F1203%2Fbook67956%2F67955260.jpg" alt=""><br>目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。</p>
+<p>本文会从一下几方面讲解HTTPS认证的相关内容：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 基础概念</span><br><span class="line">	<span class="number">1.1</span> 加密 Vs Hash</span><br><span class="line">	<span class="number">1.2</span> 对称加密 Vs 非对称加密</span><br><span class="line"><span class="number">3</span>. SSL/TLS</span><br><span class="line"><span class="number">4</span>. CA</span><br><span class="line">	<span class="number">4.1</span> CA Sample</span><br><span class="line">	<span class="number">4.2</span> CA Apply</span><br><span class="line">	<span class="number">4.3</span> CA Validation</span><br><span class="line"><span class="number">5</span>. HTTPS 单向认证</span><br><span class="line"><span class="number">6</span>. HTTPS 双向认证</span><br><span class="line"><span class="number">7</span>. 应用</span><br><span class="line">	<span class="number">7.1</span> Keytool</span><br><span class="line">	<span class="number">7.2</span> keystore Vs trustsotre</span><br><span class="line">	<span class="number">7.3</span> Configure HTTPS in Tomcat</span><br><span class="line"><span class="number">8</span>. 其它</span><br><span class="line">	<span class="number">8.1</span> Base64</span><br><span class="line">	<span class="number">8.2</span> SSH</span><br></pre></td></tr></table></figure>
+<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><h4 id="加密-Vs-Hash"><a href="#加密-Vs-Hash" class="headerlink" title="加密 Vs Hash"></a>加密 Vs Hash</h4><p><strong>加密技术</strong>是利用技术手段和算法，把重要的数据加密后转化为乱码，传送到目的地后再通过相同或不同的手段还原。<br>加密前的内容成为<strong>明文</strong>，加密后的内容成为<strong>密文</strong>。<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554072256&amp;di=1f3606af7e71592397fe7e9eece12e8f&amp;imgtype=0&amp;src=http%3A%2F%2Fimage.68686686.com%2FFile%2FArticle%2F20180604%2F3c51813d-88ac-404e-982e-61e32cff53be.png" alt=""><br><strong>Hash</strong>，一般翻译做“散列”，也有直接音译为“哈希”的，就是把任意长度的输入（又叫做预映射pre-image）通过散列算法变换成固定长度的输出，该输出就是散列值。</p>
+<h4 id="对称加密-Vs-非对称加密"><a href="#对称加密-Vs-非对称加密" class="headerlink" title="对称加密 Vs 非对称加密"></a>对称加密 Vs 非对称加密</h4><p><strong>对称加密</strong>是采用单钥密码系统的加密方法，同一个密钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单密钥加密。<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554786081&amp;di=27a509dabd1c4438fa1b6c61ed4016b2&amp;imgtype=0&amp;src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2Fee3f2fefc213e5a130bc6226f4ca151e.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100" alt=""></p>
+<blockquote>
+<p>流行的对称加密算法有DES, Triple-DES, RC2 和 RC4. </p>
+</blockquote>
+<p><strong>非对称加密</strong>算法需要两个密钥来进行加密和解密，这两个秘钥是公开密钥（public key，简称公钥）和私有密钥（private key，简称私钥）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554526011&amp;di=c415dd72f654a4166844cdd040b96563&amp;imgtype=0&amp;src=http%3A%2F%2Fme2xp.blog.51cto.com%2Fattachment%2F201408%2F3%2F6716920_1407061378m5RW.jpg" alt=""></p>
+<h3 id="TLS-SSL"><a href="#TLS-SSL" class="headerlink" title="TLS/SSL"></a>TLS/SSL</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542555251822&amp;di=1ff2554f8ee8295abd2c89c3880f70ec&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161128%2F85e401b1b4a247f0896376ad5281d30b_th.jpeg" alt=""><br>SSL是Netscape公司发明的一种用于WEB安全传输协议。随着时间推移由于Netscape失去市场份额，它将SSL的维护工作移交给了因特网工程任务组(IETF),后被重新命名为TLS。</p>
+<h4 id="SSL协议功能"><a href="#SSL协议功能" class="headerlink" title="SSL协议功能"></a>SSL协议功能</h4><ul>
+<li>数据传输保密性</li>
+<li>数据传输完整性</li>
+<li>通信双方身份认证</li>
+</ul>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542560107542&amp;di=3a5ac3f2efe7ecc5296a3c668a6d8935&amp;imgtype=0&amp;src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171026%2Feb0081c7ce4e4fd590ae16352af28389.jpeg" alt=""></p>
+<h3 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h3><p>由一个可信任的组织验证和签发的识别信息。<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554408499&amp;di=5a5656f355ac071d9bede5d4833ef944&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.debugrun.com%2Fpic%2F2017%2F7%2F19%2Fea29a4644bfa0e5fa5ae246a85d5a8e6.jpg" alt=""></p>
+<h3 id="keytool"><a href="#keytool" class="headerlink" title="keytool"></a>keytool</h3><h3 id="keystore-Vs-trustsotre"><a href="#keystore-Vs-trustsotre" class="headerlink" title="keystore Vs trustsotre"></a>keystore Vs trustsotre</h3><p>KeyStore和TrustStore是JSSE中使用的两种文件。都是使用Java的keytool来管理。他们的不同主要在于用途和相应通途决定的内容的不同。<br>KeyStore用于存储自己的密码，私钥和证书。<br>TrustStore用于存储来自他人的公钥和证书。</p>
+<h3 id="HTTPS-单向认证"><a href="#HTTPS-单向认证" class="headerlink" title="HTTPS 单向认证"></a>HTTPS 单向认证</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542553793131&amp;di=4e09f8f1eacb2029a228ec7be7217ccc&amp;imgtype=0&amp;src=http%3A%2F%2Fs3.51cto.com%2Fwyfs02%2FM00%2FA5%2F15%2FwKioL1m3inPgUUgQAAFabDvTsYI063.png" alt=""></p>
+<h3 id="HTTPS-双向认证"><a href="#HTTPS-双向认证" class="headerlink" title="HTTPS 双向认证"></a>HTTPS 双向认证</h3><h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><p>从客户端来看，SSH服务主要提供两种级别的安全验证：</p>
+<ol>
+<li><p>基于口令<br>只要知道服务器的SSH连接账号和口令，就能通过客户端登录到远程主机，而连接过程中所有传输的数据都是加密的。</p>
+</li>
+<li><p>基于密钥<br>这种方式需要先建立一个密钥对，然后把公钥放在需要访问的目标服务器上，再把私钥放到客户端或者对应的客户端服务器上。<br>如果想要连接到公用密钥的SSH服务器，客户端SSH软件或者客户端服务器就会向服务器发出请求，请求用连接的用户密钥进行安全验证。服务器收到请求后，会先寻找事先安装好的公钥，然后和客户端发送过来的密钥进行比较，如果匹配，就用公钥加密“质询”信息并发送给客户端。客户端收到“质询”信息后用私钥解密，再把它发送给服务器。</p>
+</li>
+</ol>
+<p>执行ssh命令生成密钥对生成私钥id_rsa和公钥id_rsa.pub<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>应用场景</li>
+</ol>
+<ul>
+<li>Hadoop集群间免密通讯</li>
+<li>SFTP</li>
+<li>Git免密提交</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2018/03/11/没有admin权限如何免安装使用Node和NPM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2094,174 +2281,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2017/07/10/Cache相关的HTTP请求响应头/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Annan An">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知乐园">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/10/Cache相关的HTTP请求响应头/" itemprop="url">Cache相关的HTTP请求/响应头</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T22:02:49+08:00">2017-07-10</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/07/10/Cache相关的HTTP请求响应头/" class="leancloud_visitors" data-flag-title="Cache相关的HTTP请求/响应头">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>常见的HTTP请求/响应头有很多，以下介绍几种cache相关的：</p>
-<ul>
-<li>Pragma</li>
-<li>Cache-Control</li>
-<li>Expires</li>
-<li>Last-Modified</li>
-<li>Etag</li>
-</ul>
-<h3 id="Pragma-amp-Cache-Control"><a href="#Pragma-amp-Cache-Control" class="headerlink" title="Pragma &amp; Cache-Control"></a>Pragma &amp; Cache-Control</h3><p>用于指定所有缓存机制在整个请求/响应链中必须服从的命令，如果知道该页面是否为缓存，不仅可以控制浏览器，还可以控制HTTP协议相关的缓存或者代理服务器。</p>
-<p>Cache-Control请求字段优先级比较高，如果和其它一些相冲突的字段(比如Expires)同时出现，则Cache-Control会覆盖其它字段。<br>Pragma的作用和Cache-Control类似，也是在HTTP头中包含一个特殊指令，使相关的服务器来遵守，Pragma:no-cache 和 Cache-Control:no-cache的作用是一样的。</p>
-<blockquote>
-<p>浏览器中的强制刷新(Ctrl + F5)就是通过发起请求时加上请求头 Pragma:no-cache 和 Cache-Control:no-cache 实现的。</p>
-</blockquote>
-<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>通常格式为Expires:Sat,25Feb201712:22:17GMT,后面跟着日期和时间，超过这个时间值后，缓存内容将失效，也就是浏览器在发出请求之前会检查这个页面的字段，如果页面已经过期，就重新向服务器发起请求。</p>
-<h3 id="Last-Modified-amp-Etag"><a href="#Last-Modified-amp-Etag" class="headerlink" title="Last-Modified &amp; Etag"></a>Last-Modified &amp; Etag</h3><p>Last-Modified一般用于表示一个服务器上的资源的最后修改时间，资源可以是静态或者是动态的。<br>一般服务端在响应头中返回一个Last-Modified字段，告诉浏览器这个页面的最后修改时间，浏览器再次请求时在请求头中增加一个If-Modified-Since:Sat,25Feb201712:22:17GMT,询问当前缓存的页面是否是最新的，如果是最新的就返回304，告诉浏览器是最新的，服务器也不会传输新的数据。</p>
-<p>Etag与Last-Modified功能类似，作用是让服务器给每个页面分配一个唯一的编号，然后通过编号来区分当前页面是否为最新。这种方式比Last-Modified更灵活，但是在后端的Web服务器有多台时就比较难处理，因为每个web服务器都要记住网站的所有资源，否则这个编号就没有意义了。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2313,7 +2332,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2325,6 +2344,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -2425,7 +2446,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
