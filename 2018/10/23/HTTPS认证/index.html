@@ -117,7 +117,8 @@
 <meta property="og:image" content="https://ask.qcloudimg.com/http-save/developer-news/w3xn200qg9.jpeg">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542553793131&di=4e09f8f1eacb2029a228ec7be7217ccc&imgtype=0&src=http%3A%2F%2Fs3.51cto.com%2Fwyfs02%2FM00%2FA5%2F15%2FwKioL1m3inPgUUgQAAFabDvTsYI063.png">
 <meta property="og:image" content="https://ask.qcloudimg.com/http-save/developer-news/9qgvflez67.jpeg">
-<meta property="og:updated_time" content="2018-12-03T17:53:48.918Z">
+<meta property="og:image" content="https://github.com/Anshenzheng/ImageStore/blob/master/SSH%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86.png?raw=true">
+<meta property="og:updated_time" content="2018-12-18T14:54:21.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTPS Basic">
 <meta name="twitter:description" content="目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。 本文会从一下几方面讲解HTTPS认证的相关内容： 12345678910111213141516171. 基础概念	1.1 加密 Vs Hash	1.2 对称加密 Vs 非对称加密3. SSL/">
@@ -514,12 +515,11 @@
 <ol>
 <li><p>基于口令<br>只要知道服务器的SSH连接账号和口令，就能通过客户端登录到远程主机，而连接过程中所有传输的数据都是加密的。</p>
 </li>
-<li><p>基于密钥<br>这种方式需要先建立一个密钥对，然后把公钥放在需要访问的目标服务器上，再把私钥放到客户端或者对应的客户端服务器上。<br>如果想要连接到公用密钥的SSH服务器，客户端SSH软件或者客户端服务器就会向服务器发出请求，请求用连接的用户密钥进行安全验证。服务器收到请求后，会先寻找事先安装好的公钥，然后和客户端发送过来的密钥进行比较，如果匹配，就用公钥加密“质询”信息并发送给客户端。客户端收到“质询”信息后用私钥解密，再把它发送给服务器。</p>
+<li><p>基于密钥<br>这种方式需要先建立一个密钥对，然后把公钥放在需要访问的目标服务器上，再把私钥放到客户端或者对应的客户端服务器上。<br>如果想要连接到公用密钥的SSH服务器，客户端SSH软件或者客户端服务器就会向服务器发出请求，请求用连接的用户密钥进行安全验证。服务器收到请求后，会先寻找事先安装好的公钥，然后和客户端发送过来的密钥进行比较，如果匹配，就用公钥加密“质询”信息并发送给客户端。客户端收到“质询”信息后用私钥解密，再把它发送给服务器。<br><img src="https://github.com/Anshenzheng/ImageStore/blob/master/SSH%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86.png?raw=true" alt=""><br>执行ssh命令生成密钥对生成私钥id_rsa和公钥id_rsa.pub</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>执行ssh命令生成密钥对生成私钥id_rsa和公钥id_rsa.pub<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>应用场景</li>
+<li><p>应用场景</p>
+</li>
 </ol>
 <ul>
 <li>Hadoop集群间免密通讯</li>
