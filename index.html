@@ -357,6 +357,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2018/12/22/Code-Demo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Annan An">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知乐园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/22/Code-Demo/" itemprop="url">Code Demo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-22T13:25:31+08:00">2018-12-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/22/Code-Demo/" class="leancloud_visitors" data-flag-title="Code Demo">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/APlayer.min.js"> </script><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huashi.main;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        birthdayMoneyCheck();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">birthdayMoneyCheck</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> birthdayYear = <span class="number">2000</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> receiveBasisAmount = <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> sendOutBasisAmount = <span class="number">20</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> friendsCount = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"小明是闰年2000年2月29日出生的。他有7个非常好的小伙伴，都不是2月份出生。\n"</span> +</span><br><span class="line">                <span class="string">"小明生日时候，会收到每个小伙伴100元红包。小伙伴过生日时候，小明会送出20元红包。\n"</span> +</span><br><span class="line">                <span class="string">"根据输入的结束年份，计算小明从出生后到该年份一共过了几次生日，送出多少红包，获得多少红包。 \n"</span>);</span><br><span class="line"></span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> year = scanner.nextInt();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (year &gt;= birthdayYear) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> receiveRedPackageCount = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> sendOutRedPackageCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = birthdayYear; i &lt;= year; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (isSpecialYear(i)) &#123;</span><br><span class="line">                    receiveRedPackageCount++;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                sendOutRedPackageCount++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            System.out.println(String.format(<span class="string">"小明从出生到%d一共过了%d次生日."</span>, year, receiveRedPackageCount));</span><br><span class="line">            System.out.println(String.format(<span class="string">"小明从出生到%d一共送了%d红包."</span>, year, sendOutRedPackageCount * sendOutBasisAmount * friendsCount));</span><br><span class="line">            System.out.println(String.format(<span class="string">"小明从出生到%d一共收了%d红包."</span>, year, receiveRedPackageCount * receiveBasisAmount * friendsCount));</span><br><span class="line">            System.out.println(<span class="string">"清输入年份，如果小于2000，程序将退出:"</span>);</span><br><span class="line">            year = scanner.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSpecialYear</span><span class="params">(<span class="keyword">int</span> year)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> year % <span class="number">400</span> == <span class="number">0</span> || (year % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; year % <span class="number">100</span> != <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2018/10/23/HTTPS认证/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2234,174 +2369,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2017/07/10/Cache相关的HTTP请求响应头/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Annan An">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知乐园">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/10/Cache相关的HTTP请求响应头/" itemprop="url">Cache相关的HTTP请求/响应头</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T22:02:49+08:00">2017-07-10</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/07/10/Cache相关的HTTP请求响应头/" class="leancloud_visitors" data-flag-title="Cache相关的HTTP请求/响应头">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>常见的HTTP请求/响应头有很多，以下介绍几种cache相关的：</p>
-<ul>
-<li>Pragma</li>
-<li>Cache-Control</li>
-<li>Expires</li>
-<li>Last-Modified</li>
-<li>Etag</li>
-</ul>
-<h3 id="Pragma-amp-Cache-Control"><a href="#Pragma-amp-Cache-Control" class="headerlink" title="Pragma &amp; Cache-Control"></a>Pragma &amp; Cache-Control</h3><p>用于指定所有缓存机制在整个请求/响应链中必须服从的命令，如果知道该页面是否为缓存，不仅可以控制浏览器，还可以控制HTTP协议相关的缓存或者代理服务器。</p>
-<p>Cache-Control请求字段优先级比较高，如果和其它一些相冲突的字段(比如Expires)同时出现，则Cache-Control会覆盖其它字段。<br>Pragma的作用和Cache-Control类似，也是在HTTP头中包含一个特殊指令，使相关的服务器来遵守，Pragma:no-cache 和 Cache-Control:no-cache的作用是一样的。</p>
-<blockquote>
-<p>浏览器中的强制刷新(Ctrl + F5)就是通过发起请求时加上请求头 Pragma:no-cache 和 Cache-Control:no-cache 实现的。</p>
-</blockquote>
-<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>通常格式为Expires:Sat,25Feb201712:22:17GMT,后面跟着日期和时间，超过这个时间值后，缓存内容将失效，也就是浏览器在发出请求之前会检查这个页面的字段，如果页面已经过期，就重新向服务器发起请求。</p>
-<h3 id="Last-Modified-amp-Etag"><a href="#Last-Modified-amp-Etag" class="headerlink" title="Last-Modified &amp; Etag"></a>Last-Modified &amp; Etag</h3><p>Last-Modified一般用于表示一个服务器上的资源的最后修改时间，资源可以是静态或者是动态的。<br>一般服务端在响应头中返回一个Last-Modified字段，告诉浏览器这个页面的最后修改时间，浏览器再次请求时在请求头中增加一个If-Modified-Since:Sat,25Feb201712:22:17GMT,询问当前缓存的页面是否是最新的，如果是最新的就返回304，告诉浏览器是最新的，服务器也不会传输新的数据。</p>
-<p>Etag与Last-Modified功能类似，作用是让服务器给每个页面分配一个唯一的编号，然后通过编号来区分当前页面是否为最新。这种方式比Last-Modified更灵活，但是在后端的Web服务器有多台时就比较难处理，因为每个web服务器都要记住网站的所有资源，否则这个编号就没有意义了。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2453,7 +2420,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
