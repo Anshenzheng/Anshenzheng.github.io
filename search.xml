@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Code-Demo-Day2]]></title>
+    <url>%2F2018%2F12%2F23%2FCode-Demo-Day2%2F</url>
+    <content type="text"><![CDATA[String Matching1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950package com.huashi.day2;import java.util.Scanner;public class BFSearchMain &#123; public static void main(String[] args) &#123; Scanner scanner = new Scanner(System.in); System.out.println("请输入一行原串:"); String source = scanner.nextLine(); System.out.println(String.format("原串长度是%d, 内容是%s", source.length(), source)); System.out.println("请输入一行子串:"); String query = scanner.nextLine(); System.out.println(String.format("原串长度是%d, 内容是%s", query.length(), query)); System.out.println("查找结果:"); search(query, source); &#125; private static void search(String queryString, String sourceString) &#123; final int lengthOfSubString = queryString.length(); final int lengthOfSourceString = sourceString.length(); int checkCount = 0; for (int i = 0; i &lt; lengthOfSourceString - lengthOfSubString + 1; ) &#123; for (int j = 0; j &lt; lengthOfSubString; ) &#123; if (queryString.charAt(j) == sourceString.charAt(i)) &#123; i++; j++; if (j == lengthOfSubString) &#123; System.out.println(String.format("在原串的%d位置查到子串", i - lengthOfSubString + 1)); checkCount++; &#125; &#125; else &#123; i = i - j + 1; break; &#125; &#125; &#125; if (checkCount == 0) &#123; System.out.println("未匹配到结果"); &#125; &#125;&#125; String Replacement1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162package com.huashi.day2;import java.util.ArrayList;import java.util.List;import java.util.Scanner;public class BFReplaceMain &#123; public static void main(String[] args) &#123; Scanner scanner = new Scanner(System.in); System.out.println("请输入一行原串:"); String source = scanner.nextLine(); System.out.println(String.format("原串长度是%d, 内容是%s", source.length(), source)); System.out.println("请输入一行子串:"); String query = scanner.nextLine(); System.out.println(String.format("原串长度是%d, 内容是%s", query.length(), query)); System.out.println("请输入替换串:"); String replaceString = scanner.nextLine(); System.out.println(String.format("替换串长度是%d, 内容是%s", replaceString.length(), replaceString)); System.out.println("查找结果:"); replace(query, source, replaceString); &#125; private static void replace(String queryString, String sourceString, String replaceString) &#123; final int lengthOfQuery = queryString.length(); final int lengthOfSourceString = sourceString.length(); List&lt;Integer&gt; matchIndexList = new ArrayList&lt;Integer&gt;(); for (int i = 0; i &lt; lengthOfSourceString - lengthOfQuery + 1; ) &#123; for (int j = 0; j &lt; lengthOfQuery; ) &#123; if (queryString.charAt(j) == sourceString.charAt(i)) &#123; i++; j++; if (j == lengthOfQuery) &#123; matchIndexList.add(i - lengthOfQuery);&#125; &#125; else &#123; i = i - j + 1; break; &#125; &#125; &#125; if (matchIndexList.size() == 0) &#123; System.out.println("未匹配到结果,故未做替换"); &#125; else &#123; String result = ""; int beginPosition = 0; for (int index : matchIndexList) &#123; result += sourceString.substring(beginPosition, index) + replaceString; beginPosition = queryString.length() + index; &#125; if(beginPosition &lt; sourceString.length())&#123; result += sourceString.substring(beginPosition, sourceString.length()); &#125; System.out.println(String.format("替换后长度是%d, 内容是%s", result.length(), result)); &#125; &#125;&#125;]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Code Demo]]></title>
     <url>%2F2018%2F12%2F22%2FCode-Demo%2F</url>
     <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849package com.huashi.main;import java.util.Scanner;public class MainApplication &#123; public static void main(String[] args) &#123; birthdayMoneyCheck(); &#125; private static void birthdayMoneyCheck() &#123; final int birthdayYear = 2000; final int receiveBasisAmount = 100; final int sendOutBasisAmount = 20; final int friendsCount = 7; System.out.println("小明是闰年2000年2月29日出生的。他有7个非常好的小伙伴，都不是2月份出生。\n" + "小明生日时候，会收到每个小伙伴100元红包。小伙伴过生日时候，小明会送出20元红包。\n" + "根据输入的结束年份，计算小明从出生后到该年份一共过了几次生日，送出多少红包，获得多少红包。 \n"); Scanner scanner = new Scanner(System.in); int year = scanner.nextInt(); while (year &gt;= birthdayYear) &#123; int receiveRedPackageCount = 0; int sendOutRedPackageCount = 0; for (int i = birthdayYear; i &lt;= year; i++) &#123; if (isSpecialYear(i)) &#123; receiveRedPackageCount++; &#125; sendOutRedPackageCount++; &#125; System.out.println(String.format("小明从出生到%d一共过了%d次生日.", year, receiveRedPackageCount)); System.out.println(String.format("小明从出生到%d一共送了%d红包.", year, sendOutRedPackageCount * sendOutBasisAmount * friendsCount)); System.out.println(String.format("小明从出生到%d一共收了%d红包.", year, receiveRedPackageCount * receiveBasisAmount * friendsCount)); System.out.println("清输入年份，如果小于2000，程序将退出:"); year = scanner.nextInt(); &#125; &#125; private static boolean isSpecialYear(int year) &#123; return year % 400 == 0 || (year % 4 == 0 &amp;&amp; year % 100 != 0); &#125;&#125;]]></content>
@@ -93,18 +98,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[常见分布式全局唯一ID生成方案]]></title>
-    <url>%2F2017%2F07%2F11%2F%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E5%BC%8F%E5%85%A8%E5%B1%80%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88%2F</url>
-    <content type="text"><![CDATA[一般而言，几乎在任何系统中，我们都需要使用唯一的ID去识别以及操作应用中的对象，比如对用户管理而言需要用户ID，对订单管理而言需要订单ID。 在小的项目中，我们可以直接使用数据库的自增长特性来生成主键的ID，这样简单且易实现。但是在分库分表的分布式环境中，数据往往分布在不同的分片上，如果再通过数据库的自增长特性，势必会造成主键重复。 这就需要我们采用一些分布式全局唯一ID的生成方案，以下介绍几种常见的全局ID生成方案： Twitter的Snowflake算法(雪花算法)Twitter服务器上每秒钟都会有上百万条新的Twitter消息产生，每条消息都需要分配唯一的ID，而且为了方便客户端的排序，这些ID还需要一些大致的书序，为了解决这样一个问题，Twitter创建了Snowflake算法。 Snowflake算法核心Twitter生成的ID是64bits整数型，64位组成结构如下：标记位(1位，不可用)+时间戳(41位) + 机器ID(10位) + 序列号(12位) 标记位标记位一般为0， 不可以使用。 时间戳时间戳有41位，可以表示的数据为0 ~ 2^41，这里的时间戳的细度是毫秒级的，那么计算可知可以使用 2^41/(3652460601000) = 69.73年。具体生成代码如下: 12345uint64_t generateStamp()&#123; timeval tv; gettimeofday(&amp;tv, 0); return (uint64v_t)tv.tv_sec*1000 + (uint64v_t)tv.tv_usec/1000;&#125; 机器ID机器位有10位， 2^10 = 1024, 即可以支持1024台机器。 序列号位序列号分配有12位，2^12 = 4096, 即每毫秒支持产生4096个自增序列的ID。 UUID/GUIDUUID是一个由4个连字号(-)将32个字符长的字符串分割后生成的字符串,总共长36个字符长，它的生成主要基于以下几部分组合： 当前的日期和时间 时钟序列 全局唯一的机器识别号(如果有网卡就从网卡的MAC地址获得,如果没有就以其它方式获得) GUID(Globally Unique Identifier)是微软对UUID标准的实现,它是根据机器网卡的MAC地址再加上一个特定算法产生的二进制长度为128位的字符表示符。 UUID/GUID唯一的缺点是生成的结果比较长. Java中UUID生成代码12345678910public static void main(String[] args)&#123; String uuid = UUID.randomUUID().toString(); //去掉"-"的UUID String shortUUID = str.substring(0, 8) + str.substring(9, 13) + str.substring(14, 18) + str.substring(19, 23) + str.substring(24); System.out.println(uuid); System.out.println(shortUUID);&#125; MongoDB ObjectIDMongodb会为每条插入collection不包含”id”的记录自动生成一个24位字符长的objectId, 例如”4e7020cb7cac81af7136236b”. 这个24位的字符串实际上由一组16禁止的字符构成，每个字节两位十六禁止数字，总共用了12字节的存储空间。 根据官网中ObjectId规范的描述，它的组成结构如下: 时间戳(4bytes - 32bits)将前4位进行提取，然后按照十六进制转换成十进制，就可以得到一个时间 机器ID(3bytes - 24bits)接下来3个字节是所在主机的唯一表示符，一般是主机名的散列值。 进程ID - PID(2bytes - 16bits)pid是为了在同一机器下不同mongodb进程产生的objectID不冲突。 自增计数器 - INC(3bytes - 24bits)确保同一秒内产生的objectId也不会冲突。 参考文章：MongoDB深究之ObjectId]]></content>
-      <categories>
-        <category>架构</category>
-      </categories>
-      <tags>
-        <tag>分布式</tag>
-        <tag>ID</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Autonomy IDOL]]></title>
     <url>%2F2017%2F07%2F11%2FAutonomy%20IDOL%E6%A6%82%E8%A6%81%E5%9B%9E%E9%A1%BE%2F</url>
     <content type="text"><![CDATA[几年前在HP曾做过几个Autonomy IDOL(现在的HPE IDOL)相关的项目, IDOL的功能相当强大, 而我们只主要用到了的相关性查询, 情感分析, Logo识别, 人脸识别等功能, 有点杀鸡用牛刀的味道。 当时为了这个项目, 项目组还特意给我们申请了价值几百美金的Autonomy内部系列培训课程, 后来经过做项目过程中的层层实践和磨练, 一度成为项目组内部Autonomy专家, 安装、配置、接口使用，甚至于新功能的自我摸索和学习也不在话下。 但是Autonomy毕竟是一个大块头超昂贵的系统, 功能很强大, 卖的License自然也很贵, 所以一般可能只有某些大公司在使用, 大部分的中小公司是用不起的, 这也就决定了这门技术在需要的地方很吃香，但是很多地方都不需要。 几年过去了,由于之前的疏忽没有做过总结,大部分的知识都快忘光了,不过鉴于官网还是有比较详细的教程,这里只概要回顾一下: Autonomy提供了一种能够理解任何文件格式的全面软件基础架构解决方案。无论数据是文字还是语音，是结构化还是非结构化，采用何种创建和存储手段，Autonomy都可以进行处理。Autonomy的技术使企业应用系统独立于数据类型而运作，同时借助将手工操作自动化而提升了效率。 IDOL的工作流 IDOL中的一些常用组件：License ServerAutonomy的使用时基于license的，每一个license对应一个MAC地址。IDOL提供的大部分服务都必须有license才能正常工作。 ConnectorsConnectors是IDOL平台的一个核心组件，它可以灵活而精准的把不同格式(结构化，半结构化，上千种文件格式)不同来源的数据摄入到IDOL数据库中。常用的Connectors有如下几种： ODBC Connector通过配置可以直接连接所有支持ODBC的数据库，通过配置的SQL语句，直接从数据库中抽取数据。 File Connector可以从指定的本地或网络文件目录抽取文件内容到IDOL中。 Http Connector可以从指定的网站抓取内容。 CFS (Connector Framework Server)Connectors实现了如何从不同的数据源抽取数据，CFS则负责抽取的实施以及从抽取的文件中提取出元数据(metadata)和文件内容，并把它们加载的CFS的document中。这样IDOL Server可以直接搜索分析数据，而不需要再从原文件格式中提取数据。在数据进入IDOL数据库之前，还可以做一些增强操作，比如文字的情感分析， 文档归类， 概要生成等。增加了CFS这一层，是将所需要的数据提供了一个统一的入口，相当于从各种管道接来了水，放置在水池中，供IDOL来用。 IDOL ServerIDOL - 智能数据操作层(Intelligent Data Operating Layer)是Autonomy的核心，它可以收集来自各种连接器(Connectors)的数据, 并以其能够实现快速处理和检索的独特结构存储这些数据。在处理信息的时候，IDOL能够联系概念和语境来理解数据中的内容，可以对超过一千种不同格式的信息进行自动分析。 IDOL允许对数据源进行超过500多种操作，包括超链接、代理、摘要、分类、聚类、结构化信息抽取、档案建立、个性化信息提醒及检索。 Image Server用于图片内容的存储分析查询等，可以从图片中提取文字，通过图片训练还可以提供Logo识别，人脸识别等功能。 DAH (Distributed Action Handler)用于分布式查询和结果集的整理。 DIH (Distributed Action Handler)用于分布式索引, 将即将入库的文档分散为子集发送到集群中的各个server。 Query Manipulation Server查询管理。 Eduction Server为自己感兴趣的实体增加tag以便于查询和过滤。 Media Server分析处理视频数据，可以将视频分解为音频和图片，将音频转换为文字等。 IDOL Speech Server分析处理音频文件， 可以实现音频转换为文字，语音识别及语音搜索等功能。 IDOL中支持的功能： IDOL的应用架构 参考文档： https://my.vertica.com/documentation/idol/11-0/应用接口使用文档]]></content>
@@ -117,15 +110,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Javascript中的闭包]]></title>
-    <url>%2F2017%2F07%2F10%2FJavascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85%2F</url>
-    <content type="text"><![CDATA[什么是闭包闭包(closure)是指在JavaScript中，将外部函数中的局部变量封闭起来的(内部)函数。(被封闭起来的变量与封闭它的函数具有相同的生命周期。) 示例如下： 123456789function func()&#123; var local = "local variable"; var inner = function()&#123; console.log(local); &#125; return inner;&#125; 示例中内部函数inner持有外部函数func的局部变量local，这样就构成了一个作用域(闭包)，通过该作用域我们可以访问及修改外部访问不到的内部变量。 闭包的作用管理私有变量和私有方法，将对变量的管理封装在安全环境之中。外层函数执行之后，它的局部变量本来应该全部销毁，但是由于闭包的存在，之后执行内部函数，通过它仍然可以访问到外层函数的变量。 123456789101112131415161718192021222324252627function func()&#123; var name = "Charlie"; return &#123; setName: function(new_name)&#123; name = new_name; &#125;, getName: function()&#123; return name; &#125; &#125;;&#125;var f = func();console.log(f.name);// 打印结果：// undefinedconsole.log(f.getName())// 打印结果：// Charlief.setName("Teddy");console.log(f.getName())// 打印结果：// Teddy]]></content>
+    <title><![CDATA[常见分布式全局唯一ID生成方案]]></title>
+    <url>%2F2017%2F07%2F11%2F%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E5%BC%8F%E5%85%A8%E5%B1%80%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88%2F</url>
+    <content type="text"><![CDATA[一般而言，几乎在任何系统中，我们都需要使用唯一的ID去识别以及操作应用中的对象，比如对用户管理而言需要用户ID，对订单管理而言需要订单ID。 在小的项目中，我们可以直接使用数据库的自增长特性来生成主键的ID，这样简单且易实现。但是在分库分表的分布式环境中，数据往往分布在不同的分片上，如果再通过数据库的自增长特性，势必会造成主键重复。 这就需要我们采用一些分布式全局唯一ID的生成方案，以下介绍几种常见的全局ID生成方案： Twitter的Snowflake算法(雪花算法)Twitter服务器上每秒钟都会有上百万条新的Twitter消息产生，每条消息都需要分配唯一的ID，而且为了方便客户端的排序，这些ID还需要一些大致的书序，为了解决这样一个问题，Twitter创建了Snowflake算法。 Snowflake算法核心Twitter生成的ID是64bits整数型，64位组成结构如下：标记位(1位，不可用)+时间戳(41位) + 机器ID(10位) + 序列号(12位) 标记位标记位一般为0， 不可以使用。 时间戳时间戳有41位，可以表示的数据为0 ~ 2^41，这里的时间戳的细度是毫秒级的，那么计算可知可以使用 2^41/(3652460601000) = 69.73年。具体生成代码如下: 12345uint64_t generateStamp()&#123; timeval tv; gettimeofday(&amp;tv, 0); return (uint64v_t)tv.tv_sec*1000 + (uint64v_t)tv.tv_usec/1000;&#125; 机器ID机器位有10位， 2^10 = 1024, 即可以支持1024台机器。 序列号位序列号分配有12位，2^12 = 4096, 即每毫秒支持产生4096个自增序列的ID。 UUID/GUIDUUID是一个由4个连字号(-)将32个字符长的字符串分割后生成的字符串,总共长36个字符长，它的生成主要基于以下几部分组合： 当前的日期和时间 时钟序列 全局唯一的机器识别号(如果有网卡就从网卡的MAC地址获得,如果没有就以其它方式获得) GUID(Globally Unique Identifier)是微软对UUID标准的实现,它是根据机器网卡的MAC地址再加上一个特定算法产生的二进制长度为128位的字符表示符。 UUID/GUID唯一的缺点是生成的结果比较长. Java中UUID生成代码12345678910public static void main(String[] args)&#123; String uuid = UUID.randomUUID().toString(); //去掉"-"的UUID String shortUUID = str.substring(0, 8) + str.substring(9, 13) + str.substring(14, 18) + str.substring(19, 23) + str.substring(24); System.out.println(uuid); System.out.println(shortUUID);&#125; MongoDB ObjectIDMongodb会为每条插入collection不包含”id”的记录自动生成一个24位字符长的objectId, 例如”4e7020cb7cac81af7136236b”. 这个24位的字符串实际上由一组16禁止的字符构成，每个字节两位十六禁止数字，总共用了12字节的存储空间。 根据官网中ObjectId规范的描述，它的组成结构如下: 时间戳(4bytes - 32bits)将前4位进行提取，然后按照十六进制转换成十进制，就可以得到一个时间 机器ID(3bytes - 24bits)接下来3个字节是所在主机的唯一表示符，一般是主机名的散列值。 进程ID - PID(2bytes - 16bits)pid是为了在同一机器下不同mongodb进程产生的objectID不冲突。 自增计数器 - INC(3bytes - 24bits)确保同一秒内产生的objectId也不会冲突。 参考文章：MongoDB深究之ObjectId]]></content>
       <categories>
-        <category>前端</category>
+        <category>架构</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
-        <tag>闭包</tag>
+        <tag>分布式</tag>
+        <tag>ID</tag>
       </tags>
   </entry>
   <entry>
@@ -139,6 +132,18 @@
         <tag>cache</tag>
         <tag>http</tag>
         <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Javascript中的闭包]]></title>
+    <url>%2F2017%2F07%2F10%2FJavascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[什么是闭包闭包(closure)是指在JavaScript中，将外部函数中的局部变量封闭起来的(内部)函数。(被封闭起来的变量与封闭它的函数具有相同的生命周期。) 示例如下： 123456789function func()&#123; var local = "local variable"; var inner = function()&#123; console.log(local); &#125; return inner;&#125; 示例中内部函数inner持有外部函数func的局部变量local，这样就构成了一个作用域(闭包)，通过该作用域我们可以访问及修改外部访问不到的内部变量。 闭包的作用管理私有变量和私有方法，将对变量的管理封装在安全环境之中。外层函数执行之后，它的局部变量本来应该全部销毁，但是由于闭包的存在，之后执行内部函数，通过它仍然可以访问到外层函数的变量。 123456789101112131415161718192021222324252627function func()&#123; var name = "Charlie"; return &#123; setName: function(new_name)&#123; name = new_name; &#125;, getName: function()&#123; return name; &#125; &#125;;&#125;var f = func();console.log(f.name);// 打印结果：// undefinedconsole.log(f.getName())// 打印结果：// Charlief.setName("Teddy");console.log(f.getName())// 打印结果：// Teddy]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>闭包</tag>
       </tags>
   </entry>
   <entry>
