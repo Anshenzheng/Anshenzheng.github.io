@@ -357,6 +357,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2015/07/29/应用服务器集群实现方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Annan An">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知乐园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/07/29/应用服务器集群实现方式/" itemprop="url">应用服务器集群几种基本实现方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-29T14:18:35+08:00">2015-07-29</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2015/07/29/应用服务器集群实现方式/" class="leancloud_visitors" data-flag-title="应用服务器集群几种基本实现方式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/APlayer.min.js"> </script><p>负载均衡是网站必不可少的基础技术手段，不但可以实现网站的伸缩性，还可以改善网站的可用性。<br><img src="/images/负载均衡0.png" alt=""><br>负载均衡的实现技术也有多种多样，从硬件到软件，从商业产品到开源软件，多不胜数，主要实现负载均衡的基础技术有以下几种：</p>
+<h3 id="HTTP重定向负载均衡"><a href="#HTTP重定向负载均衡" class="headerlink" title="HTTP重定向负载均衡"></a>HTTP重定向负载均衡</h3><p>HTTP重定向服务器时一台普通的应用服务器，唯一的功能就是根据用户的HTTP请求计算出一台真实的Web服务器地址，并将该Web服务器地址写入HTTP重定向响应中(响应状态码302)返回给用户浏览器，然后浏览器自动重新请求实际的物理服务器IP地址，从而完成访问。</p>
+<p>这种实现方案优点是比较简单，缺点是浏览器需要两次请求服务器才能完成一次访问，性能比较差。重定向服务器自身的处理能力有可能成为瓶颈，整个集群的伸缩性规模有限。而且使用HTTP302响应吗重定向有可能使搜索引擎判断为SEO作弊，降低搜索排名。</p>
+<h3 id="DNS域名解析负载均衡"><a href="#DNS域名解析负载均衡" class="headerlink" title="DNS域名解析负载均衡"></a>DNS域名解析负载均衡</h3><p>这是利用DNS处理域名解析请求的同时进行负载均衡处理的一种方案。在DNS服务器中对指定域名配置多个ip地址，每次域名解析请求都会根据负载均衡算法计算出一个不同的IP地址，这样配置的多个服务器就构成一个集群，并且可以实现负载均衡。</p>
+<p>DNS域名解析负载均衡的优点是将负载均衡的工作转交给DNS，省掉了网站管理维护负载均衡服务器的麻烦，同时许多DNS还支持基于地理位置的域名解析，即会将域名解析成距离用户地理最近的一个服务器地址，这样可以加速用户访问速度，改善性能。<br>DNS域名解析负载均衡的缺点是目前的DNS是多级解析，每一级DNS都可能缓存，当下线了某台服务器后，即使修改了DNS中的记录，要使其生效也需要很长时间，这段时间，DNS依然会将域名解析道已经下线的服务器，从而导致用户访问失败。而且DNS负载均衡的控制权在域名服务商那里，网站无法对其做更多的改善和更强大的管理。</p>
+<p>实际上，很多大型网站总是部分使用DNS域名解析，利用域名解析作为第一级负载均衡手段，即域名解析得到的一组服务器并不是实际提供Web服务的物理服务器，而是同样提供负载均衡服务的内部服务器，这组内部负载均衡服务器再进行负载均衡，将请求分发到真实的Web服务器上。</p>
+<h3 id="反向代理负载均衡"><a href="#反向代理负载均衡" class="headerlink" title="反向代理负载均衡"></a>反向代理负载均衡</h3><p>反向代理服务器位于服务器端，正好是负载均衡服务器的位置，所以大多数反向代理服务器同时提供负载均衡的功能，管理一组Web服务器，将请求根据负载均衡算法转发到不同的Web服务器上，Web服务器处理完成的响应请求也需要通过反向代理服务器返回给用户。由于Web服务器不直接对外提供访问，因此Web服务器不需要使用外部IP地址，而反向代理则需要配置双网卡和内部外部两套IP地址。</p>
+<p>反向代理负载均衡的优点是负载均衡和反向代理服务器功能集成在一起，部署简单。缺点时反向代理服务器是所有请求和响应的中转站，性能可能会成为瓶颈。</p>
+<h3 id="IP负载均衡"><a href="#IP负载均衡" class="headerlink" title="IP负载均衡"></a>IP负载均衡</h3><p>IP负载均衡的原理是在网络层通过修改请求目标地址进行负载均衡。用户请求数据包达到负载均衡服务器之后，负载均衡服务器在操作系统内核进程获取网络数据包，根据负载均衡算法计算得到真实的Web服务器IP地址，然后将数据目的IP地址修改为真实的Web服务器地址，不需要通过用户进程处理。真实Web应用服务器处理完成后，响应数据包回到负载均衡服务器，负载均衡服务器再将数据包源地址修改为自身的IP地址发送给用户浏览器。</p>
+<p>这里的关键在于真实物理Web服务器响应数据如何返回给负载均衡服务器。一种方案是负载均衡服务器修改目的IP地址的同时修改源地址，将数据包源地址设为自身的IP地址，即源地址转换(SNAT), 这样Web服务器的响应会再回到负载均衡服务器；另一种方案是负载均衡服务器同时作为真实物理服务器集群的网关服务器，这样所有的响应数据都会达到负载均衡服务器。</p>
+<p>IP负载均衡在内核进程完成数据分发，比反向代理负载均衡有更好的处理性能。但是由于所有请求响应都需要经过负载均衡服务器，集群的最大响应数据吞吐量不得不受制于负载均衡服务器网卡带宽。对于提供下载服务或者是视频服务等需要传输大量数据的网站而言，难以满足需求。</p>
+<h3 id="数据链路层负载均衡"><a href="#数据链路层负载均衡" class="headerlink" title="数据链路层负载均衡"></a>数据链路层负载均衡</h3><p>数据链路层负载均衡是指在通信协议的数据链路层修改MAC地址进行负载均衡。<br>负载均衡数据分发过程中不修改IP地址，之修改MAC地址，通过配置真实物理服务器集群所有机器虚拟IP和负载均衡服务器IP地址一致，从而达到不修改数据包的源地址和目的地址就可以进行数据分发的目的，由于实际处理请求的真实物理服务器IP地址和数据请求的目的IP一致，不需要经过负载均衡服务器进行地址转换，就可以把响应数据包直接返回给用户浏览器，避免负载均衡服务器网卡带宽成为瓶颈。这种负载均衡方式又称为直接路由方式。</p>
+<p>这种方式是目前大型网站使用最广的一种负载均衡手段， Linux平台上最好的链路层负载均衡开源产品时LVS (Linux Virtual Server).</p>
+<p>参考：<br>《大型网站技术架构》 李智慧 著</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2015/07/27/Web前端性能优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -551,7 +699,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

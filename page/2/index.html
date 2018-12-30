@@ -548,7 +548,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2017/07/10/Cache相关的HTTP请求响应头/">
+    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2017/07/11/Autonomy IDOL概要回顾/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Annan An">
@@ -567,7 +567,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/10/Cache相关的HTTP请求响应头/" itemprop="url">Cache相关的HTTP请求/响应头</a></h1>
+                <a class="post-title-link" href="/2017/07/11/Autonomy IDOL概要回顾/" itemprop="url">Autonomy IDOL</a></h1>
         
 
         <div class="post-meta">
@@ -579,7 +579,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T22:02:49+08:00">2017-07-10</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-11T22:00:44+08:00">2017-07-11</time>
             
 
             
@@ -600,7 +600,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/大数据/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a></span>
 
                 
                 
@@ -614,7 +614,7 @@
 
           
           
-             <span id="/2017/07/10/Cache相关的HTTP请求响应头/" class="leancloud_visitors" data-flag-title="Cache相关的HTTP请求/响应头">
+             <span id="/2017/07/11/Autonomy IDOL概要回顾/" class="leancloud_visitors" data-flag-title="Autonomy IDOL">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -647,22 +647,35 @@
       
         
           
-            <script src="/assets/js/APlayer.min.js"> </script><p>常见的HTTP请求/响应头有很多，以下介绍几种cache相关的：</p>
+            <script src="/assets/js/APlayer.min.js"> </script><p>几年前在HP曾做过几个Autonomy IDOL(现在的HPE IDOL)相关的项目, IDOL的功能相当强大, 而我们只主要用到了的相关性查询, 情感分析, Logo识别, 人脸识别等功能, 有点杀鸡用牛刀的味道。</p>
+<p>当时为了这个项目, 项目组还特意给我们申请了价值几百美金的Autonomy内部系列培训课程, 后来经过做项目过程中的层层实践和磨练, 一度成为项目组内部Autonomy专家, 安装、配置、接口使用，甚至于新功能的自我摸索和学习也不在话下。</p>
+<p>但是Autonomy毕竟是一个大块头超昂贵的系统, 功能很强大, 卖的License自然也很贵, 所以一般可能只有某些大公司在使用, 大部分的中小公司是用不起的, 这也就决定了这门技术在需要的地方很吃香，但是很多地方都不需要。</p>
+<p>几年过去了,由于之前的疏忽没有做过总结,大部分的知识都快忘光了,不过鉴于<a href="https://my.vertica.com/documentation/idol/11-0/" target="_blank" rel="noopener">官网</a>还是有比较详细的教程,这里只概要回顾一下:</p>
+<p>Autonomy提供了一种能够理解任何文件格式的全面软件基础架构解决方案。无论数据是文字还是语音，是结构化还是非结构化，采用何种创建和存储手段，Autonomy都可以进行处理。Autonomy的技术使企业应用系统独立于数据类型而运作，同时借助将手工操作自动化而提升了效率。</p>
+<h2 id="IDOL的工作流"><a href="#IDOL的工作流" class="headerlink" title="IDOL的工作流"></a>IDOL的工作流</h2><p><img src="https://my.vertica.com/docs/IDOL/Servers/IDOLServer/11.0/Guides/html/English/expert/Content/IDOLExpert/Images/IDOLArchitecture.png" alt=""></p>
+<h2 id="IDOL中的一些常用组件："><a href="#IDOL中的一些常用组件：" class="headerlink" title="IDOL中的一些常用组件："></a>IDOL中的一些常用组件：</h2><h3 id="License-Server"><a href="#License-Server" class="headerlink" title="License Server"></a>License Server</h3><p>Autonomy的使用时基于license的，每一个license对应一个MAC地址。IDOL提供的大部分服务都必须有license才能正常工作。</p>
+<h3 id="Connectors"><a href="#Connectors" class="headerlink" title="Connectors"></a>Connectors</h3><p>Connectors是IDOL平台的一个核心组件，它可以灵活而精准的把不同格式(结构化，半结构化，上千种文件格式)不同来源的数据摄入到IDOL数据库中。常用的Connectors有如下几种：</p>
 <ul>
-<li>Pragma</li>
-<li>Cache-Control</li>
-<li>Expires</li>
-<li>Last-Modified</li>
-<li>Etag</li>
+<li><p>ODBC Connector<br>通过配置可以直接连接所有支持ODBC的数据库，通过配置的SQL语句，直接从数据库中抽取数据。</p>
+</li>
+<li><p>File Connector<br>可以从指定的本地或网络文件目录抽取文件内容到IDOL中。</p>
+</li>
+<li><p>Http Connector<br>可以从指定的网站抓取内容。</p>
+</li>
 </ul>
-<h3 id="Pragma-amp-Cache-Control"><a href="#Pragma-amp-Cache-Control" class="headerlink" title="Pragma &amp; Cache-Control"></a>Pragma &amp; Cache-Control</h3><p>用于指定所有缓存机制在整个请求/响应链中必须服从的命令，如果知道该页面是否为缓存，不仅可以控制浏览器，还可以控制HTTP协议相关的缓存或者代理服务器。</p>
-<p>Cache-Control请求字段优先级比较高，如果和其它一些相冲突的字段(比如Expires)同时出现，则Cache-Control会覆盖其它字段。<br>Pragma的作用和Cache-Control类似，也是在HTTP头中包含一个特殊指令，使相关的服务器来遵守，Pragma:no-cache 和 Cache-Control:no-cache的作用是一样的。</p>
-<blockquote>
-<p>浏览器中的强制刷新(Ctrl + F5)就是通过发起请求时加上请求头 Pragma:no-cache 和 Cache-Control:no-cache 实现的。</p>
-</blockquote>
-<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>通常格式为Expires:Sat,25Feb201712:22:17GMT,后面跟着日期和时间，超过这个时间值后，缓存内容将失效，也就是浏览器在发出请求之前会检查这个页面的字段，如果页面已经过期，就重新向服务器发起请求。</p>
-<h3 id="Last-Modified-amp-Etag"><a href="#Last-Modified-amp-Etag" class="headerlink" title="Last-Modified &amp; Etag"></a>Last-Modified &amp; Etag</h3><p>Last-Modified一般用于表示一个服务器上的资源的最后修改时间，资源可以是静态或者是动态的。<br>一般服务端在响应头中返回一个Last-Modified字段，告诉浏览器这个页面的最后修改时间，浏览器再次请求时在请求头中增加一个If-Modified-Since:Sat,25Feb201712:22:17GMT,询问当前缓存的页面是否是最新的，如果是最新的就返回304，告诉浏览器是最新的，服务器也不会传输新的数据。</p>
-<p>Etag与Last-Modified功能类似，作用是让服务器给每个页面分配一个唯一的编号，然后通过编号来区分当前页面是否为最新。这种方式比Last-Modified更灵活，但是在后端的Web服务器有多台时就比较难处理，因为每个web服务器都要记住网站的所有资源，否则这个编号就没有意义了。</p>
+<h3 id="CFS-Connector-Framework-Server"><a href="#CFS-Connector-Framework-Server" class="headerlink" title="CFS (Connector Framework Server)"></a>CFS (Connector Framework Server)</h3><p>Connectors实现了如何从不同的数据源抽取数据，CFS则负责抽取的实施以及从抽取的文件中提取出元数据(metadata)和文件内容，并把它们加载的CFS的document中。这样IDOL Server可以直接搜索分析数据，而不需要再从原文件格式中提取数据。<br>在数据进入IDOL数据库之前，还可以做一些增强操作，比如文字的情感分析， 文档归类， 概要生成等。<br>增加了CFS这一层，是将所需要的数据提供了一个统一的入口，相当于从各种管道接来了水，放置在水池中，供IDOL来用。</p>
+<h3 id="IDOL-Server"><a href="#IDOL-Server" class="headerlink" title="IDOL Server"></a>IDOL Server</h3><p>IDOL - 智能数据操作层(Intelligent Data Operating Layer)是Autonomy的核心，它可以收集来自各种连接器(Connectors)的数据, 并以其能够实现快速处理和检索的独特结构存储这些数据。在处理信息的时候，IDOL能够联系概念和语境来理解数据中的内容，可以对超过一千种不同格式的信息进行自动分析。</p>
+<p>IDOL允许对数据源进行超过500多种操作，包括超链接、代理、摘要、分类、聚类、结构化信息抽取、档案建立、个性化信息提醒及检索。</p>
+<h3 id="Image-Server"><a href="#Image-Server" class="headerlink" title="Image Server"></a>Image Server</h3><p>用于图片内容的存储分析查询等，可以从图片中提取文字，通过图片训练还可以提供Logo识别，人脸识别等功能。</p>
+<h3 id="DAH-Distributed-Action-Handler"><a href="#DAH-Distributed-Action-Handler" class="headerlink" title="DAH (Distributed Action Handler)"></a>DAH (Distributed Action Handler)</h3><p>用于分布式查询和结果集的整理。</p>
+<h3 id="DIH-Distributed-Action-Handler"><a href="#DIH-Distributed-Action-Handler" class="headerlink" title="DIH (Distributed Action Handler)"></a>DIH (Distributed Action Handler)</h3><p>用于分布式索引, 将即将入库的文档分散为子集发送到集群中的各个server。</p>
+<h3 id="Query-Manipulation-Server"><a href="#Query-Manipulation-Server" class="headerlink" title="Query Manipulation Server"></a>Query Manipulation Server</h3><p>查询管理。</p>
+<h3 id="Eduction-Server"><a href="#Eduction-Server" class="headerlink" title="Eduction Server"></a>Eduction Server</h3><p>为自己感兴趣的实体增加tag以便于查询和过滤。</p>
+<h3 id="Media-Server"><a href="#Media-Server" class="headerlink" title="Media Server"></a>Media Server</h3><p>分析处理视频数据，可以将视频分解为音频和图片，将音频转换为文字等。</p>
+<h3 id="IDOL-Speech-Server"><a href="#IDOL-Speech-Server" class="headerlink" title="IDOL Speech Server"></a>IDOL Speech Server</h3><p>分析处理音频文件， 可以实现音频转换为文字，语音识别及语音搜索等功能。</p>
+<h2 id="IDOL中支持的功能："><a href="#IDOL中支持的功能：" class="headerlink" title="IDOL中支持的功能："></a>IDOL中支持的功能：</h2><p><img src="https://my.vertica.com/docs/IDOL/Servers/IDOLServer/11.0/Guides/html/English/expert/Content/FunctionalityView.png" alt=""></p>
+<h2 id="IDOL的应用架构"><a href="#IDOL的应用架构" class="headerlink" title="IDOL的应用架构"></a>IDOL的应用架构</h2><p><img src="http://blogs.forrester.com/f/b/users/LOWENS/autonomy.jpg" alt=""></p>
+<p>参考文档： <a href="https://my.vertica.com/documentation/idol/11-0/" target="_blank" rel="noopener">https://my.vertica.com/documentation/idol/11-0/</a><br><a href="https://my.vertica.com/docs/IDOL/Interfaces/ACIAPI/11.0/Guides/pdf/English/ACIAPI_11.0_Programming_en.pdf" target="_blank" rel="noopener">应用接口使用文档</a></p>
 
           
         
@@ -821,6 +834,174 @@
 <p>示例中内部函数inner持有外部函数func的局部变量local，这样就构成了一个作用域(闭包)，通过该作用域我们可以访问及修改外部访问不到的内部变量。</p>
 <h3 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h3><p>管理私有变量和私有方法，将对变量的管理封装在安全环境之中。<br>外层函数执行之后，它的局部变量本来应该全部销毁，但是由于闭包的存在，之后执行内部函数，通过它仍然可以访问到外层函数的变量。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> name = <span class="string">"Charlie"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		setName: <span class="function"><span class="keyword">function</span>(<span class="params">new_name</span>)</span>&#123;</span><br><span class="line">			name = new_name;</span><br><span class="line">		&#125;,</span><br><span class="line">		getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> name;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = func();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(f.name);</span><br><span class="line"><span class="comment">// 打印结果：</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(f.getName())</span><br><span class="line"><span class="comment">// 打印结果：</span></span><br><span class="line"><span class="comment">// Charlie</span></span><br><span class="line"></span><br><span class="line">f.setName(<span class="string">"Teddy"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(f.getName())</span><br><span class="line"><span class="comment">// 打印结果：</span></span><br><span class="line"><span class="comment">// Teddy</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2017/07/10/Cache相关的HTTP请求响应头/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Annan An">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知乐园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/10/Cache相关的HTTP请求响应头/" itemprop="url">Cache相关的HTTP请求/响应头</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T22:02:49+08:00">2017-07-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/10/Cache相关的HTTP请求响应头/" class="leancloud_visitors" data-flag-title="Cache相关的HTTP请求/响应头">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/APlayer.min.js"> </script><p>常见的HTTP请求/响应头有很多，以下介绍几种cache相关的：</p>
+<ul>
+<li>Pragma</li>
+<li>Cache-Control</li>
+<li>Expires</li>
+<li>Last-Modified</li>
+<li>Etag</li>
+</ul>
+<h3 id="Pragma-amp-Cache-Control"><a href="#Pragma-amp-Cache-Control" class="headerlink" title="Pragma &amp; Cache-Control"></a>Pragma &amp; Cache-Control</h3><p>用于指定所有缓存机制在整个请求/响应链中必须服从的命令，如果知道该页面是否为缓存，不仅可以控制浏览器，还可以控制HTTP协议相关的缓存或者代理服务器。</p>
+<p>Cache-Control请求字段优先级比较高，如果和其它一些相冲突的字段(比如Expires)同时出现，则Cache-Control会覆盖其它字段。<br>Pragma的作用和Cache-Control类似，也是在HTTP头中包含一个特殊指令，使相关的服务器来遵守，Pragma:no-cache 和 Cache-Control:no-cache的作用是一样的。</p>
+<blockquote>
+<p>浏览器中的强制刷新(Ctrl + F5)就是通过发起请求时加上请求头 Pragma:no-cache 和 Cache-Control:no-cache 实现的。</p>
+</blockquote>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>通常格式为Expires:Sat,25Feb201712:22:17GMT,后面跟着日期和时间，超过这个时间值后，缓存内容将失效，也就是浏览器在发出请求之前会检查这个页面的字段，如果页面已经过期，就重新向服务器发起请求。</p>
+<h3 id="Last-Modified-amp-Etag"><a href="#Last-Modified-amp-Etag" class="headerlink" title="Last-Modified &amp; Etag"></a>Last-Modified &amp; Etag</h3><p>Last-Modified一般用于表示一个服务器上的资源的最后修改时间，资源可以是静态或者是动态的。<br>一般服务端在响应头中返回一个Last-Modified字段，告诉浏览器这个页面的最后修改时间，浏览器再次请求时在请求头中增加一个If-Modified-Since:Sat,25Feb201712:22:17GMT,询问当前缓存的页面是否是最新的，如果是最新的就返回304，告诉浏览器是最新的，服务器也不会传输新的数据。</p>
+<p>Etag与Last-Modified功能类似，作用是让服务器给每个页面分配一个唯一的编号，然后通过编号来区分当前页面是否为最新。这种方式比Last-Modified更灵活，但是在后端的Web服务器有多台时就比较难处理，因为每个web服务器都要记住网站的所有资源，否则这个编号就没有意义了。</p>
 
           
         
@@ -1889,154 +2070,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2015/07/29/应用服务器集群实现方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Annan An">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知乐园">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/07/29/应用服务器集群实现方式/" itemprop="url">应用服务器集群几种基本实现方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-29T14:18:35+08:00">2015-07-29</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2015/07/29/应用服务器集群实现方式/" class="leancloud_visitors" data-flag-title="应用服务器集群几种基本实现方式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>负载均衡是网站必不可少的基础技术手段，不但可以实现网站的伸缩性，还可以改善网站的可用性。<br><img src="/images/负载均衡0.png" alt=""><br>负载均衡的实现技术也有多种多样，从硬件到软件，从商业产品到开源软件，多不胜数，主要实现负载均衡的基础技术有以下几种：</p>
-<h3 id="HTTP重定向负载均衡"><a href="#HTTP重定向负载均衡" class="headerlink" title="HTTP重定向负载均衡"></a>HTTP重定向负载均衡</h3><p>HTTP重定向服务器时一台普通的应用服务器，唯一的功能就是根据用户的HTTP请求计算出一台真实的Web服务器地址，并将该Web服务器地址写入HTTP重定向响应中(响应状态码302)返回给用户浏览器，然后浏览器自动重新请求实际的物理服务器IP地址，从而完成访问。</p>
-<p>这种实现方案优点是比较简单，缺点是浏览器需要两次请求服务器才能完成一次访问，性能比较差。重定向服务器自身的处理能力有可能成为瓶颈，整个集群的伸缩性规模有限。而且使用HTTP302响应吗重定向有可能使搜索引擎判断为SEO作弊，降低搜索排名。</p>
-<h3 id="DNS域名解析负载均衡"><a href="#DNS域名解析负载均衡" class="headerlink" title="DNS域名解析负载均衡"></a>DNS域名解析负载均衡</h3><p>这是利用DNS处理域名解析请求的同时进行负载均衡处理的一种方案。在DNS服务器中对指定域名配置多个ip地址，每次域名解析请求都会根据负载均衡算法计算出一个不同的IP地址，这样配置的多个服务器就构成一个集群，并且可以实现负载均衡。</p>
-<p>DNS域名解析负载均衡的优点是将负载均衡的工作转交给DNS，省掉了网站管理维护负载均衡服务器的麻烦，同时许多DNS还支持基于地理位置的域名解析，即会将域名解析成距离用户地理最近的一个服务器地址，这样可以加速用户访问速度，改善性能。<br>DNS域名解析负载均衡的缺点是目前的DNS是多级解析，每一级DNS都可能缓存，当下线了某台服务器后，即使修改了DNS中的记录，要使其生效也需要很长时间，这段时间，DNS依然会将域名解析道已经下线的服务器，从而导致用户访问失败。而且DNS负载均衡的控制权在域名服务商那里，网站无法对其做更多的改善和更强大的管理。</p>
-<p>实际上，很多大型网站总是部分使用DNS域名解析，利用域名解析作为第一级负载均衡手段，即域名解析得到的一组服务器并不是实际提供Web服务的物理服务器，而是同样提供负载均衡服务的内部服务器，这组内部负载均衡服务器再进行负载均衡，将请求分发到真实的Web服务器上。</p>
-<h3 id="反向代理负载均衡"><a href="#反向代理负载均衡" class="headerlink" title="反向代理负载均衡"></a>反向代理负载均衡</h3><p>反向代理服务器位于服务器端，正好是负载均衡服务器的位置，所以大多数反向代理服务器同时提供负载均衡的功能，管理一组Web服务器，将请求根据负载均衡算法转发到不同的Web服务器上，Web服务器处理完成的响应请求也需要通过反向代理服务器返回给用户。由于Web服务器不直接对外提供访问，因此Web服务器不需要使用外部IP地址，而反向代理则需要配置双网卡和内部外部两套IP地址。</p>
-<p>反向代理负载均衡的优点是负载均衡和反向代理服务器功能集成在一起，部署简单。缺点时反向代理服务器是所有请求和响应的中转站，性能可能会成为瓶颈。</p>
-<h3 id="IP负载均衡"><a href="#IP负载均衡" class="headerlink" title="IP负载均衡"></a>IP负载均衡</h3><p>IP负载均衡的原理是在网络层通过修改请求目标地址进行负载均衡。用户请求数据包达到负载均衡服务器之后，负载均衡服务器在操作系统内核进程获取网络数据包，根据负载均衡算法计算得到真实的Web服务器IP地址，然后将数据目的IP地址修改为真实的Web服务器地址，不需要通过用户进程处理。真实Web应用服务器处理完成后，响应数据包回到负载均衡服务器，负载均衡服务器再将数据包源地址修改为自身的IP地址发送给用户浏览器。</p>
-<p>这里的关键在于真实物理Web服务器响应数据如何返回给负载均衡服务器。一种方案是负载均衡服务器修改目的IP地址的同时修改源地址，将数据包源地址设为自身的IP地址，即源地址转换(SNAT), 这样Web服务器的响应会再回到负载均衡服务器；另一种方案是负载均衡服务器同时作为真实物理服务器集群的网关服务器，这样所有的响应数据都会达到负载均衡服务器。</p>
-<p>IP负载均衡在内核进程完成数据分发，比反向代理负载均衡有更好的处理性能。但是由于所有请求响应都需要经过负载均衡服务器，集群的最大响应数据吞吐量不得不受制于负载均衡服务器网卡带宽。对于提供下载服务或者是视频服务等需要传输大量数据的网站而言，难以满足需求。</p>
-<h3 id="数据链路层负载均衡"><a href="#数据链路层负载均衡" class="headerlink" title="数据链路层负载均衡"></a>数据链路层负载均衡</h3><p>数据链路层负载均衡是指在通信协议的数据链路层修改MAC地址进行负载均衡。<br>负载均衡数据分发过程中不修改IP地址，之修改MAC地址，通过配置真实物理服务器集群所有机器虚拟IP和负载均衡服务器IP地址一致，从而达到不修改数据包的源地址和目的地址就可以进行数据分发的目的，由于实际处理请求的真实物理服务器IP地址和数据请求的目的IP一致，不需要经过负载均衡服务器进行地址转换，就可以把响应数据包直接返回给用户浏览器，避免负载均衡服务器网卡带宽成为瓶颈。这种负载均衡方式又称为直接路由方式。</p>
-<p>这种方式是目前大型网站使用最广的一种负载均衡手段， Linux平台上最好的链路层负载均衡开源产品时LVS (Linux Virtual Server).</p>
-<p>参考：<br>《大型网站技术架构》 李智慧 著</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2088,7 +2121,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
