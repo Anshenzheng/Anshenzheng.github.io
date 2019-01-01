@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://anshenzheng.github.io/"/>
-  <updated>2018-12-18T14:54:21.504Z</updated>
+  <updated>2019-01-01T07:29:43.972Z</updated>
   <id>https://anshenzheng.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CPS信息物理融合系统</title>
+    <link href="https://anshenzheng.github.io/2019/01/01/CPS%E4%BF%A1%E6%81%AF%E7%89%A9%E7%90%86%E8%9E%8D%E5%90%88%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://anshenzheng.github.io/2019/01/01/CPS信息物理融合系统/</id>
+    <published>2019-01-01T05:30:15.000Z</published>
+    <updated>2019-01-01T07:29:43.972Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p><img src="https://github.com/Anshenzheng/ImageStore/blob/master/cps.png?raw=true" alt=""></p><h3 id="CPS基本概念"><a href="#CPS基本概念" class="headerlink" title="CPS基本概念"></a>CPS基本概念</h3><p>CPS是一种大规模、分布式、异构、复杂的，以及深度嵌入式的实时系统，是目前最前沿的交叉研究领域之一，涉及计算科学、网络技术、控制理论等多个学科，被普遍认为是计算机信息处理技术史上的下一次革命。<br>Internet改变了人与人之间的交互方式，CPS将会改变人与现实物理世界之间的交互方式。</p><p>CPS由传感器节点、执行器节点、传感与执行器组合节点、计算系统和控制系统组成。</p><blockquote><p>传感器节点、执行器节点、传感器与执行器组合节点分布在物理世界，实现对物理世界直接感知，并通过操作物理世界的对象正确的控制物理世界。<br>计算系统完成CPS要求的各种计算任务，提供各种服务，确定对物理世界的控制策略，协调各个执行器对物理世界的对象执行正确操作，实行对物理世界的协同控制。</p></blockquote><p>CPS的通信网络可以逻辑地视为由传感器网络、执行器网络、计算机网络构成的组合通信网络。<br><img src="http://file.elecfans.com/web1/M00/4F/3F/o4YBAFrWqg-AfLLPAACQr2mme60266.jpg" alt=""></p><h3 id="CPS-目标"><a href="#CPS-目标" class="headerlink" title="CPS 目标"></a>CPS 目标</h3><p>CPS的目标就是实现信息系统和物理世界以及各信息系统之间的深度融合：<br>在感知、互联互通、能力开放、安全可控、应用计算的基础上，构建出一个巨大的、融合的、智能化的生产服务系统。</p><h3 id="CPS的特点"><a href="#CPS的特点" class="headerlink" title="CPS的特点"></a>CPS的特点</h3><p>紧密融合<br>资源受限<br>网络复杂<br>异构异质<br>认知困难<br>时空约束<br>不确定性<br>安全可靠</p><h3 id="嵌入式系统-Vs-物联网-Vs-传感网-Vs-CPS"><a href="#嵌入式系统-Vs-物联网-Vs-传感网-Vs-CPS" class="headerlink" title="嵌入式系统 Vs 物联网 Vs 传感网 Vs CPS"></a>嵌入式系统 Vs 物联网 Vs 传感网 Vs CPS</h3><h4 id="嵌入式系统"><a href="#嵌入式系统" class="headerlink" title="嵌入式系统"></a>嵌入式系统</h4><p>嵌入式系统是软硬件的综合体，某些情况下还包括机械装置。<br>传统的物理设备通过嵌入式系统来扩展或增加新功能，其形成的系统基本上是封闭的系统。</p><h4 id="物联网"><a href="#物联网" class="headerlink" title="物联网"></a>物联网</h4><p>物联网的概念在1999年已经提出，其定义是通过射频识别，、红外感应器、全球定位系统、激光扫描器等信息传感设备，按约定的协议，把任何物品与互联网连接起来，进行信息交换和通讯，以实现智能化识别、定位、跟踪、监控和管理的一种网络。物联网的核心和基础仍然是互联网，是在互联网基础的延伸和扩展的网络，在物联网中，用户端延伸和扩展到了任何物品和物品之间，进行信息交换和通讯。</p><h4 id="传感网-Sensor-Network"><a href="#传感网-Sensor-Network" class="headerlink" title="传感网(Sensor Network)"></a>传感网(Sensor Network)</h4><p>传感网节点是传感器，通过自组织的方式构成无线网络，感知的对象是诸如温度、湿度、噪声、网强度、压力、土壤成分、移动物体的大小、速度和方向等物理属性，实现特定区域的检测。</p><h4 id="CPS"><a href="#CPS" class="headerlink" title="CPS"></a>CPS</h4><p>CPS简单的说就是开放的嵌入式系统加上网络和控制功能，其核心是3C融合、自主适应物理环境的变化，其中网络的功能主要是为了实现控制的目的。物联网、传感网所擅长的是基于无线连接，主要实现的是感知，这对CPS来说太过简单，CPS需实现的是感控，不仅仅实现感知功能，还需要实现控制，其对计算能力的要求远远超过了物联网和传感网。</p><h3 id="发展现状"><a href="#发展现状" class="headerlink" title="发展现状"></a>发展现状</h3><p>目前国际上CPS研究工作刚刚开始，研究工作近涉及少数几个方面。<br>现有研究工作分为7类：<br>CPS的系统模型<br>CPS上数据传输与管理技术<br>CPS的能源管理<br>CPS的系统安全<br>CPS软件设计技术<br>CPS控制<br>CPS应用系统</p><h3 id="CPS应用范围"><a href="#CPS应用范围" class="headerlink" title="CPS应用范围"></a>CPS应用范围</h3><p>从微笑的纳米机器人，到庞大的工程基建设备，从城市交通信息提供到远程手术医疗系统，交通、医疗、农业、能源、国防、建筑、制造业流水线都是其涉足的领域。目前来看，CPS更偏重于科学研究， M2M、IOT更注重于工程技术的落地。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;https://github.com/Anshenzheng/ImageStore/blob/master/cps.png?raw=true&quot; alt=&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>HTTPS Basic</title>
