@@ -117,18 +117,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Javascript中的闭包]]></title>
-    <url>%2F2017%2F07%2F10%2FJavascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85%2F</url>
-    <content type="text"><![CDATA[什么是闭包闭包(closure)是指在JavaScript中，将外部函数中的局部变量封闭起来的(内部)函数。(被封闭起来的变量与封闭它的函数具有相同的生命周期。) 示例如下： 123456789function func()&#123; var local = "local variable"; var inner = function()&#123; console.log(local); &#125; return inner;&#125; 示例中内部函数inner持有外部函数func的局部变量local，这样就构成了一个作用域(闭包)，通过该作用域我们可以访问及修改外部访问不到的内部变量。 闭包的作用管理私有变量和私有方法，将对变量的管理封装在安全环境之中。外层函数执行之后，它的局部变量本来应该全部销毁，但是由于闭包的存在，之后执行内部函数，通过它仍然可以访问到外层函数的变量。 123456789101112131415161718192021222324252627function func()&#123; var name = "Charlie"; return &#123; setName: function(new_name)&#123; name = new_name; &#125;, getName: function()&#123; return name; &#125; &#125;;&#125;var f = func();console.log(f.name);// 打印结果：// undefinedconsole.log(f.getName())// 打印结果：// Charlief.setName("Teddy");console.log(f.getName())// 打印结果：// Teddy]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-        <tag>闭包</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Cache相关的HTTP请求/响应头]]></title>
     <url>%2F2017%2F07%2F10%2FCache%E7%9B%B8%E5%85%B3%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E5%A4%B4%2F</url>
     <content type="text"><![CDATA[常见的HTTP请求/响应头有很多，以下介绍几种cache相关的： Pragma Cache-Control Expires Last-Modified Etag Pragma &amp; Cache-Control用于指定所有缓存机制在整个请求/响应链中必须服从的命令，如果知道该页面是否为缓存，不仅可以控制浏览器，还可以控制HTTP协议相关的缓存或者代理服务器。 Cache-Control请求字段优先级比较高，如果和其它一些相冲突的字段(比如Expires)同时出现，则Cache-Control会覆盖其它字段。Pragma的作用和Cache-Control类似，也是在HTTP头中包含一个特殊指令，使相关的服务器来遵守，Pragma:no-cache 和 Cache-Control:no-cache的作用是一样的。 浏览器中的强制刷新(Ctrl + F5)就是通过发起请求时加上请求头 Pragma:no-cache 和 Cache-Control:no-cache 实现的。 Expires通常格式为Expires:Sat,25Feb201712:22:17GMT,后面跟着日期和时间，超过这个时间值后，缓存内容将失效，也就是浏览器在发出请求之前会检查这个页面的字段，如果页面已经过期，就重新向服务器发起请求。 Last-Modified &amp; EtagLast-Modified一般用于表示一个服务器上的资源的最后修改时间，资源可以是静态或者是动态的。一般服务端在响应头中返回一个Last-Modified字段，告诉浏览器这个页面的最后修改时间，浏览器再次请求时在请求头中增加一个If-Modified-Since:Sat,25Feb201712:22:17GMT,询问当前缓存的页面是否是最新的，如果是最新的就返回304，告诉浏览器是最新的，服务器也不会传输新的数据。 Etag与Last-Modified功能类似，作用是让服务器给每个页面分配一个唯一的编号，然后通过编号来区分当前页面是否为最新。这种方式比Last-Modified更灵活，但是在后端的Web服务器有多台时就比较难处理，因为每个web服务器都要记住网站的所有资源，否则这个编号就没有意义了。]]></content>
@@ -139,6 +127,18 @@
         <tag>cache</tag>
         <tag>http</tag>
         <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Javascript中的闭包]]></title>
+    <url>%2F2017%2F07%2F10%2FJavascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[什么是闭包闭包(closure)是指在JavaScript中，将外部函数中的局部变量封闭起来的(内部)函数。(被封闭起来的变量与封闭它的函数具有相同的生命周期。) 示例如下： 123456789function func()&#123; var local = "local variable"; var inner = function()&#123; console.log(local); &#125; return inner;&#125; 示例中内部函数inner持有外部函数func的局部变量local，这样就构成了一个作用域(闭包)，通过该作用域我们可以访问及修改外部访问不到的内部变量。 闭包的作用管理私有变量和私有方法，将对变量的管理封装在安全环境之中。外层函数执行之后，它的局部变量本来应该全部销毁，但是由于闭包的存在，之后执行内部函数，通过它仍然可以访问到外层函数的变量。 123456789101112131415161718192021222324252627function func()&#123; var name = "Charlie"; return &#123; setName: function(new_name)&#123; name = new_name; &#125;, getName: function()&#123; return name; &#125; &#125;;&#125;var f = func();console.log(f.name);// 打印结果：// undefinedconsole.log(f.getName())// 打印结果：// Charlief.setName("Teddy");console.log(f.getName())// 打印结果：// Teddy]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>闭包</tag>
       </tags>
   </entry>
   <entry>
@@ -185,9 +185,9 @@
         <category>后端</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>aop</tag>
         <tag>Spring</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
