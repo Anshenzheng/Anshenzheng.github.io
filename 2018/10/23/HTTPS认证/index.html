@@ -99,13 +99,13 @@
 
 
 
-  <meta name="description" content="目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。 本文会从一下几方面讲解HTTPS认证的相关内容： 12345678910111213141516171. 基础概念	1.1 加密 Vs Hash	1.2 对称加密 Vs 非对称加密3. SSL/">
+  <meta name="description" content="目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。 本文会从一下几方面讲解HTTPS认证的相关内容： 12345678910111213141516171. 基础概念	1.1 加密 Vs Hash	1.2 对称加密 Vs 非对称加密3. SSL/T">
 <meta name="keywords" content="keytool,keystore,https">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTPS Basic">
 <meta property="og:url" content="https://anshenzheng.github.io/2018/10/23/HTTPS认证/index.html">
 <meta property="og:site_name" content="知乐园">
-<meta property="og:description" content="目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。 本文会从一下几方面讲解HTTPS认证的相关内容： 12345678910111213141516171. 基础概念	1.1 加密 Vs Hash	1.2 对称加密 Vs 非对称加密3. SSL/">
+<meta property="og:description" content="目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。 本文会从一下几方面讲解HTTPS认证的相关内容： 12345678910111213141516171. 基础概念	1.1 加密 Vs Hash	1.2 对称加密 Vs 非对称加密3. SSL/T">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542553667416&di=265e20c12afd5f9e5cc9c98e7bef1575&imgtype=0&src=http%3A%2F%2Ftxt6.book118.com%2F2016%2F1203%2Fbook67956%2F67955260.jpg">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542554072256&di=1f3606af7e71592397fe7e9eece12e8f&imgtype=0&src=http%3A%2F%2Fimage.68686686.com%2FFile%2FArticle%2F20180604%2F3c51813d-88ac-404e-982e-61e32cff53be.png">
@@ -118,10 +118,10 @@
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542553793131&di=4e09f8f1eacb2029a228ec7be7217ccc&imgtype=0&src=http%3A%2F%2Fs3.51cto.com%2Fwyfs02%2FM00%2FA5%2F15%2FwKioL1m3inPgUUgQAAFabDvTsYI063.png">
 <meta property="og:image" content="https://ask.qcloudimg.com/http-save/developer-news/9qgvflez67.jpeg">
 <meta property="og:image" content="https://github.com/Anshenzheng/ImageStore/blob/master/SSH%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86.png?raw=true">
-<meta property="og:updated_time" content="2018-12-18T14:54:21.504Z">
+<meta property="og:updated_time" content="2019-04-05T04:10:01.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTPS Basic">
-<meta name="twitter:description" content="目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。 本文会从一下几方面讲解HTTPS认证的相关内容： 12345678910111213141516171. 基础概念	1.1 加密 Vs Hash	1.2 对称加密 Vs 非对称加密3. SSL/">
+<meta name="twitter:description" content="目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。 本文会从一下几方面讲解HTTPS认证的相关内容： 12345678910111213141516171. 基础概念	1.1 加密 Vs Hash	1.2 对称加密 Vs 非对称加密3. SSL/T">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542553667416&di=265e20c12afd5f9e5cc9c98e7bef1575&imgtype=0&src=http%3A%2F%2Ftxt6.book118.com%2F2016%2F1203%2Fbook67956%2F67955260.jpg">
 
 
@@ -473,7 +473,7 @@
 <blockquote>
 <p>流行的对称加密算法有DES, Triple-DES, RC2 和 RC4. </p>
 </blockquote>
-<p><strong>非对称加密</strong>算法需要两个密钥来进行加密和解密，这两个秘钥是公开密钥（public key，简称公钥）和私有密钥（private key，简称私钥）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554526011&amp;di=c415dd72f654a4166844cdd040b96563&amp;imgtype=0&amp;src=http%3A%2F%2Fme2xp.blog.51cto.com%2Fattachment%2F201408%2F3%2F6716920_1407061378m5RW.jpg" alt=""></p>
+<p><strong>非对称加密</strong>算法需要两个密钥来进行加密和解密，这两个秘钥是公开密钥（public key，简称公钥）和私有密钥（private key，简称私钥）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。<a id="more"></a><br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554526011&amp;di=c415dd72f654a4166844cdd040b96563&amp;imgtype=0&amp;src=http%3A%2F%2Fme2xp.blog.51cto.com%2Fattachment%2F201408%2F3%2F6716920_1407061378m5RW.jpg" alt=""></p>
 <h3 id="TLS-SSL"><a href="#TLS-SSL" class="headerlink" title="TLS/SSL"></a>TLS/SSL</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542555251822&amp;di=1ff2554f8ee8295abd2c89c3880f70ec&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161128%2F85e401b1b4a247f0896376ad5281d30b_th.jpeg" alt=""><br>SSL是Netscape公司发明的一种用于WEB安全传输协议。随着时间推移由于Netscape失去市场份额，它将SSL的维护工作移交给了因特网工程任务组(IETF),后被重新命名为TLS。</p>
 <h4 id="SSL协议功能"><a href="#SSL协议功能" class="headerlink" title="SSL协议功能"></a>SSL协议功能</h4><ul>
 <li>数据传输保密性</li>

@@ -99,19 +99,19 @@
 
 
 
-  <meta name="description" content="JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。 首先用一张图来展示JVM的内存结构模型： JVM内存主要分为以下几个区域 Java堆区(Heap)Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。一般来说，Ja">
+  <meta name="description" content="JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。 首先用一张图来展示JVM的内存结构模型： JVM内存主要分为以下几个区域 Java堆区(Heap)Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。一般来说，Jav">
 <meta name="keywords" content="Java,虚拟机,JVM,内存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java知识梳理系列一 - JVM内存结构">
 <meta property="og:url" content="https://anshenzheng.github.io/2019/03/31/Java知识梳理系列一-JVM内存结构/index.html">
 <meta property="og:site_name" content="知乐园">
-<meta property="og:description" content="JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。 首先用一张图来展示JVM的内存结构模型： JVM内存主要分为以下几个区域 Java堆区(Heap)Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。一般来说，Ja">
+<meta property="og:description" content="JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。 首先用一张图来展示JVM的内存结构模型： JVM内存主要分为以下几个区域 Java堆区(Heap)Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。一般来说，Jav">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/Anshenzheng/ImageStore/blob/master/jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B.jpg?raw=true">
-<meta property="og:updated_time" content="2019-03-31T10:40:18.688Z">
+<meta property="og:updated_time" content="2019-04-05T03:54:03.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识梳理系列一 - JVM内存结构">
-<meta name="twitter:description" content="JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。 首先用一张图来展示JVM的内存结构模型： JVM内存主要分为以下几个区域 Java堆区(Heap)Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。一般来说，Ja">
+<meta name="twitter:description" content="JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。 首先用一张图来展示JVM的内存结构模型： JVM内存主要分为以下几个区域 Java堆区(Heap)Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。一般来说，Jav">
 <meta name="twitter:image" content="https://github.com/Anshenzheng/ImageStore/blob/master/jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B.jpg?raw=true">
 
 
@@ -458,7 +458,7 @@
         <script src="/assets/js/APlayer.min.js"> </script><p>JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。</p>
 <p>首先用一张图来展示JVM的内存结构模型：<br><img src="https://github.com/Anshenzheng/ImageStore/blob/master/jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B.jpg?raw=true" alt=""></p>
 <p>JVM内存主要分为以下几个区域</p>
-<h3 id="Java堆区-Heap"><a href="#Java堆区-Heap" class="headerlink" title="Java堆区(Heap)"></a>Java堆区(Heap)</h3><p>Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。<br>一般来说，Java堆区是Java虚拟机所管理的内存中最大的一块，是被所有线程共享的内存区域，在虚拟机启动时创建。</p>
+<h3 id="Java堆区-Heap"><a href="#Java堆区-Heap" class="headerlink" title="Java堆区(Heap)"></a>Java堆区(Heap)</h3><p>Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。<br>一般来说，Java堆区是Java虚拟机所管理的内存中最大的一块，是被所有线程共享的内存区域，在虚拟机启动时创建。<a id="more"></a></p>
 <blockquote>
 <p>如果堆中没有足够的内存完成实例分配并且也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
 </blockquote>

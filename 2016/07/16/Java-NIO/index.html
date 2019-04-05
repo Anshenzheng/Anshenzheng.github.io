@@ -99,17 +99,17 @@
 
 
 
-  <meta name="description" content="NIO模型原理Channel: Channel是一个在TCP连接之间的抽象，一个TCP链接可以对应多个管道，而不是以前的方式只有一个通信信道，减少了TCP连接次数。 UDP：采用相同方式，也是抽象为管道。 通过selector(选择器)，相当于管家，管理所有的IO事件(Connection/accept，客户端服务端的读写等)。 Selector管理IO事件当IO事件注册给selector时，s">
+  <meta name="description" content="NIO模型原理Channel: Channel是一个在TCP连接之间的抽象，一个TCP链接可以对应多个管道，而不是以前的方式只有一个通信信道，减少了TCP连接次数。 UDP：采用相同方式，也是抽象为管道。 通过selector(选择器)，相当于管家，管理所有的IO事件(Connection/accept，客户端服务端的读写等)。 Selector管理IO事件当IO事件注册给selector时，se">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java NIO">
 <meta property="og:url" content="https://anshenzheng.github.io/2016/07/16/Java-NIO/index.html">
 <meta property="og:site_name" content="知乐园">
-<meta property="og:description" content="NIO模型原理Channel: Channel是一个在TCP连接之间的抽象，一个TCP链接可以对应多个管道，而不是以前的方式只有一个通信信道，减少了TCP连接次数。 UDP：采用相同方式，也是抽象为管道。 通过selector(选择器)，相当于管家，管理所有的IO事件(Connection/accept，客户端服务端的读写等)。 Selector管理IO事件当IO事件注册给selector时，s">
+<meta property="og:description" content="NIO模型原理Channel: Channel是一个在TCP连接之间的抽象，一个TCP链接可以对应多个管道，而不是以前的方式只有一个通信信道，减少了TCP连接次数。 UDP：采用相同方式，也是抽象为管道。 通过selector(选择器)，相当于管家，管理所有的IO事件(Connection/accept，客户端服务端的读写等)。 Selector管理IO事件当IO事件注册给selector时，se">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-27T15:31:52.000Z">
+<meta property="og:updated_time" content="2019-04-05T04:14:47.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java NIO">
-<meta name="twitter:description" content="NIO模型原理Channel: Channel是一个在TCP连接之间的抽象，一个TCP链接可以对应多个管道，而不是以前的方式只有一个通信信道，减少了TCP连接次数。 UDP：采用相同方式，也是抽象为管道。 通过selector(选择器)，相当于管家，管理所有的IO事件(Connection/accept，客户端服务端的读写等)。 Selector管理IO事件当IO事件注册给selector时，s">
+<meta name="twitter:description" content="NIO模型原理Channel: Channel是一个在TCP连接之间的抽象，一个TCP链接可以对应多个管道，而不是以前的方式只有一个通信信道，减少了TCP连接次数。 UDP：采用相同方式，也是抽象为管道。 通过selector(选择器)，相当于管家，管理所有的IO事件(Connection/accept，客户端服务端的读写等)。 Selector管理IO事件当IO事件注册给selector时，se">
 
 
 
@@ -437,7 +437,7 @@
         <script src="/assets/js/APlayer.min.js"> </script><h3 id="NIO模型原理"><a href="#NIO模型原理" class="headerlink" title="NIO模型原理"></a>NIO模型原理</h3><p>Channel: Channel是一个在TCP连接之间的抽象，一个TCP链接可以对应多个管道，而不是以前的方式只有一个通信信道，减少了TCP连接次数。</p>
 <p>UDP：采用相同方式，也是抽象为管道。</p>
 <p>通过selector(选择器)，相当于管家，管理所有的IO事件(Connection/accept，客户端服务端的读写等)。</p>
-<h4 id="Selector管理IO事件"><a href="#Selector管理IO事件" class="headerlink" title="Selector管理IO事件"></a>Selector管理IO事件</h4><p>当IO事件注册给selector时，selector会给它们分配key值(可以简单理解为事件的标签), 当I/O事件完成后，会通过key值找到相应的管道，然后通过管道发送数据和接受数据等操作.</p>
+<h4 id="Selector管理IO事件"><a href="#Selector管理IO事件" class="headerlink" title="Selector管理IO事件"></a>Selector管理IO事件</h4><p>当IO事件注册给selector时，selector会给它们分配key值(可以简单理解为事件的标签), 当I/O事件完成后，会通过key值找到相应的管道，然后通过管道发送数据和接受数据等操作.<a id="more"></a></p>
 <h4 id="数据缓冲区："><a href="#数据缓冲区：" class="headerlink" title="数据缓冲区："></a>数据缓冲区：</h4><p>通过bytebuffer， 提供了很多读写方法</p>
 <ul>
 <li>put</li>

@@ -99,13 +99,13 @@
 
 
 
-  <meta name="description" content="企业应用部署面临的挑战分析述企业应用(Enterprise Application)是指运行在操作系统和中间件之上，实现特定业务逻辑的软件发布包和业务数据。企业应用部署(Enterprise Application Deployment)是把企业应用部署在一台或多台计算机的操作系统或中间件之上，从而提供一个可供测试、培训和生产的运行环境。 企业应用部署是软件持续交付（Continuous Del">
+  <meta name="description" content="企业应用部署面临的挑战分析述企业应用(Enterprise Application)是指运行在操作系统和中间件之上，实现特定业务逻辑的软件发布包和业务数据。企业应用部署(Enterprise Application Deployment)是把企业应用部署在一台或多台计算机的操作系统或中间件之上，从而提供一个可供测试、培训和生产的运行环境。 企业应用部署是软件持续交付（Continuous Deli">
 <meta name="keywords" content="UDeploy,CI,Deploy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IBM UrbanCode Deploy">
 <meta property="og:url" content="https://anshenzheng.github.io/2017/09/29/IBM-UrbanCode-Deploy/index.html">
 <meta property="og:site_name" content="知乐园">
-<meta property="og:description" content="企业应用部署面临的挑战分析述企业应用(Enterprise Application)是指运行在操作系统和中间件之上，实现特定业务逻辑的软件发布包和业务数据。企业应用部署(Enterprise Application Deployment)是把企业应用部署在一台或多台计算机的操作系统或中间件之上，从而提供一个可供测试、培训和生产的运行环境。 企业应用部署是软件持续交付（Continuous Del">
+<meta property="og:description" content="企业应用部署面临的挑战分析述企业应用(Enterprise Application)是指运行在操作系统和中间件之上，实现特定业务逻辑的软件发布包和业务数据。企业应用部署(Enterprise Application Deployment)是把企业应用部署在一台或多台计算机的操作系统或中间件之上，从而提供一个可供测试、培训和生产的运行环境。 企业应用部署是软件持续交付（Continuous Deli">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image003.jpg">
 <meta property="og:image" content="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image005.gif">
@@ -124,10 +124,10 @@
 <meta property="og:image" content="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image031.jpg">
 <meta property="og:image" content="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image033.jpg">
 <meta property="og:image" content="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image035.jpg">
-<meta property="og:updated_time" content="2017-09-30T01:29:14.000Z">
+<meta property="og:updated_time" content="2019-04-05T04:14:55.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IBM UrbanCode Deploy">
-<meta name="twitter:description" content="企业应用部署面临的挑战分析述企业应用(Enterprise Application)是指运行在操作系统和中间件之上，实现特定业务逻辑的软件发布包和业务数据。企业应用部署(Enterprise Application Deployment)是把企业应用部署在一台或多台计算机的操作系统或中间件之上，从而提供一个可供测试、培训和生产的运行环境。 企业应用部署是软件持续交付（Continuous Del">
+<meta name="twitter:description" content="企业应用部署面临的挑战分析述企业应用(Enterprise Application)是指运行在操作系统和中间件之上，实现特定业务逻辑的软件发布包和业务数据。企业应用部署(Enterprise Application Deployment)是把企业应用部署在一台或多台计算机的操作系统或中间件之上，从而提供一个可供测试、培训和生产的运行环境。 企业应用部署是软件持续交付（Continuous Deli">
 <meta name="twitter:image" content="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image003.jpg">
 
 
@@ -478,7 +478,7 @@
 <blockquote>
 <p>图 1. IBM UCD 功能组件图</p>
 </blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image003.jpg" alt=""><br>UCD 不仅仅是一个实现应用部署自动化的工具，还是一个服务于系统工程师（负责部署环境的系统管理）、发布工程师（负责应用的部署逻辑设计）、部署工程师（负责执行应用部署）和质量工程师（负责应用部署前和部署后的质量审计）等多个角色的管理平台。</p>
+<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image003.jpg" alt=""><br>UCD 不仅仅是一个实现应用部署自动化的工具，还是一个服务于系统工程师（负责部署环境的系统管理）、发布工程师（负责应用的部署逻辑设计）、部署工程师（负责执行应用部署）和质量工程师（负责应用部署前和部署后的质量审计）等多个角色的管理平台。<a id="more"></a></p>
 <p>该平台所提供的功能点包括如下：<br>1、环境管理：实现对被部署机器以及所提供资源（比如数据库、中间件等）的管理。<br>2、组件管理：实现对应用部署组件（比如企业应用的安装包、数据更新脚本等）的维护，以及组件部署逻辑（比如如何安装在 Tomcat 上安装一个发布包）的可视化设计。<br>3、应用管理：实现企业应用的维护、关联组件以及如何编排多个组件的部署逻辑来完成整个应用的部署逻辑。<br>4、执行管理：实现应用部署环境的定义、资源的映射以及应用部署的执行。<br>5、仪表盘：实现对应用部署的统计分析，包括成功、失败统计分析以及部署时长统计分析等。<br>6、部署工件管理：实现对部署文件的集中存储，版本比对等功能。<br>7、插件管理：实现对可重用部署步骤的管理，并可自定义可重用的部署步骤。<br>8、系统管理：实现用户、组、角色、团队的管理，定义完善的权限策略。</p>
 <h1 id="IBM-UrbanCode-Deploy-系统架构"><a href="#IBM-UrbanCode-Deploy-系统架构" class="headerlink" title="IBM UrbanCode Deploy 系统架构"></a>IBM UrbanCode Deploy 系统架构</h1><p>作为一个企业应用部署自动化管理平台，UCD 基于如下逻辑技术架构，确保支持复杂环境（比如有部署环境和服务器之间有防火墙）下的应用部署。下面将分别介绍 UCD 的每个技术组件。</p>
 <blockquote>

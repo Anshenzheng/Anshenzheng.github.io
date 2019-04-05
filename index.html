@@ -455,32 +455,17 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。</p>
+          <p>JVM是Java程序运行的平台，了解JVM的内存结构有助于开发者对Java程序运行期间内存的分配，回收，以及运行原理等有一个清晰的认识，从而方便开发者在生产中遇到性能问题或者内存溢出等问题时有的放矢，快速定位并解决问题。</p>
 <p>首先用一张图来展示JVM的内存结构模型：<br><img src="https://github.com/Anshenzheng/ImageStore/blob/master/jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B.jpg?raw=true" alt=""></p>
 <p>JVM内存主要分为以下几个区域</p>
-<h3 id="Java堆区-Heap"><a href="#Java堆区-Heap" class="headerlink" title="Java堆区(Heap)"></a>Java堆区(Heap)</h3><p>Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。<br>一般来说，Java堆区是Java虚拟机所管理的内存中最大的一块，是被所有线程共享的内存区域，在虚拟机启动时创建。</p>
-<blockquote>
-<p>如果堆中没有足够的内存完成实例分配并且也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
-</blockquote>
-<h3 id="方法区-Method-Area"><a href="#方法区-Method-Area" class="headerlink" title="方法区(Method Area)"></a>方法区(Method Area)</h3><p>方法区用于存储已经被虚拟机加载的类信息，常量，静态变量，即时编译器编译后的代码数据等等。<br>方法区也是各个线程共享的内存区域。</p>
-<blockquote>
-<p>当方法区无法满足内存分配需求时，将会抛出OutOfMemoryError异常。</p>
-</blockquote>
-<h3 id="程序计数器-Program-Counter-Register"><a href="#程序计数器-Program-Counter-Register" class="headerlink" title="程序计数器(Program Counter Register)"></a>程序计数器(Program Counter Register)</h3><p>程序计数器是用于记录当前线程所执行的字节码的行号指示器，字节码解释器通过改变这个计数器的值来选取下一条需要执行的指令。<br>程序计数器为线程私有，每条线程都需要一个独立的程序计数器，这样线程切换后就可以恢复到正确的执行位置。</p>
-<blockquote>
-<p>程序计数器是唯一一个不会会抛出OutOfMemoryError异常的区域。</p>
-</blockquote>
-<h3 id="虚拟机栈-JVM-Stacks"><a href="#虚拟机栈-JVM-Stacks" class="headerlink" title="虚拟机栈(JVM Stacks)"></a>虚拟机栈(JVM Stacks)</h3><p>虚拟机栈是描述Java方法执行的内存模型，每个方法被执行时都会创建一个栈帧用于存储局部变量表、动态链接、方法出口等信息。每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机中从入栈到出栈的过程。<br>Java虚拟机栈也是线程私有。</p>
-<blockquote>
-<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常，如果虚拟机栈无法申请到足够的内存时会抛出OutOfMemoryError异常。</p>
-</blockquote>
-<h3 id="本地方法栈-Native-Methods-Stacks"><a href="#本地方法栈-Native-Methods-Stacks" class="headerlink" title="本地方法栈(Native Methods Stacks)"></a>本地方法栈(Native Methods Stacks)</h3><p>本地方法栈与虚拟机栈作用类似，主要用于执行Native方法服务。<br>本地方法栈也是线程私有。</p>
-<blockquote>
-<p>与虚拟机栈一样，也会抛出StackOverflowError异常和OutOfMemoryError异常。</p>
-</blockquote>
-
-          
+<h3 id="Java堆区-Heap"><a href="#Java堆区-Heap" class="headerlink" title="Java堆区(Heap)"></a>Java堆区(Heap)</h3><p>Java堆区用于存放对象实例，几乎所有的对象实例都会在这里分配。<br>一般来说，Java堆区是Java虚拟机所管理的内存中最大的一块，是被所有线程共享的内存区域，在虚拟机启动时创建。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/31/Java知识梳理系列一-JVM内存结构/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -612,8 +597,7 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://github.com/Anshenzheng/ImageStore/blob/master/cps.png?raw=true" alt=""></p>
+          <p><img src="https://github.com/Anshenzheng/ImageStore/blob/master/cps.png?raw=true" alt=""></p>
 <h3 id="CPS基本概念"><a href="#CPS基本概念" class="headerlink" title="CPS基本概念"></a>CPS基本概念</h3><p>CPS是一种大规模、分布式、异构、复杂的，以及深度嵌入式的实时系统，是目前最前沿的交叉研究领域之一，涉及计算科学、网络技术、控制理论等多个学科，被普遍认为是计算机信息处理技术史上的下一次革命。<br>Internet改变了人与人之间的交互方式，CPS将会改变人与现实物理世界之间的交互方式。</p>
 <p>CPS由传感器节点、执行器节点、传感与执行器组合节点、计算系统和控制系统组成。</p>
 <blockquote>
@@ -622,14 +606,14 @@
 <p>CPS的通信网络可以逻辑地视为由传感器网络、执行器网络、计算机网络构成的组合通信网络。<br><img src="http://file.elecfans.com/web1/M00/4F/3F/o4YBAFrWqg-AfLLPAACQr2mme60266.jpg" alt=""></p>
 <h3 id="CPS-目标"><a href="#CPS-目标" class="headerlink" title="CPS 目标"></a>CPS 目标</h3><p>CPS的目标就是实现信息系统和物理世界以及各信息系统之间的深度融合：<br>在感知、互联互通、能力开放、安全可控、应用计算的基础上，构建出一个巨大的、融合的、智能化的生产服务系统。</p>
 <h3 id="CPS的特点"><a href="#CPS的特点" class="headerlink" title="CPS的特点"></a>CPS的特点</h3><p>紧密融合<br>资源受限<br>网络复杂<br>异构异质<br>认知困难<br>时空约束<br>不确定性<br>安全可靠</p>
-<h3 id="嵌入式系统-Vs-物联网-Vs-传感网-Vs-CPS"><a href="#嵌入式系统-Vs-物联网-Vs-传感网-Vs-CPS" class="headerlink" title="嵌入式系统 Vs 物联网 Vs 传感网 Vs CPS"></a>嵌入式系统 Vs 物联网 Vs 传感网 Vs CPS</h3><h4 id="嵌入式系统"><a href="#嵌入式系统" class="headerlink" title="嵌入式系统"></a>嵌入式系统</h4><p>嵌入式系统是软硬件的综合体，某些情况下还包括机械装置。<br>传统的物理设备通过嵌入式系统来扩展或增加新功能，其形成的系统基本上是封闭的系统。</p>
-<h4 id="物联网"><a href="#物联网" class="headerlink" title="物联网"></a>物联网</h4><p>物联网的概念在1999年已经提出，其定义是通过射频识别，、红外感应器、全球定位系统、激光扫描器等信息传感设备，按约定的协议，把任何物品与互联网连接起来，进行信息交换和通讯，以实现智能化识别、定位、跟踪、监控和管理的一种网络。物联网的核心和基础仍然是互联网，是在互联网基础的延伸和扩展的网络，在物联网中，用户端延伸和扩展到了任何物品和物品之间，进行信息交换和通讯。</p>
-<h4 id="传感网-Sensor-Network"><a href="#传感网-Sensor-Network" class="headerlink" title="传感网(Sensor Network)"></a>传感网(Sensor Network)</h4><p>传感网节点是传感器，通过自组织的方式构成无线网络，感知的对象是诸如温度、湿度、噪声、网强度、压力、土壤成分、移动物体的大小、速度和方向等物理属性，实现特定区域的检测。</p>
-<h4 id="CPS"><a href="#CPS" class="headerlink" title="CPS"></a>CPS</h4><p>CPS简单的说就是开放的嵌入式系统加上网络和控制功能，其核心是3C融合、自主适应物理环境的变化，其中网络的功能主要是为了实现控制的目的。物联网、传感网所擅长的是基于无线连接，主要实现的是感知，这对CPS来说太过简单，CPS需实现的是感控，不仅仅实现感知功能，还需要实现控制，其对计算能力的要求远远超过了物联网和传感网。</p>
-<h3 id="发展现状"><a href="#发展现状" class="headerlink" title="发展现状"></a>发展现状</h3><p>目前国际上CPS研究工作刚刚开始，研究工作近涉及少数几个方面。<br>现有研究工作分为7类：<br>CPS的系统模型<br>CPS上数据传输与管理技术<br>CPS的能源管理<br>CPS的系统安全<br>CPS软件设计技术<br>CPS控制<br>CPS应用系统</p>
-<h3 id="CPS应用范围"><a href="#CPS应用范围" class="headerlink" title="CPS应用范围"></a>CPS应用范围</h3><p>从微笑的纳米机器人，到庞大的工程基建设备，从城市交通信息提供到远程手术医疗系统，交通、医疗、农业、能源、国防、建筑、制造业流水线都是其涉足的领域。目前来看，CPS更偏重于科学研究， M2M、IOT更注重于工程技术的落地。</p>
-
-          
+<h3 id="嵌入式系统-Vs-物联网-Vs-传感网-Vs-CPS"><a href="#嵌入式系统-Vs-物联网-Vs-传感网-Vs-CPS" class="headerlink" title="嵌入式系统 Vs 物联网 Vs 传感网 Vs CPS"></a>嵌入式系统 Vs 物联网 Vs 传感网 Vs CPS</h3><h4 id="嵌入式系统"><a href="#嵌入式系统" class="headerlink" title="嵌入式系统"></a>嵌入式系统</h4><p>嵌入式系统是软硬件的综合体，某些情况下还包括机械装置。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/01/CPS信息物理融合系统/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -779,8 +763,7 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542553667416&amp;di=265e20c12afd5f9e5cc9c98e7bef1575&amp;imgtype=0&amp;src=http%3A%2F%2Ftxt6.book118.com%2F2016%2F1203%2Fbook67956%2F67955260.jpg" alt=""><br>目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。</p>
+          <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542553667416&amp;di=265e20c12afd5f9e5cc9c98e7bef1575&amp;imgtype=0&amp;src=http%3A%2F%2Ftxt6.book118.com%2F2016%2F1203%2Fbook67956%2F67955260.jpg" alt=""><br>目前网上有特别多的关于HTTPS认证的文章，但是很多讲的都比较笼统，要么也只介绍了其中一部分。本文旨在提供一个简单全面的关于认证的介绍，方便广大读者在短时间内能对HTTPS有一个全面深层次的认识和理解。</p>
 <p>本文会从一下几方面讲解HTTPS认证的相关内容：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 基础概念</span><br><span class="line">	<span class="number">1.1</span> 加密 Vs Hash</span><br><span class="line">	<span class="number">1.2</span> 对称加密 Vs 非对称加密</span><br><span class="line"><span class="number">3</span>. SSL/TLS</span><br><span class="line"><span class="number">4</span>. CA</span><br><span class="line">	<span class="number">4.1</span> CA Sample</span><br><span class="line">	<span class="number">4.2</span> CA Apply</span><br><span class="line">	<span class="number">4.3</span> CA Validation</span><br><span class="line"><span class="number">5</span>. HTTPS 单向认证</span><br><span class="line"><span class="number">6</span>. HTTPS 双向认证</span><br><span class="line"><span class="number">7</span>. 应用</span><br><span class="line">	<span class="number">7.1</span> Keytool</span><br><span class="line">	<span class="number">7.2</span> keystore Vs trustsotre</span><br><span class="line">	<span class="number">7.3</span> Configure HTTPS in Tomcat</span><br><span class="line"><span class="number">8</span>. 其它</span><br><span class="line">	<span class="number">8.1</span> Base64</span><br><span class="line">	<span class="number">8.2</span> SSH</span><br></pre></td></tr></table></figure>
 <h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><h4 id="加密-Vs-Hash"><a href="#加密-Vs-Hash" class="headerlink" title="加密 Vs Hash"></a>加密 Vs Hash</h4><p><strong>加密技术</strong>是利用技术手段和算法，把重要的数据加密后转化为乱码，传送到目的地后再通过相同或不同的手段还原。<br>加密前的内容成为<strong>明文</strong>，加密后的内容成为<strong>密文</strong>。<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554072256&amp;di=1f3606af7e71592397fe7e9eece12e8f&amp;imgtype=0&amp;src=http%3A%2F%2Fimage.68686686.com%2FFile%2FArticle%2F20180604%2F3c51813d-88ac-404e-982e-61e32cff53be.png" alt=""><br><strong>Hash</strong>，一般翻译做“散列”，也有直接音译为“哈希”的，就是把任意长度的输入（又叫做预映射pre-image）通过散列算法变换成固定长度的输出，该输出就是散列值。</p>
@@ -788,146 +771,14 @@
 <blockquote>
 <p>流行的对称加密算法有DES, Triple-DES, RC2 和 RC4. </p>
 </blockquote>
-<p><strong>非对称加密</strong>算法需要两个密钥来进行加密和解密，这两个秘钥是公开密钥（public key，简称公钥）和私有密钥（private key，简称私钥）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554526011&amp;di=c415dd72f654a4166844cdd040b96563&amp;imgtype=0&amp;src=http%3A%2F%2Fme2xp.blog.51cto.com%2Fattachment%2F201408%2F3%2F6716920_1407061378m5RW.jpg" alt=""></p>
-<h3 id="TLS-SSL"><a href="#TLS-SSL" class="headerlink" title="TLS/SSL"></a>TLS/SSL</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542555251822&amp;di=1ff2554f8ee8295abd2c89c3880f70ec&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161128%2F85e401b1b4a247f0896376ad5281d30b_th.jpeg" alt=""><br>SSL是Netscape公司发明的一种用于WEB安全传输协议。随着时间推移由于Netscape失去市场份额，它将SSL的维护工作移交给了因特网工程任务组(IETF),后被重新命名为TLS。</p>
-<h4 id="SSL协议功能"><a href="#SSL协议功能" class="headerlink" title="SSL协议功能"></a>SSL协议功能</h4><ul>
-<li>数据传输保密性</li>
-<li>数据传输完整性</li>
-<li>通信双方身份认证</li>
-</ul>
-<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542560107542&amp;di=3a5ac3f2efe7ecc5296a3c668a6d8935&amp;imgtype=0&amp;src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171026%2Feb0081c7ce4e4fd590ae16352af28389.jpeg" alt=""></p>
-<h3 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h3><p>由一个可信任的组织验证和签发的识别信息,是包含公钥、订阅人相关信息以及证书颁发者数字签名的数字文件，也就是一个让我们可以交换、存储和使用的公钥的壳。<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542554408499&amp;di=5a5656f355ac071d9bede5d4833ef944&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.debugrun.com%2Fpic%2F2017%2F7%2F19%2Fea29a4644bfa0e5fa5ae246a85d5a8e6.jpg" alt=""></p>
-<h4 id="证书链"><a href="#证书链" class="headerlink" title="证书链"></a>证书链</h4><p>在大多数情况下，仅仅有最终实体证书是无法进行有效性验证的，所以在实践中，服务器需要提供证书链才能一步步最终验证到可信根证书。<br><img src="https://ask.qcloudimg.com/http-save/developer-news/w3xn200qg9.jpeg" alt=""><br>如果根CA被吊销，所有使用CA签发出来的证书的网站都会无法正常访问。Baseline Requirements限制所有的根证书密钥必须离线保存，只能由人手动执行命令，直接由根证书签发最终实体证书是不允许的。<br>与根证书不同，二级CA一般都是在线的，而且使用自动化系统签发证书。</p>
-<blockquote>
-<p>服务器一次只能提供一条证书链</p>
-</blockquote>
-<h4 id="信赖方"><a href="#信赖方" class="headerlink" title="信赖方"></a>信赖方</h4><p>信赖方为了能够验证证书，必须收集新人的所有根CA证书。大多数操作系统都提供一个根证书库，从而在一开始启动的时候就能建立信任。几乎所有的软件开发者都重用了底层操作系统提供的根证书库，唯一例外的是Mozilla，为了保证不同平台的兼容性，它维护了自己的根证书库。</p>
-<ul>
-<li><p>Apple<br>Apple维护的根证书库主要是给IOS和OSX平台使用。</p>
-</li>
-<li><p>Chrome<br>在LINUX上, Chrome只用Mozilla的根证书库，除此之外都是依赖操作系统的证书库。</p>
-</li>
-<li><p>Microsoft<br>Microsoft维护的根证书库主要是给Windows桌面版、服务器以及移动手机平台使用。</p>
-</li>
-<li><p>Mozilla<br>Mozilla为自己的产品维护了一个公开透明的根证书库，并且大部分Linux版本都使用了Mozilla的根证书库。</p>
-</li>
-</ul>
-<blockquote>
-<p>所有的根证书库都要求CA通过专门为证书颁发机构设计的独立审计。</p>
-</blockquote>
-<h4 id="标准"><a href="#标准" class="headerlink" title="标准"></a>标准</h4><p>X.509是一种公钥基础设施的国际标准，最初是为了支持X.500而设计的。X.500是电子目录服务的标准，但未广泛使用过。X.509经过PKIX工作组改造适合在互联网上使用。</p>
-<blockquote>
-<p>PKIX工作组成立于1995年秋天，目标是简历支持基于X.509公钥基础设施的互联网标准。<br>PKIX工作组产出的最重要的文档是RFC5280，它描述了证书的格式、可信任证书链的建立，以及证书吊销列表(CRL)的格式。<br>PKIX在2013年10月结束了自己的使命。</p>
-</blockquote>
-<h4 id="CAB"><a href="#CAB" class="headerlink" title="CAB"></a>CAB</h4><p>CA/Browser论坛是由证书颁发机构、浏览器厂商以及其他有相关权益的团体自发形成的组织，目标是建立和推行证书颁发和处理的标准。</p>
-<blockquote>
-<p>一开始，CAB论坛是为了确定增强型证书(EV)的颁发标准而创建的，在2007年EV证书诞生了。<br>CAB最开始只是一些松散的组织，但是随后他们改变了关注焦点并且在2012年改组。<br>同年，CAB论坛发布了《公共可信证书的颁发和管理的基本要求》，即Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates, 简称Baseline Requirements</p>
-</blockquote>
-<h3 id="keytool"><a href="#keytool" class="headerlink" title="keytool"></a>keytool</h3><h3 id="keystore-Vs-trustsotre"><a href="#keystore-Vs-trustsotre" class="headerlink" title="keystore Vs trustsotre"></a>keystore Vs trustsotre</h3><p>KeyStore和TrustStore是JSSE中使用的两种文件。都是使用Java的keytool来管理。他们的不同主要在于用途和相应通途决定的内容的不同。<br>KeyStore用于存储自己的密码，私钥和证书。<br>TrustStore用于存储来自他人的公钥和证书。</p>
-<h3 id="HTTPS-单向认证"><a href="#HTTPS-单向认证" class="headerlink" title="HTTPS 单向认证"></a>HTTPS 单向认证</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1542553793131&amp;di=4e09f8f1eacb2029a228ec7be7217ccc&amp;imgtype=0&amp;src=http%3A%2F%2Fs3.51cto.com%2Fwyfs02%2FM00%2FA5%2F15%2FwKioL1m3inPgUUgQAAFabDvTsYI063.png" alt=""></p>
-<h3 id="HTTPS-双向认证"><a href="#HTTPS-双向认证" class="headerlink" title="HTTPS 双向认证"></a>HTTPS 双向认证</h3><p><img src="https://ask.qcloudimg.com/http-save/developer-news/9qgvflez67.jpeg" alt=""></p>
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><p>从客户端来看，SSH服务主要提供两种级别的安全验证：</p>
-<ol>
-<li><p>基于口令<br>只要知道服务器的SSH连接账号和口令，就能通过客户端登录到远程主机，而连接过程中所有传输的数据都是加密的。</p>
-</li>
-<li><p>基于密钥<br>这种方式需要先建立一个密钥对，然后把公钥放在需要访问的目标服务器上，再把私钥放到客户端或者对应的客户端服务器上。<br>如果想要连接到公用密钥的SSH服务器，客户端SSH软件或者客户端服务器就会向服务器发出请求，请求用连接的用户密钥进行安全验证。服务器收到请求后，会先寻找事先安装好的公钥，然后和客户端发送过来的密钥进行比较，如果匹配，就用公钥加密“质询”信息并发送给客户端。客户端收到“质询”信息后用私钥解密，再把它发送给服务器。<br><img src="https://github.com/Anshenzheng/ImageStore/blob/master/SSH%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86.png?raw=true" alt=""><br>执行ssh命令生成密钥对生成私钥id_rsa和公钥id_rsa.pub</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>应用场景</p>
-</li>
-</ol>
-<ul>
-<li>Hadoop集群间免密通讯</li>
-<li>SFTP</li>
-<li>Git免密提交</li>
-</ul>
-<h4 id="代码中使用"><a href="#代码中使用" class="headerlink" title="代码中使用"></a>代码中使用</h4><p>添加信任所有证书(不做处理)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.security.cert.CertificateException;</span><br><span class="line"><span class="keyword">import</span> java.security.cert.X509Certificate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.X509TrustManager;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 信任所有证书</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> hp</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AllTrustManager</span> <span class="keyword">implements</span> <span class="title">X509TrustManager</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkClientTrusted</span><span class="params">(X509Certificate[] arg0, String arg1)</span> <span class="keyword">throws</span> CertificateException </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkServerTrusted</span><span class="params">(X509Certificate[] arg0, String arg1)</span> <span class="keyword">throws</span> CertificateException </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> X509Certificate[] getAcceptedIssuers() &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用HttpsURLConnection发送POST请求（默认443端口）</p>
-<pre><code class="Java"><span class="keyword">import</span> java.io.BufferedReader;
-<span class="keyword">import</span> java.io.File;
-<span class="keyword">import</span> java.io.FileInputStream;
-<span class="keyword">import</span> java.io.IOException;
-<span class="keyword">import</span> java.io.InputStreamReader;
-<span class="keyword">import</span> java.io.PrintWriter;
-<span class="keyword">import</span> java.net.URL;
-<span class="keyword">import</span> java.security.KeyManagementException;
-<span class="keyword">import</span> java.security.KeyStore;
-<span class="keyword">import</span> java.security.KeyStoreException;
-<span class="keyword">import</span> java.security.NoSuchAlgorithmException;
-<span class="keyword">import</span> java.security.SecureRandom;
-<span class="keyword">import</span> java.security.UnrecoverableKeyException;
-<span class="keyword">import</span> java.security.cert.CertificateException;
-
-<span class="keyword">import</span> javax.net.ssl.HttpsURLConnection;
-<span class="keyword">import</span> javax.net.ssl.KeyManagerFactory;
-<span class="keyword">import</span> javax.net.ssl.SSLContext;
-<span class="keyword">import</span> javax.net.ssl.SSLSocketFactory;
-<span class="keyword">import</span> javax.net.ssl.TrustManager;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpsRequest</span> </span>{
-    <span class="comment">//测试url</span>
-    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String URL_TEST=<span class="string">"https://www.baidu.com"</span>;
-    <span class="comment">//客户端证书路径</span>
-    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String PATH=<span class="string">"c://xxxx"</span>;
-    <span class="comment">//证书密码</span>
-    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String psw=<span class="string">"123456"</span>;
-    <span class="comment">/**</span>
-<span class="comment">     * 发送POST请求</span>
-<span class="comment">     * <span class="doctag">@param</span> agrs</span>
-<span class="comment">     * <span class="doctag">@return</span></span>
-<span class="comment">     * <span class="doctag">@throws</span> IOException</span>
-<span class="comment">     * <span class="doctag">@throws</span> KeyManagementException</span>
-<span class="comment">     * <span class="doctag">@throws</span> KeyStoreException</span>
-<span class="comment">     * <span class="doctag">@throws</span> NoSuchAlgorithmException</span>
-<span class="comment">     * <span class="doctag">@throws</span> CertificateException</span>
-<span class="comment">     * <span class="doctag">@throws</span> UnrecoverableKeyException</span>
-<span class="comment">     */</span>
-    <span class="function"><span class="keyword">public</span> String <span class="title">doPost</span><span class="params">(String agrs)</span> <span class="keyword">throws</span> IOException, KeyManagementException, KeyStoreException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException</span>{
-        <span class="comment">//导入客户端证书</span>
-        KeyStore ks=KeyStore.getInstance(<span class="string">"pkcs12"</span>);
-        FileInputStream instream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(PATH));
-        ks.load(instream, psw.toCharArray());
-        KeyManagerFactory kmf=KeyManagerFactory.getInstance(<span class="string">"SunX509"</span>);
-        kmf.init(ks, psw.toCharArray());
-        <span class="comment">//添加信任证书</span>
-        TrustManager[] tm={<span class="keyword">new</span> AllTrustManager()};<span class="comment">//AllTrustManager()为信任所有证书</span>
-
-        SSLContext ctx=SSLContext.getInstance(<span class="string">"SSL"</span>);<span class="comment">//创建ssl上下文</span>
-        <span class="comment">//初始化 ；参数1为null，则不上传客户端证书（通常情况都是如此）；</span>
-        ctx.init(kmf.getKeyManagers(), tm, <span class="keyword">new</span> SecureRandom());
-        <span class="comment">//ctx.init(kmf.getKeyManagers(), null, new SecureRandom());//验证系统默认证书</span>
-        <span class="comment">//ctx.init(kmf.getKeyManagers(), TrustManager[] tm, new SecureRandom());//导出服务端证书，然后按照keymanager一样实现trustmanager</span>
-        SSLSocketFactory sf=ctx.getSocketFactory();
-
-        URL _url=<span class="keyword">new</span> URL(URL_TEST);
-        HttpsURLConnection conn=(HttpsURLConnection) _url.openConnection();
-        conn.setRequestMethod(<span class="string">"POST"</span>);<span class="comment">//设定请求方法</span>
-        conn.setConnectTimeout(<span class="number">20000</span>);
-        conn.setReadTimeout(<span class="number">20000</span>);
-        conn.setDoInput(<span class="keyword">true</span>);<span class="comment">//打开输入流</span>
-        conn.setDoOutput(<span class="keyword">true</span>);<span class="comment">//打开输出流写入写出参数必需</span>
-        conn.setSSLSocketFactory(sf);<span class="comment">//添加ssl参数</span>
-        <span class="comment">//输出参数</span>
-        PrintWriter pw=<span class="keyword">new</span> PrintWriter(conn.getOutputStream());
-        pw.write(agrs);
-        pw.flush();
-        <span class="comment">//获取输入流</span>
-        BufferedReader br=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(conn.getInputStream()));
-        StringBuffer result=<span class="keyword">new</span> StringBuffer();
-        String s=br.readLine();
-        <span class="keyword">while</span>(s!=<span class="keyword">null</span>){
-            result.append(s);
-            s=br.readLine();
-        }
-        pw.close();
-        br.close();
-        <span class="keyword">return</span> result.toString();
-    }
-}
-
-</code></pre>
-
-          
+<p><strong>非对称加密</strong>算法需要两个密钥来进行加密和解密，这两个秘钥是公开密钥（public key，简称公钥）和私有密钥（private key，简称私钥）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/23/HTTPS认证/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1077,15 +928,16 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>此教程只针对于在windows系统上没有admin权限和软件安装权限，但是又希望能像安装版一样使用Node和NPM的用户。</p>
+          <p>此教程只针对于在windows系统上没有admin权限和软件安装权限，但是又希望能像安装版一样使用Node和NPM的用户。</p>
 <h3 id="步骤一：-下载压缩版node"><a href="#步骤一：-下载压缩版node" class="headerlink" title="步骤一： 下载压缩版node"></a>步骤一： 下载压缩版node</h3><p>访问<a href="https://nodejs.org/en/download" target="_blank" rel="noopener">https://nodejs.org/en/download</a>, 根据自己的系统，选择下载32位或者64位的免安装压缩包版node。<br>解压压缩包，将node.exe文件拷贝到自己想要存放node的路径，比如C:\annan\nodejs\。</p>
-<h3 id="步骤二：-下载压缩版NPM"><a href="#步骤二：-下载压缩版NPM" class="headerlink" title="步骤二： 下载压缩版NPM"></a>步骤二： 下载压缩版NPM</h3><p>访问<a href="https://github.com/npm/npm/releases" target="_blank" rel="noopener">https://github.com/npm/npm/releases</a>, 下载最新发布的稳定版NPM。<br>解压压缩包，并将解压出的主文件目录更名为npm.<br>打开步骤一中存放node.exe的文件目录, 新建文件夹命名为node_modules, 之后将整个npm文件夹拷贝到node_modules文件夹中。</p>
-<h3 id="步骤三：-拷贝npm-cmd文件到node-exe所在目录"><a href="#步骤三：-拷贝npm-cmd文件到node-exe所在目录" class="headerlink" title="步骤三： 拷贝npm.cmd文件到node.exe所在目录"></a>步骤三： 拷贝npm.cmd文件到node.exe所在目录</h3><p>打开步骤二中node_modules\npm\bin目录，找到npm.cmd文件， 并将之拷贝到node.exe文件所在的目录。</p>
-<h3 id="步骤四：-配置环境变量"><a href="#步骤四：-配置环境变量" class="headerlink" title="步骤四： 配置环境变量"></a>步骤四： 配置环境变量</h3><p>打开cmd命令行工具， 执行指令“rundll32 sysdm.cpl,EditEnvironmentVariables”之后，环境变量面板会自动跳出，之后将node.exe和npm.cmd所在路径配置到环境变量path中，这样我们就可以随意使用node和npm命令了。</p>
-<h3 id="步骤五：-验证设置"><a href="#步骤五：-验证设置" class="headerlink" title="步骤五： 验证设置"></a>步骤五： 验证设置</h3><p>打开命令行工具， 输入node -v 之后输入npm -v，就可以看到我们已经配置安装好了最新版本的node和npm.<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\annan&gt;node -v</span><br><span class="line">v8.10.0</span><br><span class="line"></span><br><span class="line">C:\Users\annan&gt;npm -v</span><br><span class="line">5.7.1</span><br></pre></td></tr></table></figure></p>
-
-          
+<h3 id="步骤二：-下载压缩版NPM"><a href="#步骤二：-下载压缩版NPM" class="headerlink" title="步骤二： 下载压缩版NPM"></a>步骤二： 下载压缩版NPM</h3><p>访问<a href="https://github.com/npm/npm/releases" target="_blank" rel="noopener">https://github.com/npm/npm/releases</a>, 下载最新发布的稳定版NPM。<br>解压压缩包，并将解压出的主文件目录更名为npm.<br>打开步骤一中存放node.exe的文件目录, 新建文件夹命名为node_modules, 之后将整个npm文件夹拷贝到node_modules文件夹中。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/11/没有admin权限如何免安装使用Node和NPM/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1235,8 +1087,7 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Angular 是由Google开发与维护的一个开发跨平台应用程序的框架，适用于手机与桌面，是一个比较完善的前端MVC框架，包含了模版，双向数据绑定，路由，服务，过滤器，依赖注入等功能。</p>
+          <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Angular 是由Google开发与维护的一个开发跨平台应用程序的框架，适用于手机与桌面，是一个比较完善的前端MVC框架，包含了模版，双向数据绑定，路由，服务，过滤器，依赖注入等功能。</p>
 <h3 id="Angular提供的功能"><a href="#Angular提供的功能" class="headerlink" title="Angular提供的功能"></a>Angular提供的功能</h3><ul>
 <li>动态HTML</li>
 <li>强大的表单系统</li>
@@ -1259,59 +1110,14 @@
 <blockquote>
 <p>ng server命令会启动开发服务器，监听文件的变化，文件修改后会自动重新构建应用。 Welcome to app如下图：</p>
 </blockquote>
-<p><img src="https://www.angular.cn/generated/images/guide/cli-quickstart/app-works.png" alt=""><br>1.5 Angular启动过程<br>功过项目根目录下的angular-cli.json文件，可以发现启动js文件位于src/main.ts中，页面的入口文件位于src/index.html.</p>
-<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p><img src="https://img.mukewang.com/5a5435fe00011c5019201080.jpg" alt=""><br>核心概念总览<br><img src="https://img.mukewang.com/5a4e486f0001f81a19201080.jpg" alt=""></p>
-<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p><img src="https://img.mukewang.com/5a4183e200014abd19201080.jpg" alt=""><br><img src="https://img.mukewang.com/5a4183f70001850e19201080.jpg" alt=""><br><img src="https://img.mukewang.com/5a4e48270001237119201080.jpg" alt=""><br><img src="https://img.mukewang.com/5a4e471100015a0e19201080.jpg" alt=""></p>
-<h4 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h4><p><img src="https://img.mukewang.com/59d0be37000119d019201080.jpg" alt=""></p>
-<h4 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h4><p><img src="https://img.mukewang.com/5a4e3e370001e11619201080.jpg" alt=""></p>
-<h4 id="Angular-路由"><a href="#Angular-路由" class="headerlink" title="Angular 路由"></a>Angular 路由</h4><p>路由是Angular导航的关键。<br>在设置路由之前，我们需要在app/index.html中添加路由说明<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>路由模块已经从Angular中分离出来，所以使用时需要导入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; RouterModule, Routes&#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>现在写一个简单的路由配置：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app/modules/app-routing.module.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123;NgModule&#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Routes, RouterModule&#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;DemoComponentComponent&#125; <span class="keyword">from</span> <span class="string">'../demo/demo-component/demo-component.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">	&#123;</span><br><span class="line">	path: <span class="string">'demoComponent'</span>, component: DemoComponentComponent</span><br><span class="line">	&#125;,...,</span><br><span class="line">	&#123;</span><br><span class="line">	path: <span class="string">'**'</span>, component: DemoComponentComponent</span><br><span class="line">	&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">	imports: [RouterModule.forRoot(routes)],</span><br><span class="line">	exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule&#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>**为通配<br>path 不能以”/“开头<br>在特性模块中，应使用RouterModule.forChild</p>
-</blockquote>
-<p>定义好路由模块，还需将其注册到主模块中：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.module.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123;AppComponent&#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;AppRoutingModule&#125; <span class="keyword">from</span> <span class="string">'./modules/app-routing.module'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">	...,</span><br><span class="line">	imports:[..., AppRoutingModule],</span><br><span class="line">	providers:[],</span><br><span class="line">	bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule&#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>有了路由导航之后， 还需要一个容器来显示对应的组件内容：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="Angular-依赖注入"><a href="#Angular-依赖注入" class="headerlink" title="Angular 依赖注入"></a>Angular 依赖注入</h4><h5 id="组件中注入服务："><a href="#组件中注入服务：" class="headerlink" title="组件中注入服务："></a>组件中注入服务：</h5><p>配置已创建的服务<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  providers: [MemberService]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>导入已创建的服务<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; MemberService &#125; <span class="keyword">from</span> <span class="string">'../member.service'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>使用构造方式注入服务<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> MembersComponent <span class="keyword">implements</span> OnInit &#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">   <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> memberService: MemberService</span>) &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="服务使用示例"><a href="#服务使用示例" class="headerlink" title="服务使用示例"></a>服务使用示例</h5><p>创建服务</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Http &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> MemberService &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> http: Http</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    getMembers() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.http</span><br><span class="line">            .get(<span class="string">`https://api.github.com/orgs/angular/members?page=1&amp;per_page=5`</span>)</span><br><span class="line">            .map(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置服务<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; MemberService &#125; <span class="keyword">from</span> <span class="string">"./member.service"</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  providers:[MemberService],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用服务<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">import</span> &#123; MemberService &#125; <span class="keyword">from</span> <span class="string">"./member.service"</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;...&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> MembersComponent <span class="keyword">implements</span> OnInit &#123;</span><br><span class="line">    members: Member[];</span><br><span class="line"></span><br><span class="line"><span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> memberService: MemberService</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">ngOnInit() &#123;</span><br><span class="line">        <span class="keyword">this</span>.memberService.getMembers()</span><br><span class="line">            .subscribe(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (data) <span class="keyword">this</span>.members = data;</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><h5 id="应用示例-1"><a href="#应用示例-1" class="headerlink" title="应用示例 1"></a>应用示例 1</h5><p><img src="https://coding.imooc.com/static/module/class/content/img/94/2.png" alt=""></p>
-<h5 id="应用示例-2"><a href="#应用示例-2" class="headerlink" title="应用示例 2"></a>应用示例 2</h5><p><img src="https://img.mukewang.com/59b69bd20001f1e319201080.jpg" alt=""></p>
-<h5 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h5><p><img src="https://img.mukewang.com/5a40958700017f9b19201080.jpg" alt=""><br><img src="https://img.mukewang.com/5a3f47c700019cb219201080.jpg" alt=""></p>
-<h5 id="组件通讯"><a href="#组件通讯" class="headerlink" title="组件通讯"></a>组件通讯</h5><p><img src="https://img.mukewang.com/5a3f4b320001ec6319201080.jpg" alt=""><br><img src="https://img.mukewang.com/5a350fbe0001a00419201080.jpg" alt=""></p>
-<h5 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h5><p><img src="https://img.mukewang.com/5a3f471900010fc719201080.jpg" alt=""></p>
-<h4 id="数据绑定，-响应式编程和管道"><a href="#数据绑定，-响应式编程和管道" class="headerlink" title="数据绑定， 响应式编程和管道"></a>数据绑定， 响应式编程和管道</h4><p><img src="https://img.mukewang.com/5a3f4a060001c32f19201080.jpg" alt=""></p>
-<h4 id="表单处理"><a href="#表单处理" class="headerlink" title="表单处理"></a>表单处理</h4><p>Angular中有两种表单<br>Template Driven Forms: 模版驱动表单<br>Reactive Forms: 响应式表单</p>
-<h5 id="模板驱动表单"><a href="#模板驱动表单" class="headerlink" title="模板驱动表单"></a>模板驱动表单</h5><p>导入表单模块<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;FormsModule&#125; <span class="keyword">from</span> <span class="string">'@angular/forms'</span>;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">	imports: [BrowserModule, FormsModule],</span><br><span class="line">	declarations: [AppComponent, UserComponent],</span><br><span class="line">	bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule&#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>表单使用示例<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">	selector: <span class="string">'sl-user'</span>,</span><br><span class="line">	template:<span class="string">'</span></span><br><span class="line"><span class="string">	...</span></span><br><span class="line"><span class="string">	&lt;div *ngIf=showSkills&gt;</span></span><br><span class="line"><span class="string">		&lt;h3&gt;My Skills&lt;/h3&gt;</span></span><br><span class="line"><span class="string">		...</span></span><br><span class="line"><span class="string">		&lt;form (submit)="addSkill(skill.value)"&gt;</span></span><br><span class="line"><span class="string">			&lt;label&gt;Add new Skills&lt;/label&gt;</span></span><br><span class="line"><span class="string">			&lt;input type="text" #skill&gt;</span></span><br><span class="line"><span class="string">		&lt;/form&gt;</span></span><br><span class="line"><span class="string">	&lt;/div&gt;</span></span><br><span class="line"><span class="string">	...</span></span><br><span class="line"><span class="string">	'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> UserComponent&#123;</span><br><span class="line">	addSkill(skill: <span class="built_in">string</span>)&#123;</span><br><span class="line">	<span class="keyword">let</span> skillStr = skill.trim();</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>.skills.indexOf(skillStr) === <span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="keyword">this</span>.skills.push(skillStr);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="与服务端通讯"><a href="#与服务端通讯" class="headerlink" title="与服务端通讯"></a>与服务端通讯</h4><p>使用http协议和WebSocket协议与服务器进行通讯。</p>
-<h5 id="导入入Http模块"><a href="#导入入Http模块" class="headerlink" title="导入入Http模块"></a>导入入Http模块</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;HttpModule&#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">imports: [BrowserModule, FormsModule, HttpModule],</span><br><span class="line">declarations: [AppComponent, UserComponent],</span><br><span class="line">bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule</span><br></pre></td></tr></table></figure>
-<p>使用Http服务步骤</p>
-<ol>
-<li>从@angular/http模块中导入Http类</li>
-<li>使用DI注入http服务</li>
-<li>调用http的get()/post()等方法设置请求地址并发送HTTP请求</li>
-<li>调用Response对象的json()方法，将response转换为JSON对象</li>
-<li>把请求结果赋值给对应的属性<h5 id="Http服务使用示例"><a href="#Http服务使用示例" class="headerlink" title="Http服务使用示例"></a>Http服务使用示例</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Http &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>; <span class="comment">// (1)</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/map'</span>; <span class="comment">// (2)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Member &#123;</span><br><span class="line">    id: <span class="built_in">string</span>;</span><br><span class="line">    login: <span class="built_in">string</span>;</span><br><span class="line">    avatar_url: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    selector: <span class="string">'sl-members'</span>,</span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h3&gt;Angular Orgs Members&lt;/h3&gt;</span></span><br><span class="line"><span class="string">    &lt;ul *ngIf="members"&gt;</span></span><br><span class="line"><span class="string">      &lt;li *ngFor="let member of members;"&gt;</span></span><br><span class="line"><span class="string">        &lt;p&gt;</span></span><br><span class="line"><span class="string">          &lt;img [src]="member.avatar_url" width="48" height="48"/&gt;</span></span><br><span class="line"><span class="string">          ID：&lt;span&gt;&#123;&#123;member.id&#125;&#125;&lt;/span&gt;</span></span><br><span class="line"><span class="string">          Name: &lt;span&gt;&#123;&#123;member.login&#125;&#125;&lt;/span&gt;</span></span><br><span class="line"><span class="string">        &lt;/p&gt;</span></span><br><span class="line"><span class="string">      &lt;/li&gt;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> MembersComponent <span class="keyword">implements</span> OnInit &#123;</span><br><span class="line">  members: Member[];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> http: Http</span>) &#123; &#125; <span class="comment">// (3)</span></span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="keyword">this</span>.http.get(<span class="string">`https://api.github.com/orgs/angular/members?page=1&amp;per_page=5`</span>) <span class="comment">// (4)</span></span><br><span class="line">        .map(<span class="function"><span class="params">res</span> =&gt;</span> res.json()) <span class="comment">// (5)</span></span><br><span class="line">        .subscribe(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">           <span class="keyword">if</span> (data) <span class="keyword">this</span>.members = data; <span class="comment">// (6)</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h4><ul>
-<li>ngIf</li>
-<li>ngModel</li>
-</ul>
-<h4 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Directive, ElementRef, Renderer&#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Directive</span>(&#123;</span><br><span class="line">	selector: <span class="string">'[highlight]'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HighlightDirective&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(<span class="params">el: ElementRef, render: Renderer</span>)&#123;</span><br><span class="line">		render.setElementStyle(el.nativeElement, <span class="string">'backgroundColor'</span>, <span class="string">'yellow'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="构建和部署"><a href="#构建和部署" class="headerlink" title="构建和部署"></a>构建和部署</h4><p>编译Typescript写成的项目，将其构建为最终可发布的js代码，并发布到nodejs服务器上去。</p>
-<h4 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h4><p>AppModule<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FormsModule &#125; <span class="keyword">from</span> <span class="string">'@angular/forms'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpModule &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; RouterModule, Routes &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; UserComponent &#125; <span class="keyword">from</span> <span class="string">'./user.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MembersComponent &#125; <span class="keyword">from</span> <span class="string">'./members.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MemberService &#125; <span class="keyword">from</span> <span class="string">"./member.service"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ROUTES: Routes = [</span><br><span class="line">  &#123; path: <span class="string">''</span>, pathMatch: <span class="string">'full'</span>, redirectTo: <span class="string">'user'</span> &#125;,</span><br><span class="line">  &#123; path: <span class="string">'user'</span>, component: UserComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'members'</span>, component: MembersComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [BrowserModule, FormsModule, HttpModule,</span><br><span class="line">    RouterModule.forRoot(ROUTES)],</span><br><span class="line">  declarations: [AppComponent, UserComponent, MembersComponent],</span><br><span class="line">  providers: [MemberService],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>AppComponent<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">'my-app'</span>,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div class="app"&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;欢迎来到Angular的世界&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;nav&gt;</span></span><br><span class="line"><span class="string">        &lt;a routerLink="/user"&gt;我的&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;a routerLink="/members"&gt;Angular成员&lt;/a&gt;</span></span><br><span class="line"><span class="string">      &lt;/nav&gt;</span></span><br><span class="line"><span class="string">      &lt;router-outlet&gt;&lt;/router-outlet&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppComponent &#123; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>UserComponent<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Address &#123;</span><br><span class="line">    province: <span class="built_in">string</span>;</span><br><span class="line">    city: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    selector: <span class="string">'sl-user'</span>,</span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h2&gt;大家好，我是&#123;&#123;name&#125;&#125;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;我来自&lt;strong&gt;&#123;&#123;address.province&#125;&#125;&lt;/strong&gt;省,</span></span><br><span class="line"><span class="string">      &lt;strong&gt;&#123;&#123;address.city&#125;&#125;&lt;/strong&gt;市</span></span><br><span class="line"><span class="string">    &lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;button (click)="toggleSkills()"&gt;</span></span><br><span class="line"><span class="string">        &#123;&#123; showSkills ? "隐藏技能" : "显示技能" &#125;&#125;</span></span><br><span class="line"><span class="string">    &lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;div *ngIf="showSkills"&gt;</span></span><br><span class="line"><span class="string">        &lt;h3&gt;我的技能&lt;/h3&gt;</span></span><br><span class="line"><span class="string">        &lt;ul&gt;</span></span><br><span class="line"><span class="string">            &lt;li *ngFor="let skill of skills"&gt;</span></span><br><span class="line"><span class="string">                &#123;&#123;skill&#125;&#125;</span></span><br><span class="line"><span class="string">            &lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;/ul&gt;</span></span><br><span class="line"><span class="string">        &lt;form (submit)="addSkill(skill.value)"&gt;</span></span><br><span class="line"><span class="string">            &lt;label&gt;添加技能&lt;/label&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="text" #skill&gt;</span></span><br><span class="line"><span class="string">        &lt;/form&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> UserComponent &#123;</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    address: Address;</span><br><span class="line">    showSkills: <span class="built_in">boolean</span>;</span><br><span class="line">    skills: <span class="built_in">string</span>[];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'Semlinker'</span>;</span><br><span class="line">        <span class="keyword">this</span>.address = &#123;</span><br><span class="line">            province: <span class="string">'福建'</span>,</span><br><span class="line">            city: <span class="string">'厦门'</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">this</span>.showSkills = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">this</span>.skills = [<span class="string">'AngularJS 1.x'</span>, <span class="string">'Angular 2.x'</span>, <span class="string">'Angular 4.x'</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    toggleSkills() &#123;</span><br><span class="line">        <span class="keyword">this</span>.showSkills = !<span class="keyword">this</span>.showSkills;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addSkill(skill: <span class="built_in">string</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> skillStr = skill.trim();</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.skills.indexOf(skillStr) === <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.skills.push(skillStr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>MembersComponent<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Http &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/map'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; MemberService &#125; <span class="keyword">from</span> <span class="string">"./member.service"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Member &#123;</span><br><span class="line">    id: <span class="built_in">string</span>;</span><br><span class="line">    login: <span class="built_in">string</span>;</span><br><span class="line">    avatar_url: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    selector: <span class="string">'sl-members'</span>,</span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h3&gt;Angular Orgs Members&lt;/h3&gt;</span></span><br><span class="line"><span class="string">    &lt;ul *ngIf="members"&gt;</span></span><br><span class="line"><span class="string">      &lt;li *ngFor="let member of members;"&gt;</span></span><br><span class="line"><span class="string">        &lt;p&gt;</span></span><br><span class="line"><span class="string">          &lt;img [src]="member.avatar_url" width="48" height="48"/&gt;</span></span><br><span class="line"><span class="string">          ID：&lt;span&gt;&#123;&#123;member.id&#125;&#125;&lt;/span&gt;</span></span><br><span class="line"><span class="string">          Name: &lt;span&gt;&#123;&#123;member.login&#125;&#125;&lt;/span&gt;</span></span><br><span class="line"><span class="string">        &lt;/p&gt;</span></span><br><span class="line"><span class="string">      &lt;/li&gt;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> MembersComponent <span class="keyword">implements</span> OnInit &#123;</span><br><span class="line">    members: Member[];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> memberService: MemberService</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    ngOnInit() &#123;</span><br><span class="line">        <span class="keyword">this</span>.memberService.getMembers()</span><br><span class="line">            .subscribe(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (data) <span class="keyword">this</span>.members = data;</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>MemberService<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Http &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> MemberService &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> http: Http</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    getMembers() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.http</span><br><span class="line">            .get(<span class="string">`https://api.github.com/orgs/angular/members?page=1&amp;per_page=5`</span>)</span><br><span class="line">            .map(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+<p><img src="https://www.angular.cn/generated/images/guide/cli-quickstart/app-works.png" alt=""><br>1.5 Angular启动过程<br>功过项目根目录下的angular-cli.json文件，可以发现启动js文件位于src/main.ts中，页面的入口文件位于src/index.html.
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/20/Angular/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1461,115 +1267,21 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><h1 id="企业应用部署面临的挑战分析述"><a href="#企业应用部署面临的挑战分析述" class="headerlink" title="企业应用部署面临的挑战分析述"></a>企业应用部署面临的挑战分析述</h1><p>企业应用(Enterprise Application)是指运行在操作系统和中间件之上，实现特定业务逻辑的软件发布包和业务数据。企业应用部署(Enterprise Application Deployment)是把企业应用部署在一台或多台计算机的操作系统或中间件之上，从而提供一个可供测试、培训和生产的运行环境。</p>
+          <h1 id="企业应用部署面临的挑战分析述"><a href="#企业应用部署面临的挑战分析述" class="headerlink" title="企业应用部署面临的挑战分析述"></a>企业应用部署面临的挑战分析述</h1><p>企业应用(Enterprise Application)是指运行在操作系统和中间件之上，实现特定业务逻辑的软件发布包和业务数据。企业应用部署(Enterprise Application Deployment)是把企业应用部署在一台或多台计算机的操作系统或中间件之上，从而提供一个可供测试、培训和生产的运行环境。</p>
 <p>企业应用部署是软件持续交付（Continuous Delivery）的重要环节，特别是所交付的企业应用部署架构复杂（比如多机）、部署环境多（比如开发、测试、生产环境）和部署频率高（比如每周一次）时，如何提高企业应用部署的效率和质量，对企业信息化是否能快速满足业务需求的快速变化至关重要。</p>
 <p>然而，当前的企业应用部署在方法体系上缺乏完善的管理信息模型，在工具上采用手工编写和执行部署脚本。这种传统的应用部署方式会导致部署效率不高，对部署过程缺乏管控，对部署结果缺乏审计。</p>
 <h1 id="IBM-UrbanCode-Deploy-概述"><a href="#IBM-UrbanCode-Deploy-概述" class="headerlink" title="IBM UrbanCode Deploy 概述"></a>IBM UrbanCode Deploy 概述</h1><p>IBM UrbanCode Deploy（简称 UCD）是 IBM 的应用自动化部署工具。该工具基于一个完善的应用部署自动化管理信息模型，提供可视化的部署逻辑设计手段，并通过远程代理技术，实现对复杂应用在不同环境下的自动化部署。该工具功能组件参考下图：</p>
 <blockquote>
 <p>图 1. IBM UCD 功能组件图</p>
 </blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image003.jpg" alt=""><br>UCD 不仅仅是一个实现应用部署自动化的工具，还是一个服务于系统工程师（负责部署环境的系统管理）、发布工程师（负责应用的部署逻辑设计）、部署工程师（负责执行应用部署）和质量工程师（负责应用部署前和部署后的质量审计）等多个角色的管理平台。</p>
-<p>该平台所提供的功能点包括如下：<br>1、环境管理：实现对被部署机器以及所提供资源（比如数据库、中间件等）的管理。<br>2、组件管理：实现对应用部署组件（比如企业应用的安装包、数据更新脚本等）的维护，以及组件部署逻辑（比如如何安装在 Tomcat 上安装一个发布包）的可视化设计。<br>3、应用管理：实现企业应用的维护、关联组件以及如何编排多个组件的部署逻辑来完成整个应用的部署逻辑。<br>4、执行管理：实现应用部署环境的定义、资源的映射以及应用部署的执行。<br>5、仪表盘：实现对应用部署的统计分析，包括成功、失败统计分析以及部署时长统计分析等。<br>6、部署工件管理：实现对部署文件的集中存储，版本比对等功能。<br>7、插件管理：实现对可重用部署步骤的管理，并可自定义可重用的部署步骤。<br>8、系统管理：实现用户、组、角色、团队的管理，定义完善的权限策略。</p>
-<h1 id="IBM-UrbanCode-Deploy-系统架构"><a href="#IBM-UrbanCode-Deploy-系统架构" class="headerlink" title="IBM UrbanCode Deploy 系统架构"></a>IBM UrbanCode Deploy 系统架构</h1><p>作为一个企业应用部署自动化管理平台，UCD 基于如下逻辑技术架构，确保支持复杂环境（比如有部署环境和服务器之间有防火墙）下的应用部署。下面将分别介绍 UCD 的每个技术组件。</p>
-<blockquote>
-<p>图 2. IBM UCD 系统架构图</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image005.gif" alt=""></p>
-<h4 id="应用服务器"><a href="#应用服务器" class="headerlink" title="应用服务器"></a>应用服务器</h4><p>基于 Tomcat 的 JavaEE 应用，是 UCD 的核心并提供主要的功能。</p>
-<h4 id="CodeStation"><a href="#CodeStation" class="headerlink" title="CodeStation"></a>CodeStation</h4><p>UCD 自带的发布文件存储库，提供发布文件的版本管理功能。</p>
-<h4 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h4><p>存储 UCD 的管理信息，比如用户信息、部署逻辑信息等。</p>
-<h4 id="Browser（浏览器）"><a href="#Browser（浏览器）" class="headerlink" title="Browser（浏览器）"></a>Browser（浏览器）</h4><p>UCD 用户的主要使用界面，提供应用部署自动化的日常管理界面。</p>
-<h4 id="Client（客户端）"><a href="#Client（客户端）" class="headerlink" title="Client（客户端）"></a>Client（客户端）</h4><p>UCD 提供的命令行，用户可通过命令行来访问 UCD。</p>
-<h4 id="Agent（代理）"><a href="#Agent（代理）" class="headerlink" title="Agent（代理）"></a>Agent（代理）</h4><p>安装在被部署机器上，提供远程执行部署逻辑的能力。</p>
-<h4 id="中继服务器（Relay-Server）"><a href="#中继服务器（Relay-Server）" class="headerlink" title="中继服务器（Relay Server）"></a>中继服务器（Relay Server）</h4><p>当被部署的环境和 UCD 应用服务器之间有防火墙时，中继服务器作为一个中转实现代理和应用服务器之间的通信。</p>
-<h1 id="IBM-UrbanCode-Deploy-信息模型"><a href="#IBM-UrbanCode-Deploy-信息模型" class="headerlink" title="IBM UrbanCode Deploy 信息模型"></a>IBM UrbanCode Deploy 信息模型</h1><p>为了实现对多应用、多环境的自动化部署，UCD 定义了完善的信息模型。信息模型就是描述了特定领域的信息类型以及相互关系，是对某个特定领域的抽象，也是开发特定领域软件工具的基础。下图是 UCD 所包含的应用部署自动化管理信息模型。</p>
-<blockquote>
-<p>图 3. IBM UCD 信息模型</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image007.jpg" alt=""><br>本文将以 JPetStore 应用为例解释上图的信息模型。JPetStore 是一个基于 Struts 和 iBATIS 技术的网上宠物店应用，该应用的中间件采用 Tomcat，数据库采用 MySQL。</p>
-<p>在上图中，<img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image009.jpg" alt="">表示 A 和 B 之间是包含关系，也就是说如果 A 类型实例不存在，那 A 类型实例所包含的 B 类型实例也不会存在，”*”表示一个 A 类型实例可包含 0 个或多个 B 类型实例。<br><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image011.jpg" alt="">表示 C 和 D 是关联关系，也是说一个 C 类型实例可以关联 0 个或多个 D 类型实例。</p>
-<h4 id="应用（Application）"><a href="#应用（Application）" class="headerlink" title="应用（Application）"></a>应用（Application）</h4><p>针对特定用户，并解决特定业务问题的软件包和数据，比如 JPetStore 就是一个应用。</p>
-<h4 id="组件（Component）"><a href="#组件（Component）" class="headerlink" title="组件（Component）"></a>组件（Component）</h4><p>具有独立功能，并可被复用的一组文件。比如 JPetStore 应用中，可涉及实现网上宠物店应用逻辑的 JPetStore_APP 组件、提供宠物照片的 JPetStore_WEB 组件以及定义数据库的 JPetStore_DB 组件。</p>
-<h4 id="版本（Version）"><a href="#版本（Version）" class="headerlink" title="版本（Version）"></a>版本（Version）</h4><p>一个组件所包含的部署文件的多个版本。比如 JPetStore_APP 组件的 JPetStore.war 文件可以有 1.0，1.1 等多个版本。</p>
-<h4 id="版本状态（Version-Status）"><a href="#版本状态（Version-Status）" class="headerlink" title="版本状态（Version Status）"></a>版本状态（Version Status）</h4><p>组件版本所对应的质量状态。比如 JPetStore_APP 的 1.1 版本已经通过系统集成测试，则该组件版本的状态可设置为“已通过系统集成测试”。</p>
-<h4 id="快照（Snapshot）"><a href="#快照（Snapshot）" class="headerlink" title="快照（Snapshot）"></a>快照（Snapshot）</h4><p>一个应用的特定版本，该应用版本关联一组组件版本。比如 JPetStore 应用的 1.1 版本关联了 JPetStore_APP 组件的 1.1 版本、JPetStore_WEB 组件的 1.0 版本以及 JPetStore_DB 组件的 1.0 版本。<br>步骤（Step）：可重用的特定部署任务，比如在把 JPetStore_APP 组件部署到 Tomcat 应用时，“启动 Tomcat 服务器”就是一个步骤。</p>
-<h4 id="插件（-Plugin）"><a href="#插件（-Plugin）" class="headerlink" title="插件（ Plugin）"></a>插件（ Plugin）</h4><p>包含一组相关步骤的容器。比如针对 Tomcat 应用的部署，常用的步骤包括“启动 Tomcat 服务器”、“卸载 WAR 包”、“安装 WAR 包”等。这些步骤放在“Tomcat”这个插件容器中。</p>
-<h4 id="组件流程（Component-Process）"><a href="#组件流程（Component-Process）" class="headerlink" title="组件流程（Component Process）"></a>组件流程（Component Process）</h4><p>针对特定组件所定义的操作步骤序列，该操作步骤序列引用 Plugin 中定义的步骤。比如针对 JPetStore_APP 组件，可定义安装该组件的“Install APP”流程、卸载该组件的“Uninstall APP”流程。</p>
-<h4 id="应用流程（Application-Process）"><a href="#应用流程（Application-Process）" class="headerlink" title="应用流程（Application Process）"></a>应用流程（Application Process）</h4><p>对一个完整应用所定义的操作步骤，比如为部署 JPetStore 应用所定义的应用部署流程“Install Process”，该流程引用了 JPetStore_APP 组件流程“Install APP ”、JPetStore_DB 组件流程“Install DB”和 JPetStore_WEB 组件流程“Install WEB ”。</p>
-<h4 id="代理（Agent）"><a href="#代理（Agent）" class="headerlink" title="代理（Agent）"></a>代理（Agent）</h4><p>部署在一台计算机上的进程，该进程实现部署逻辑在该计算机上的执行。比如 JPetStore 将在两台计算机上部署，则定义的 agent 是“agent101”和“agent102”。</p>
-<h4 id="代理池（Agent-Pool）"><a href="#代理池（Agent-Pool）" class="headerlink" title="代理池（Agent Pool）"></a>代理池（Agent Pool）</h4><p>对代理按特定分类标准而进行的分类，比如按代理的用途分可创建“测试服务器”和“生产服务器”代理池，按操作系统类型分可创建“Windows 服务器”和“LINUX 服务器”。一个代理池可关联多个代理，而一个代理也可以被多个代理池关联。</p>
-<h4 id="资源（Resource）"><a href="#资源（Resource）" class="headerlink" title="资源（Resource）"></a>资源（Resource）</h4><p>在特定代理机上所提供的能力，比如 Tomcat 服务资源，数据库资源，一个代理可包含多个资源。</p>
-<h4 id="环境（Environment）"><a href="#环境（Environment）" class="headerlink" title="环境（Environment）"></a>环境（Environment）</h4><p>针对特定应用以及特定用途所映射的一组资源。比如针对 JPetStore 应用可定义集成测试环境 SIT（System Integration Test）和用户验收测试环境 UAT（User Acceptance Test）。</p>
-<h4 id="审批流程（Approval-Process）"><a href="#审批流程（Approval-Process）" class="headerlink" title="审批流程（Approval Process）"></a>审批流程（Approval Process）</h4><p>针对特定环境所定义的审批流程，比如把应用部署到 UAT 环境时，需要通过质量保证工程师的审批，则可定义一个审批流程。</p>
-<h4 id="环境门（Environment-Gate）"><a href="#环境门（Environment-Gate）" class="headerlink" title="环境门（Environment Gate）"></a>环境门（Environment Gate）</h4><p>是指应用在特定环境部署时所需要部署的组件版本必须要满足的条件。比如当应用要部署到 UAT 环境时，所部署的组件版本必须处于“已通过系统集成测试”状态。<br>此外，UCD 作为一个企业级应用部署自动化平台，有不同用户访问该工具，因此需要定义完善的权限管理模型。下图是 UCD 是提供的权限信息模型。</p>
-<blockquote>
-<p>图 4. IBM UCD 权限信息模型</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image013.jpg" alt=""></p>
-<h4 id="用户（User）"><a href="#用户（User）" class="headerlink" title="用户（User）"></a>用户（User）</h4><p>访问 UCD 的一个注册用户。</p>
-<h4 id="角色（Role）"><a href="#角色（Role）" class="headerlink" title="角色（Role）"></a>角色（Role）</h4><p>具有一组特定权限的用户类型。比如针对 JPetStore 应用的部署管理，可定义“系统工程师”、“发布工程师”、“部署工程师”和“质量工程师”等角色。</p>
-<h4 id="团队（Team）"><a href="#团队（Team）" class="headerlink" title="团队（Team）"></a>团队（Team）</h4><p>是对 UCD 中所定义的应用部署对象（比如应用、组件等）进行的分类，比如为了确保只有特定人员能访问 JPetStore 应用相关的信息，可创建 JPetStore 团队，然后分配该团队中不同角色所对应的用户。</p>
-<h4 id="许可（Permission）"><a href="#许可（Permission）" class="headerlink" title="许可（Permission）"></a>许可（Permission）</h4><p>是指能进行特定操作的能力，比如“创建资源”就是一个许可。</p>
-<h4 id="安全类型（Security-Type）"><a href="#安全类型（Security-Type）" class="headerlink" title="安全类型（Security Type）"></a>安全类型（Security Type）</h4><p>一组相关的许可。</p>
-<h4 id="组（Group）"><a href="#组（Group）" class="headerlink" title="组（Group）"></a>组（Group）</h4><p>一组相关的用户，便于快速分配特定角色所对应的用户。</p>
-<h1 id="IBM-应用部署自动化工具-UrbanCode-Deploy-使用模型"><a href="#IBM-应用部署自动化工具-UrbanCode-Deploy-使用模型" class="headerlink" title="IBM 应用部署自动化工具 UrbanCode Deploy 使用模型"></a>IBM 应用部署自动化工具 UrbanCode Deploy 使用模型</h1><p>UCD 提供了丰富的应用部署管理功能，不同的用户可以通过浏览器页面完成与应用部署相关的工作。下面以 JPetStore 应用为例，介绍如何利用 UCD 把 JPetStore 应用自动部署到系统集成测试环境（SIT）和用户验收测试环境（UAT）的流程。</p>
-<h2 id="JPetStore-应用部署准备流程"><a href="#JPetStore-应用部署准备流程" class="headerlink" title="JPetStore 应用部署准备流程"></a>JPetStore 应用部署准备流程</h2><h3 id="定义-JPetStore-应用部署资源"><a href="#定义-JPetStore-应用部署资源" class="headerlink" title="定义 JPetStore 应用部署资源"></a>定义 JPetStore 应用部署资源</h3><p>系统工程师通过 UCD 建立代理以及资源。在应用比较多、资源比较复杂时，建议按应用、环境、代理、资源对资源进行层次组织。如下图定义了 JPetStore 应用所对应的资源。</p>
-<blockquote>
-<p>图 5. 定义应用部署资源</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image015.jpg" alt=""></p>
-<h3 id="定义-JPetStore-应用和组件"><a href="#定义-JPetStore-应用和组件" class="headerlink" title="定义 JPetStore 应用和组件"></a>定义 JPetStore 应用和组件</h3><p>发布工程师通过 UCD 建立应用以及组件，并定义组件流程和应用流程。下图是针对 JPetStore 应用的 JPetStore_APP 组件所定义的组件流程。UCD 提供了丰富的 Plugin，利用 Plugin 中包含的步骤可通过可视化方式快速定义部署逻辑。</p>
-<blockquote>
-<p>图 6. 定义组件部署流程</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image017.jpg" alt=""></p>
-<h3 id="定义-JPetStore-部署组件和资源的映射"><a href="#定义-JPetStore-部署组件和资源的映射" class="headerlink" title="定义 JPetStore 部署组件和资源的映射"></a>定义 JPetStore 部署组件和资源的映射</h3><p>在执行应用部署前，应用发布工程师需要确定在不同的环境下每个组件所对应的资源。比如在下图中，JPetStore 在部署到 SIT 环境时，将把 JPetStore_APP、JPetStore_DB 和 JPetStore_WEB 组件都部署到 Agent101 提供的资源上。</p>
-<blockquote>
-<p>图 7. 定义部署组件和资源的映射</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image019.jpg" alt=""></p>
-<h2 id="JPetStore-应用部署执行流程"><a href="#JPetStore-应用部署执行流程" class="headerlink" title="JPetStore 应用部署执行流程"></a>JPetStore 应用部署执行流程</h2><p>该流程完成把 JPetStore_APP 组件的一个新版本部署到 SIT 环境和 UAT 环境的流程。</p>
-<h3 id="导入-JPetStore-APP-组件的新版本"><a href="#导入-JPetStore-APP-组件的新版本" class="headerlink" title="导入 JPetStore_APP 组件的新版本"></a>导入 JPetStore_APP 组件的新版本</h3><p>应用发布工程师在获知有新的组件版本时，执行版本导入（Import Versions）操作，把最新的组件版本导入到 UCD 中。下图是把JPetStore_APP 组件的 1.3 版本导入到 UCD 中，并可比较不同版本之间的差异。</p>
-<blockquote>
-<p>图 8. 导入组件的新版本</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image021.jpg" alt=""></p>
-<h3 id="执行-JPetStore-应用在-SIT-环境上的部署"><a href="#执行-JPetStore-应用在-SIT-环境上的部署" class="headerlink" title="执行 JPetStore 应用在 SIT 环境上的部署"></a>执行 JPetStore 应用在 SIT 环境上的部署</h3><p>部署工程师选定 JPetStore 应用，执行在 SIT 环境上部署，并选择部署组件的最新版本。如下图：</p>
-<blockquote>
-<p>图 9. 执行应用部署</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image023.jpg" alt=""></p>
-<h3 id="查看-JPetStore-应用在-SIT-环境上部署的组件版本"><a href="#查看-JPetStore-应用在-SIT-环境上部署的组件版本" class="headerlink" title="查看 JPetStore 应用在 SIT 环境上部署的组件版本"></a>查看 JPetStore 应用在 SIT 环境上部署的组件版本</h3><p>在完成部署后，部署工程师可获得在 SIT 环境上所部署的版本，以及通过“View Request”查看详尽的部署日志。</p>
-<blockquote>
-<p>图 10. 查看部署结果</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image025.jpg" alt=""></p>
-<h3 id="创建-JPetStore-应用的快照"><a href="#创建-JPetStore-应用的快照" class="headerlink" title="创建 JPetStore 应用的快照"></a>创建 JPetStore 应用的快照</h3><p>为了能快速把已经成功部署到 SIT 环境的应用版本部署到其它环境上或者实现应用部署活动的回退，可创建一个应用的快照。下图是基于 SIT 环境上部署的版本创建一个应用快照“JPetStore_1.3”，该快照关联 JPetStore_APP 1.3 版本、JPetStore_WEB 1.0 版本和 JPetStore_DB 1.1 版本。</p>
-<blockquote>
-<p>图 11. 创建应用快照</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image027.jpg" alt=""></p>
-<h3 id="设置-JPetStore-应用组件的状态"><a href="#设置-JPetStore-应用组件的状态" class="headerlink" title="设置 JPetStore 应用组件的状态"></a>设置 JPetStore 应用组件的状态</h3><p>如果 JPetStore 应用在系统集成环境已成功部署，并通过系统集成测试，质量工程师则把组件的状态设置为”组件经过 SIT 测试”，对 JPetStore-WEB 1.0 和 JPetStore-DB 1.1 的版本状态也按此设置。这样确保这些组件版本能部署到用户验收测试环境下。<br>图 12. 设置应用组件状态<br><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image029.jpg" alt=""></p>
-<h3 id="把-JPetStore-的-1-3-版本部署到-UAT-环境"><a href="#把-JPetStore-的-1-3-版本部署到-UAT-环境" class="headerlink" title="把 JPetStore 的 1.3 版本部署到 UAT 环境"></a>把 JPetStore 的 1.3 版本部署到 UAT 环境</h3><p>部署工程师选择 JPetStore 应用，执行在 UAT 环境上部署，并选择“JPetStore 1.3”快照，确保部署在 UAT 环境的版本和部署在 SIT 环境下的版本是一致的。</p>
-<blockquote>
-<p>图 13. 把应用快照部署到环境</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image031.jpg" alt=""></p>
-<h3 id="查看-JPetStore-在-SIT-和-UAT-环境下的部署版本"><a href="#查看-JPetStore-在-SIT-和-UAT-环境下的部署版本" class="headerlink" title="查看 JPetStore 在 SIT 和 UAT 环境下的部署版本"></a>查看 JPetStore 在 SIT 和 UAT 环境下的部署版本</h3><p>质量工程师可通过如下界面获得应用在不同环境下所部署的版本，并可比较不同环境下部署版本之间的差异。下图显示的是 JPetStore 应用在 SIT 和 UAT 环境下部署的版本。</p>
-<blockquote>
-<p>图 14. 查看环境中部署的组件版本</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image033.jpg" alt=""></p>
-<h2 id="统计-JPetStore-应用的部署情况"><a href="#统计-JPetStore-应用的部署情况" class="headerlink" title="统计 JPetStore 应用的部署情况"></a>统计 JPetStore 应用的部署情况</h2><p>所有人员可通过 UCD 提供的报告能力对部署情况进行统计。比如，下图是对 JPetStore 应用的部署情况的统计报告。</p>
-<blockquote>
-<p>图 15. 查看应用部署统计信息</p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image035.jpg" alt=""></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>针对企业应用在多环境、高频率下的部署，IBM UrbanCode 基于完善的应用部署管理信息模型，可视化的应用部署管理界面，帮助企业提高应用部署的自动化水平、部署管控和审计水平。</p>
-<p>转自：<a href="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/" target="_blank" rel="noopener">利用 IBM UrbanCode Deploy 实现企业应用部署自动化</a></p>
-
-          
+<p><img src="https://www.ibm.com/developerworks/cn/rational/1401_yangmq_urbancode/image003.jpg" alt=""><br>UCD 不仅仅是一个实现应用部署自动化的工具，还是一个服务于系统工程师（负责部署环境的系统管理）、发布工程师（负责应用的部署逻辑设计）、部署工程师（负责执行应用部署）和质量工程师（负责应用部署前和部署后的质量审计）等多个角色的管理平台。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/29/IBM-UrbanCode-Deploy/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1719,8 +1431,7 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>Cassandra只一个开源分布式NoSQL数据库，具有高度可扩展性和高可用性，可用于管理大量的结构化和非结构化数据, 主要特性如下:</p>
+          <p>Cassandra只一个开源分布式NoSQL数据库，具有高度可扩展性和高可用性，可用于管理大量的结构化和非结构化数据, 主要特性如下:</p>
 <ul>
 <li>持续可用性, 易于管理大量服务器和不会有单点故障</li>
 <li>支持非常方便的列索引, 高性能的日志结构数据更新，强大的非规格化和物化视图以及缓存功能</li>
@@ -1729,46 +1440,14 @@
 <li>具有线性扩展性，也就是说可以简单的在线添加新节点从而增加集群的处理能力<br>例如，如果每两个节点每秒处理100,000个事务, 4个几点就能每秒处理200,000个事务。</li>
 </ul>
 <h3 id="Cassandra基本数据模型"><a href="#Cassandra基本数据模型" class="headerlink" title="Cassandra基本数据模型"></a>Cassandra基本数据模型</h3><h4 id="Cluster-集群"><a href="#Cluster-集群" class="headerlink" title="Cluster 集群"></a>Cluster 集群</h4><p>Cassandra数据分布在不同的机器集群节点上。</p>
-<h4 id="Keyspace"><a href="#Keyspace" class="headerlink" title="Keyspace"></a>Keyspace</h4><p>Keyspace相当于关系数据库中的数据库，是一系列Column Family的集合。<br>创建keyspace时需指定如下几种属性：</p>
-<ul>
-<li><p>replication_factor 复制因子<br>集群中接收相同数据副本的计算机数。</p>
-</li>
-<li><p>stategry class 副本放置策略</p>
-</li>
-</ul>
-<ol>
-<li><p>SimpleStrategry 简单策略<br>为集群指定简单的复制因子</p>
-</li>
-<li><p>旧网络拓扑策略<br>单独为每个数据中心设置复制因子</p>
-</li>
-<li><p>网络拓扑策略<br>单独为每个数据中心设置复制因子</p>
-<p>创建语法</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> KEYSPACE Keyspace <span class="keyword">name</span></span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">replication</span>=&#123;<span class="string">'class'</span>: <span class="string">'SimpleStrategry'</span>, <span class="string">'replication_factor'</span>: <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>Keysspace示意图<br><img src="http://www.web3.xin/uploads/image/2017/02/12/20170212103220_60671.jpg" alt=""></p>
-<h4 id="Column-Family"><a href="#Column-Family" class="headerlink" title="Column Family"></a>Column Family</h4><p>Column Family相当于关系数据库中的表，是一系列Column的集合，在该集合中，每个Column都会有一个与之相关联的键：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Authors = &#123;</span><br><span class="line">  <span class="string">"1234"</span>: &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Harry"</span>,</span><br><span class="line">    <span class="string">"age"</span>: <span class="number">18</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"5678"</span>:&#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Lucy"</span>,</span><br><span class="line">    <span class="string">"age"</span>: <span class="number">19</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="Column"><a href="#Column" class="headerlink" title="Column"></a>Column</h4><p>Column是Cassandra所支持的最基础的数据模型，可以包含一系列的键值对：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"Author Name"</span>,</span><br><span class="line">  <span class="string">"value"</span>: <span class="string">"Harry"</span>,</span><br><span class="line">  <span class="string">"timestamp"</span>: <span class="number">123456789</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="Super-Column"><a href="#Super-Column" class="headerlink" title="Super Column"></a>Super Column</h4><p>Super Column是包含了一系列Column:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"Cassandra Introduction"</span>,</span><br><span class="line">  <span class="string">"value"</span>: &#123;</span><br><span class="line">    <span class="string">"author"</span>: &#123;<span class="string">"name"</span>: <span class="string">"Author Name"</span>, <span class="string">"value"</span>: <span class="string">"Harry"</span>, <span class="string">"timestamp"</span>: <span class="string">"123456789"</span>&#125;,</span><br><span class="line">    <span class="string">"publisher"</span>: &#123;<span class="string">"name"</span>:<span class="string">"Publisher"</span>, <span class="string">"value"</span>: <span class="string">"China Press"</span>, <span class="string">"timestamp"</span>: <span class="number">223154878</span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>Cassandra官方文档不建议过多使用Super Column</p>
-</blockquote>
-<h4 id="Primary-Key-amp-Composite-Key-amp-Partition-Key-amp-Clustering-Key"><a href="#Primary-Key-amp-Composite-Key-amp-Partition-Key-amp-Clustering-Key" class="headerlink" title="Primary Key &amp; Composite Key &amp; Partition Key &amp; Clustering Key"></a>Primary Key &amp; Composite Key &amp; Partition Key &amp; Clustering Key</h4><p>主键, 定义Cassandra数据表时指定，可以指定一个字段也可以指定多个字段。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span>(</span><br><span class="line">user_id <span class="built_in">text</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">user_name <span class="built_in">text</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
-<p>组合主键 - Composite Key, 下例中key_one和key_two组成Composite Key.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> sampe(</span><br><span class="line"> key_one <span class="built_in">text</span>,</span><br><span class="line"> key_two <span class="built_in">text</span>,</span><br><span class="line"> <span class="keyword">data</span> <span class="built_in">text</span>,</span><br><span class="line"> PRIMARY <span class="keyword">KEY</span>(key_one, key_two)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
-<p>Composite key中的第一组成为Partition Key, 后面各组称为Clustering Key.</p>
-<p>Partition Key用于决定Cassandra会使用集群中哪个结点来记录该数据， 每个PartitionKey对应着一个Parition.<br>Clustering Key用来在Partition内部排序。</p>
-<p>在CQL语句中， WHERE等子句所标识的条件只能使用在Primary Key中所使用的列。</p>
-<h3 id="COL-Cassandra-Query-Language"><a href="#COL-Cassandra-Query-Language" class="headerlink" title="COL - Cassandra Query Language"></a>COL - Cassandra Query Language</h3><h3 id="Java中Cassandra数据库的操作"><a href="#Java中Cassandra数据库的操作" class="headerlink" title="Java中Cassandra数据库的操作"></a>Java中Cassandra数据库的操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Cluster cluster = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  <span class="comment">//创建连接到Cassandra客户端</span></span><br><span class="line">  cluster = Cluster.builder()</span><br><span class="line">                   .addContactPoint(<span class="string">"127.0.0.1"</span>)</span><br><span class="line">                   .build();</span><br><span class="line">  <span class="comment">//创建用户会话</span></span><br><span class="line">  Session session = cluster.connect();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//执行CQL语句</span></span><br><span class="line">  ResultSet rs = session.execute(<span class="string">"select release_version from system.local"</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//从返回结果中取出第一条结构</span></span><br><span class="line">  Row row = rs.one();</span><br><span class="line">  </span><br><span class="line">   System.out.println(row.getString(<span class="string">"release_version"</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//创建并使用keyspace </span></span><br><span class="line">  String query = <span class="string">"CREATE KEYSPACE tp WITH replication = &#123;'class':'SimpleStrategry', 'replication_factor':3&#125;"</span>;</span><br><span class="line">  session.execute(query);</span><br><span class="line">  session.execute(<span class="string">"USE tp"</span>);</span><br><span class="line">  </span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(cluster != <span class="keyword">null</span>)&#123;</span><br><span class="line">    cluster.close();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Cassandra内部存储结构"><a href="#Cassandra内部存储结构" class="headerlink" title="Cassandra内部存储结构"></a>Cassandra内部存储结构</h3><p>Cassandra写入数据之前，需要先记录日志(CommitLog), 然后数据开始写入到ColumnFamily对应的Memtable中,Memtable是一种按照Key排序数据的内存结构，在满足一定条件时，再把Memtable中的数据批量持久化到磁盘上，存储在SSTable中。</p>
-<p>Cassandra数据信息分为3类：</p>
-<ul>
-<li>data目录<br>用户存储真正的数据文件，是SSTable文件, 可以指定多个目录</li>
-<li>commitlog目录<br>用于存储未写入SSTable中的数据</li>
-<li>cache目录<br>用户存储系统中的缓存数据，在服务重启时，从此目录加载缓存数据。</li>
-</ul>
-<p>参考：<br><a href="http://www.web3.xin/cassandra/174.html" target="_blank" rel="noopener">cassandra教程</a></p>
-
-          
+<h4 id="Keyspace"><a href="#Keyspace" class="headerlink" title="Keyspace"></a>Keyspace</h4><p>Keyspace相当于关系数据库中的数据库，是一系列Column Family的集合。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/01/Cassandra 概要介绍/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1918,46 +1597,20 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><h3 id="分布式应用架构的演变"><a href="#分布式应用架构的演变" class="headerlink" title="分布式应用架构的演变"></a>分布式应用架构的演变</h3><p>随着互联网的快速发展和演进, 不断变化的商业环境所带来的业务需求, 使得单一应用架构越来越复杂, 越来越难以支撑业务体系的发展。</p>
+          <h3 id="分布式应用架构的演变"><a href="#分布式应用架构的演变" class="headerlink" title="分布式应用架构的演变"></a>分布式应用架构的演变</h3><p>随着互联网的快速发展和演进, 不断变化的商业环境所带来的业务需求, 使得单一应用架构越来越复杂, 越来越难以支撑业务体系的发展。</p>
 <p>因此系统拆分就成了不可避免的事情, 由此演变为垂直应用架构体系。</p>
 <p>垂直应用架构解决了单一应用所面临的扩容问题, 流量可以分散到各个子系统中, 且系统体积可控, 一定程度上降低了开发人员之间协同和维护的成本, 提升了开发效率。</p>
 <p>当垂直应用越来越多达到一定规模时, 应用之间的相互交互和调用不可避免。否则不同系统之间存在着重叠的业务, 容易形成信息孤岛, 重复造轮子。此时相对核心的业务会被抽取出来, 作为单独的系统对外提供服务, 达成业务之间的相互复用,x系统也因此演变为分布式应用架构体系。</p>
 <p><img src="http://images.cnblogs.com/cnblogs_com/developerERA/1034447/o_%e5%88%86%e5%b8%83%e5%bc%8f%e5%ba%94%e7%94%a8%e6%9e%b6%e6%9e%84%e7%9a%84%e6%bc%94%e5%8f%98.png" alt=""></p>
 <p>分布式应用架构所面临的首要问题, 便是如何实现应用之间的远程调用(RPC)。</p>
-<h3 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h3><p>RPC全称是Remote Process Call, 即远程过程调用。<br>RPC将原本本地调用转变为调用远端服务器上的方法, 给系统的处理能力和吞吐量带来了近似无限制提升的可能, 这是系统发展到一定阶段的必然改革, 也是分布式计算的基础。</p>
-<h4 id="RPC调用示意-服务调用方调用服务提供方的服务"><a href="#RPC调用示意-服务调用方调用服务提供方的服务" class="headerlink" title="RPC调用示意 (服务调用方调用服务提供方的服务)"></a>RPC调用示意 (服务调用方调用服务提供方的服务)</h4><p><img src="http://images.cnblogs.com/cnblogs_com/developerERA/1034447/t_6d30fe08853cf8fbccd80c96323bfe7c.png" alt=""></p>
-<h4 id="基于HTTP协议的RPC"><a href="#基于HTTP协议的RPC" class="headerlink" title="基于HTTP协议的RPC"></a>基于HTTP协议的RPC</h4><ul>
-<li>使用灵活</li>
-<li>实现便捷</li>
-<li>开放(国际标准)</li>
-<li>天生支持异构平台之间的调用</li>
-</ul>
-<h4 id="基于TCP协议的RPC"><a href="#基于TCP协议的RPC" class="headerlink" title="基于TCP协议的RPC"></a>基于TCP协议的RPC</h4><ul>
-<li>效率高</li>
-<li>实现复杂</li>
-<li>跨平台难</li>
-</ul>
-<h3 id="业界主流RPC框架"><a href="#业界主流RPC框架" class="headerlink" title="业界主流RPC框架"></a>业界主流RPC框架</h3><ul>
-<li>Apache Thrift</li>
-</ul>
-<p>由Facebook开发的高效支持多种编程语言的远程服务调用框架，采用接口描述语言定义创建，支持跨语言服务开发，可以与主流语言无缝衔接，采用二进制格式传输数据，对高并发，大数据量和多语言的环境比较有优势。</p>
-<ul>
-<li>Avro-RPC</li>
-</ul>
-<p>Hadoop的子项目，支持丰富的数据结构类型，可定制性强，传输层和业务层分离，用户可以专注于业务逻辑的开发。</p>
-<ul>
-<li>Hessian</li>
-</ul>
-<p>Caucho提供的给予binary-RPC实现的轻量级二进制远程通信框架，通过Servlet提供远程服务，可以将某个请求映射到Hessian服务。<br>简单易用，面向接口编程，支持多语言，可与Spring集成。</p>
-<ul>
-<li>gRPC</li>
-</ul>
-<p>Google开源的基于HTTP/2和ProtoBuf的通用RPC框架，支持多语言，基于http2的设计带来诸如双向流，流控，头部压缩，单TCP连接上的多复用请求等特性。</p>
-<p>随着业务的发展, 服务调用者的规模发展到一定阶段, 对服务提供方的压力也日益增加, 因此服务需要进行扩容。<br>而随着服务提供者的增加与业务的发展, 不同服务之间还需要进行分组, 以隔离不同业务, 避免相互影响, 此时, 服务的路由和负载均衡则成为必须要考虑的问题。</p>
-<h4 id="服务分组路由与负载均衡架构"><a href="#服务分组路由与负载均衡架构" class="headerlink" title="服务分组路由与负载均衡架构"></a>服务分组路由与负载均衡架构</h4><p><img src="http://images.cnblogs.com/cnblogs_com/developerERA/1034447/o_6f2c88b0cbd5500de5b283b4e1fc2cef.png" alt=""></p>
-
-          
+<h3 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h3><p>RPC全称是Remote Process Call, 即远程过程调用。<br>RPC将原本本地调用转变为调用远端服务器上的方法, 给系统的处理能力和吞吐量带来了近似无限制提升的可能, 这是系统发展到一定阶段的必然改革, 也是分布式计算的基础。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/15/分布式应用架构学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2107,8 +1760,7 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://images2015.cnblogs.com/blog/1105627/201706/1105627-20170621181142038-1669847124.png" alt=""></p>
+          <p><img src="http://images2015.cnblogs.com/blog/1105627/201706/1105627-20170621181142038-1669847124.png" alt=""></p>
 <p>在建筑业中, 建模是一项经过检验并被广泛接受的工程技术, 建立房屋和大厦的建筑模型, 能帮助用户得到实际建筑物的印象。在软件建模中也具有同样的作用, 建模提供了系统的蓝图。</p>
 <p>建模是为了能够更好地理解正在开发的系统而建立的。通过建模有以下优点：</p>
 <ul>
@@ -2124,32 +1776,14 @@
 <li>依赖（两种事物之间的语义关系，其中一个事物发生变化会影响另一个事物的语义）</li>
 <li>关联（描述一组对象之间连接的结构关系）</li>
 <li>泛化（一种一般化到特殊化的关系）</li>
-<li>实现（类之间的语义关系，其中的一个类制定了由另一个类保证执行的契约）</li>
-</ul>
-<h4 id="图-常见有以下10种图"><a href="#图-常见有以下10种图" class="headerlink" title="图(常见有以下10种图)"></a>图(常见有以下10种图)</h4><h5 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h5><ul>
-<li>描述系统需求</li>
-</ul>
-<h5 id="类图、对象图、包图"><a href="#类图、对象图、包图" class="headerlink" title="类图、对象图、包图"></a>类图、对象图、包图</h5><ul>
-<li>描述软件结构</li>
-</ul>
-<h5 id="组件图、部署图"><a href="#组件图、部署图" class="headerlink" title="组件图、部署图"></a>组件图、部署图</h5><ul>
-<li>描述硬件结构</li>
-</ul>
-<h5 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h5><ul>
-<li>描述对象静态状态的转换</li>
-</ul>
-<h5 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h5><ul>
-<li>描述对象动态活动的转换</li>
-</ul>
-<h5 id="序列图"><a href="#序列图" class="headerlink" title="序列图"></a>序列图</h5><ul>
-<li>描述多个对象之间在时间上的交互</li>
-</ul>
-<h5 id="协作图"><a href="#协作图" class="headerlink" title="协作图"></a>协作图</h5><ul>
-<li>描述多个对象之间在空间上的交互</li>
-</ul>
-<p>下面的思维导图版的UML概要总结：<br><img src="http://images2015.cnblogs.com/blog/1105627/201707/1105627-20170713135033212-783534247.png" alt=""></p>
-
-          
+<li>实现（类之间的语义关系，其中的一个类制定了由另一个类保证执行的契约）
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/13/UML概论/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2299,38 +1933,20 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>几年前在HP曾做过几个Autonomy IDOL(现在的HPE IDOL)相关的项目, IDOL的功能相当强大, 而我们只主要用到了的相关性查询, 情感分析, Logo识别, 人脸识别等功能, 有点杀鸡用牛刀的味道。</p>
+          <p>几年前在HP曾做过几个Autonomy IDOL(现在的HPE IDOL)相关的项目, IDOL的功能相当强大, 而我们只主要用到了的相关性查询, 情感分析, Logo识别, 人脸识别等功能, 有点杀鸡用牛刀的味道。</p>
 <p>当时为了这个项目, 项目组还特意给我们申请了价值几百美金的Autonomy内部系列培训课程, 后来经过做项目过程中的层层实践和磨练, 一度成为项目组内部Autonomy专家, 安装、配置、接口使用，甚至于新功能的自我摸索和学习也不在话下。</p>
 <p>但是Autonomy毕竟是一个大块头超昂贵的系统, 功能很强大, 卖的License自然也很贵, 所以一般可能只有某些大公司在使用, 大部分的中小公司是用不起的, 这也就决定了这门技术在需要的地方很吃香，但是很多地方都不需要。</p>
 <p>几年过去了,由于之前的疏忽没有做过总结,大部分的知识都快忘光了,不过鉴于<a href="https://my.vertica.com/documentation/idol/11-0/" target="_blank" rel="noopener">官网</a>还是有比较详细的教程,这里只概要回顾一下:</p>
 <p>Autonomy提供了一种能够理解任何文件格式的全面软件基础架构解决方案。无论数据是文字还是语音，是结构化还是非结构化，采用何种创建和存储手段，Autonomy都可以进行处理。Autonomy的技术使企业应用系统独立于数据类型而运作，同时借助将手工操作自动化而提升了效率。</p>
 <h2 id="IDOL的工作流"><a href="#IDOL的工作流" class="headerlink" title="IDOL的工作流"></a>IDOL的工作流</h2><p><img src="https://my.vertica.com/docs/IDOL/Servers/IDOLServer/11.0/Guides/html/English/expert/Content/IDOLExpert/Images/IDOLArchitecture.png" alt=""></p>
-<h2 id="IDOL中的一些常用组件："><a href="#IDOL中的一些常用组件：" class="headerlink" title="IDOL中的一些常用组件："></a>IDOL中的一些常用组件：</h2><h3 id="License-Server"><a href="#License-Server" class="headerlink" title="License Server"></a>License Server</h3><p>Autonomy的使用时基于license的，每一个license对应一个MAC地址。IDOL提供的大部分服务都必须有license才能正常工作。</p>
-<h3 id="Connectors"><a href="#Connectors" class="headerlink" title="Connectors"></a>Connectors</h3><p>Connectors是IDOL平台的一个核心组件，它可以灵活而精准的把不同格式(结构化，半结构化，上千种文件格式)不同来源的数据摄入到IDOL数据库中。常用的Connectors有如下几种：</p>
-<ul>
-<li><p>ODBC Connector<br>通过配置可以直接连接所有支持ODBC的数据库，通过配置的SQL语句，直接从数据库中抽取数据。</p>
-</li>
-<li><p>File Connector<br>可以从指定的本地或网络文件目录抽取文件内容到IDOL中。</p>
-</li>
-<li><p>Http Connector<br>可以从指定的网站抓取内容。</p>
-</li>
-</ul>
-<h3 id="CFS-Connector-Framework-Server"><a href="#CFS-Connector-Framework-Server" class="headerlink" title="CFS (Connector Framework Server)"></a>CFS (Connector Framework Server)</h3><p>Connectors实现了如何从不同的数据源抽取数据，CFS则负责抽取的实施以及从抽取的文件中提取出元数据(metadata)和文件内容，并把它们加载的CFS的document中。这样IDOL Server可以直接搜索分析数据，而不需要再从原文件格式中提取数据。<br>在数据进入IDOL数据库之前，还可以做一些增强操作，比如文字的情感分析， 文档归类， 概要生成等。<br>增加了CFS这一层，是将所需要的数据提供了一个统一的入口，相当于从各种管道接来了水，放置在水池中，供IDOL来用。</p>
-<h3 id="IDOL-Server"><a href="#IDOL-Server" class="headerlink" title="IDOL Server"></a>IDOL Server</h3><p>IDOL - 智能数据操作层(Intelligent Data Operating Layer)是Autonomy的核心，它可以收集来自各种连接器(Connectors)的数据, 并以其能够实现快速处理和检索的独特结构存储这些数据。在处理信息的时候，IDOL能够联系概念和语境来理解数据中的内容，可以对超过一千种不同格式的信息进行自动分析。</p>
-<p>IDOL允许对数据源进行超过500多种操作，包括超链接、代理、摘要、分类、聚类、结构化信息抽取、档案建立、个性化信息提醒及检索。</p>
-<h3 id="Image-Server"><a href="#Image-Server" class="headerlink" title="Image Server"></a>Image Server</h3><p>用于图片内容的存储分析查询等，可以从图片中提取文字，通过图片训练还可以提供Logo识别，人脸识别等功能。</p>
-<h3 id="DAH-Distributed-Action-Handler"><a href="#DAH-Distributed-Action-Handler" class="headerlink" title="DAH (Distributed Action Handler)"></a>DAH (Distributed Action Handler)</h3><p>用于分布式查询和结果集的整理。</p>
-<h3 id="DIH-Distributed-Action-Handler"><a href="#DIH-Distributed-Action-Handler" class="headerlink" title="DIH (Distributed Action Handler)"></a>DIH (Distributed Action Handler)</h3><p>用于分布式索引, 将即将入库的文档分散为子集发送到集群中的各个server。</p>
-<h3 id="Query-Manipulation-Server"><a href="#Query-Manipulation-Server" class="headerlink" title="Query Manipulation Server"></a>Query Manipulation Server</h3><p>查询管理。</p>
-<h3 id="Eduction-Server"><a href="#Eduction-Server" class="headerlink" title="Eduction Server"></a>Eduction Server</h3><p>为自己感兴趣的实体增加tag以便于查询和过滤。</p>
-<h3 id="Media-Server"><a href="#Media-Server" class="headerlink" title="Media Server"></a>Media Server</h3><p>分析处理视频数据，可以将视频分解为音频和图片，将音频转换为文字等。</p>
-<h3 id="IDOL-Speech-Server"><a href="#IDOL-Speech-Server" class="headerlink" title="IDOL Speech Server"></a>IDOL Speech Server</h3><p>分析处理音频文件， 可以实现音频转换为文字，语音识别及语音搜索等功能。</p>
-<h2 id="IDOL中支持的功能："><a href="#IDOL中支持的功能：" class="headerlink" title="IDOL中支持的功能："></a>IDOL中支持的功能：</h2><p><img src="https://my.vertica.com/docs/IDOL/Servers/IDOLServer/11.0/Guides/html/English/expert/Content/FunctionalityView.png" alt=""></p>
-<h2 id="IDOL的应用架构"><a href="#IDOL的应用架构" class="headerlink" title="IDOL的应用架构"></a>IDOL的应用架构</h2><p><img src="http://blogs.forrester.com/f/b/users/LOWENS/autonomy.jpg" alt=""></p>
-<p>参考文档： <a href="https://my.vertica.com/documentation/idol/11-0/" target="_blank" rel="noopener">https://my.vertica.com/documentation/idol/11-0/</a><br><a href="https://my.vertica.com/docs/IDOL/Interfaces/ACIAPI/11.0/Guides/pdf/English/ACIAPI_11.0_Programming_en.pdf" target="_blank" rel="noopener">应用接口使用文档</a></p>
-
-          
+<h2 id="IDOL中的一些常用组件："><a href="#IDOL中的一些常用组件：" class="headerlink" title="IDOL中的一些常用组件："></a>IDOL中的一些常用组件：</h2><h3 id="License-Server"><a href="#License-Server" class="headerlink" title="License Server"></a>License Server</h3><p>Autonomy的使用时基于license的，每一个license对应一个MAC地址。IDOL提供的大部分服务都必须有license才能正常工作。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/11/Autonomy IDOL概要回顾/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

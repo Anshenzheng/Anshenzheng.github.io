@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="知乐园">
 <meta property="og:description" content="一般来说，Web前端指网站业务逻辑之前的部分，包括浏览器加载，网站视图模型，图片服务，CDN服务等，主要的优化手段有以下几种： 减少http请求HTTP协议是无状态的应用层协议，意味着每次HTTP请求都需要建立通信链路，进行数据传输，而在服务端，每个HTTP请求都需要启动独立的线程去处理。这些通信和服务的开销都很昂贵，减少了HTTP请求的数目可以有效提高访问性能。 减少HTTP请求的主要手段：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-27T13:10:03.000Z">
+<meta property="og:updated_time" content="2019-04-05T04:10:38.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web前端性能优化">
 <meta name="twitter:description" content="一般来说，Web前端指网站业务逻辑之前的部分，包括浏览器加载，网站视图模型，图片服务，CDN服务等，主要的优化手段有以下几种： 减少http请求HTTP协议是无状态的应用层协议，意味着每次HTTP请求都需要建立通信链路，进行数据传输，而在服务端，每个HTTP请求都需要启动独立的线程去处理。这些通信和服务的开销都很昂贵，减少了HTTP请求的数目可以有效提高访问性能。 减少HTTP请求的主要手段：">
@@ -445,7 +445,7 @@
 </ul>
 <h3 id="使用浏览器缓存"><a href="#使用浏览器缓存" class="headerlink" title="使用浏览器缓存"></a>使用浏览器缓存</h3><p>对于一个网站而言，CSS，Javascript，图标等静态资源文件的更新频率都比较低，但这些文件有几乎是每次页面请求都需要的，所以把这些静态资源缓存在浏览器中可以很好的改善网站的性能。<br>通过设置HTTP请求头中的Cache-Control和Expires属性，可以设定浏览器缓存，缓存的时间可以是数天也可以是几个月。<br>在有些时候静态资源文件变化需要及时应用到客户端浏览器，在这种情况下，可以通过改变文件命名来实现。</p>
 <blockquote>
-<p>大量使用浏览器缓存策略的网站在更新静态资源时，应该用批量更新的方法，并有时间间隔，以免用户浏览器突然大量缓存失效，大量用户集中更新缓存，可能会造成服务器负载骤增及网络堵塞的状况。</p>
+<p>大量使用浏览器缓存策略的网站在更新静态资源时，应该用批量更新的方法，并有时间间隔，以免用户浏览器突然大量缓存失效，大量用户集中更新缓存，可能会造成服务器负载骤增及网络堵塞的状况。<a id="more"></a></p>
 </blockquote>
 <h3 id="服务端启用压缩"><a href="#服务端启用压缩" class="headerlink" title="服务端启用压缩"></a>服务端启用压缩</h3><p>在服务器端对文件进行压缩，在浏览器端对文件解压缩，可用有效减少通信传输的信息量。一般来说，启用GZIP等压缩方式可以对HTML，CSS，Javascript等文本文件达到80%的压缩率。</p>
 <blockquote>

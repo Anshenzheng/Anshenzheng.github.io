@@ -99,19 +99,19 @@
 
 
 
-  <meta name="description" content="一般而言，几乎在任何系统中，我们都需要使用唯一的ID去识别以及操作应用中的对象，比如对用户管理而言需要用户ID，对订单管理而言需要订单ID。 在小的项目中，我们可以直接使用数据库的自增长特性来生成主键的ID，这样简单且易实现。但是在分库分表的分布式环境中，数据往往分布在不同的分片上，如果再通过数据库的自增长特性，势必会造成主键重复。 这就需要我们采用一些分布式全局唯一ID的生成方案，以下介绍几种">
+  <meta name="description" content="一般而言，几乎在任何系统中，我们都需要使用唯一的ID去识别以及操作应用中的对象，比如对用户管理而言需要用户ID，对订单管理而言需要订单ID。 在小的项目中，我们可以直接使用数据库的自增长特性来生成主键的ID，这样简单且易实现。但是在分库分表的分布式环境中，数据往往分布在不同的分片上，如果再通过数据库的自增长特性，势必会造成主键重复。 这就需要我们采用一些分布式全局唯一ID的生成方案，以下介绍几种常">
 <meta name="keywords" content="分布式,ID">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见分布式全局唯一ID生成方案">
 <meta property="og:url" content="https://anshenzheng.github.io/2017/07/11/常见分布式全局唯一ID生成方案/index.html">
 <meta property="og:site_name" content="知乐园">
-<meta property="og:description" content="一般而言，几乎在任何系统中，我们都需要使用唯一的ID去识别以及操作应用中的对象，比如对用户管理而言需要用户ID，对订单管理而言需要订单ID。 在小的项目中，我们可以直接使用数据库的自增长特性来生成主键的ID，这样简单且易实现。但是在分库分表的分布式环境中，数据往往分布在不同的分片上，如果再通过数据库的自增长特性，势必会造成主键重复。 这就需要我们采用一些分布式全局唯一ID的生成方案，以下介绍几种">
+<meta property="og:description" content="一般而言，几乎在任何系统中，我们都需要使用唯一的ID去识别以及操作应用中的对象，比如对用户管理而言需要用户ID，对订单管理而言需要订单ID。 在小的项目中，我们可以直接使用数据库的自增长特性来生成主键的ID，这样简单且易实现。但是在分库分表的分布式环境中，数据往往分布在不同的分片上，如果再通过数据库的自增长特性，势必会造成主键重复。 这就需要我们采用一些分布式全局唯一ID的生成方案，以下介绍几种常">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://pic002.cnblogs.com/images/2011/83478/2011091823160647.png">
-<meta property="og:updated_time" content="2017-07-11T14:00:44.000Z">
+<meta property="og:updated_time" content="2019-04-05T04:16:03.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见分布式全局唯一ID生成方案">
-<meta name="twitter:description" content="一般而言，几乎在任何系统中，我们都需要使用唯一的ID去识别以及操作应用中的对象，比如对用户管理而言需要用户ID，对订单管理而言需要订单ID。 在小的项目中，我们可以直接使用数据库的自增长特性来生成主键的ID，这样简单且易实现。但是在分库分表的分布式环境中，数据往往分布在不同的分片上，如果再通过数据库的自增长特性，势必会造成主键重复。 这就需要我们采用一些分布式全局唯一ID的生成方案，以下介绍几种">
+<meta name="twitter:description" content="一般而言，几乎在任何系统中，我们都需要使用唯一的ID去识别以及操作应用中的对象，比如对用户管理而言需要用户ID，对订单管理而言需要订单ID。 在小的项目中，我们可以直接使用数据库的自增长特性来生成主键的ID，这样简单且易实现。但是在分库分表的分布式环境中，数据往往分布在不同的分片上，如果再通过数据库的自增长特性，势必会造成主键重复。 这就需要我们采用一些分布式全局唯一ID的生成方案，以下介绍几种常">
 <meta name="twitter:image" content="http://pic002.cnblogs.com/images/2011/83478/2011091823160647.png">
 
 
@@ -468,7 +468,7 @@
 </li>
 <li><p>机器ID<br>机器位有10位， 2^10 = 1024, 即可以支持1024台机器。</p>
 </li>
-<li><p>序列号位<br>序列号分配有12位，2^12 = 4096, 即每毫秒支持产生4096个自增序列的ID。</p>
+<li><p>序列号位<br>序列号分配有12位，2^12 = 4096, 即每毫秒支持产生4096个自增序列的ID。<a id="more"></a></p>
 </li>
 </ul>
 <h3 id="UUID-GUID"><a href="#UUID-GUID" class="headerlink" title="UUID/GUID"></a>UUID/GUID</h3><p>UUID是一个由4个连字号(-)将32个字符长的字符串分割后生成的字符串,总共长36个字符长，它的生成主要基于以下几部分组合：</p>

@@ -99,19 +99,19 @@
 
 
 
-  <meta name="description" content="Cassandra只一个开源分布式NoSQL数据库，具有高度可扩展性和高可用性，可用于管理大量的结构化和非结构化数据, 主要特性如下:  持续可用性, 易于管理大量服务器和不会有单点故障 支持非常方便的列索引, 高性能的日志结构数据更新，强大的非规格化和物化视图以及缓存功能 采用去中心化的架构所有的节点都是平等的, Cassandra自动化地在环或者说数据库集群的所有节点之间进行数据分发开发人员">
+  <meta name="description" content="Cassandra只一个开源分布式NoSQL数据库，具有高度可扩展性和高可用性，可用于管理大量的结构化和非结构化数据, 主要特性如下:  持续可用性, 易于管理大量服务器和不会有单点故障 支持非常方便的列索引, 高性能的日志结构数据更新，强大的非规格化和物化视图以及缓存功能 采用去中心化的架构所有的节点都是平等的, Cassandra自动化地在环或者说数据库集群的所有节点之间进行数据分发开发人员或">
 <meta name="keywords" content="Cassandra,NoSQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cassandra 概要介绍">
 <meta property="og:url" content="https://anshenzheng.github.io/2017/08/01/Cassandra 概要介绍/index.html">
 <meta property="og:site_name" content="知乐园">
-<meta property="og:description" content="Cassandra只一个开源分布式NoSQL数据库，具有高度可扩展性和高可用性，可用于管理大量的结构化和非结构化数据, 主要特性如下:  持续可用性, 易于管理大量服务器和不会有单点故障 支持非常方便的列索引, 高性能的日志结构数据更新，强大的非规格化和物化视图以及缓存功能 采用去中心化的架构所有的节点都是平等的, Cassandra自动化地在环或者说数据库集群的所有节点之间进行数据分发开发人员">
+<meta property="og:description" content="Cassandra只一个开源分布式NoSQL数据库，具有高度可扩展性和高可用性，可用于管理大量的结构化和非结构化数据, 主要特性如下:  持续可用性, 易于管理大量服务器和不会有单点故障 支持非常方便的列索引, 高性能的日志结构数据更新，强大的非规格化和物化视图以及缓存功能 采用去中心化的架构所有的节点都是平等的, Cassandra自动化地在环或者说数据库集群的所有节点之间进行数据分发开发人员或">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.web3.xin/uploads/image/2017/02/12/20170212103220_60671.jpg">
-<meta property="og:updated_time" content="2017-08-01T12:44:08.000Z">
+<meta property="og:updated_time" content="2019-04-05T04:15:05.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cassandra 概要介绍">
-<meta name="twitter:description" content="Cassandra只一个开源分布式NoSQL数据库，具有高度可扩展性和高可用性，可用于管理大量的结构化和非结构化数据, 主要特性如下:  持续可用性, 易于管理大量服务器和不会有单点故障 支持非常方便的列索引, 高性能的日志结构数据更新，强大的非规格化和物化视图以及缓存功能 采用去中心化的架构所有的节点都是平等的, Cassandra自动化地在环或者说数据库集群的所有节点之间进行数据分发开发人员">
+<meta name="twitter:description" content="Cassandra只一个开源分布式NoSQL数据库，具有高度可扩展性和高可用性，可用于管理大量的结构化和非结构化数据, 主要特性如下:  持续可用性, 易于管理大量服务器和不会有单点故障 支持非常方便的列索引, 高性能的日志结构数据更新，强大的非规格化和物化视图以及缓存功能 采用去中心化的架构所有的节点都是平等的, Cassandra自动化地在环或者说数据库集群的所有节点之间进行数据分发开发人员或">
 <meta name="twitter:image" content="http://www.web3.xin/uploads/image/2017/02/12/20170212103220_60671.jpg">
 
 
@@ -464,7 +464,7 @@
 <li>具有线性扩展性，也就是说可以简单的在线添加新节点从而增加集群的处理能力<br>例如，如果每两个节点每秒处理100,000个事务, 4个几点就能每秒处理200,000个事务。</li>
 </ul>
 <h3 id="Cassandra基本数据模型"><a href="#Cassandra基本数据模型" class="headerlink" title="Cassandra基本数据模型"></a>Cassandra基本数据模型</h3><h4 id="Cluster-集群"><a href="#Cluster-集群" class="headerlink" title="Cluster 集群"></a>Cluster 集群</h4><p>Cassandra数据分布在不同的机器集群节点上。</p>
-<h4 id="Keyspace"><a href="#Keyspace" class="headerlink" title="Keyspace"></a>Keyspace</h4><p>Keyspace相当于关系数据库中的数据库，是一系列Column Family的集合。<br>创建keyspace时需指定如下几种属性：</p>
+<h4 id="Keyspace"><a href="#Keyspace" class="headerlink" title="Keyspace"></a>Keyspace</h4><p>Keyspace相当于关系数据库中的数据库，是一系列Column Family的集合。<a id="more"></a><br>创建keyspace时需指定如下几种属性：</p>
 <ul>
 <li><p>replication_factor 复制因子<br>集群中接收相同数据副本的计算机数。</p>
 </li>
