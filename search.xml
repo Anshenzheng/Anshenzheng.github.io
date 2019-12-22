@@ -5,8 +5,8 @@
     <url>%2F2019%2F12%2F22%2FCSS3%20Animation%20Advance_Transform%2F</url>
     <content type="text"><![CDATA[写在前面掌握了@keyframes的基本使用，我们就可以实现一些简单的动画。如果要实现比较复杂的动画，还需要学习动画中transform等属性的使用。 transform的使用概要transform属性应用于网页元素的2D或3D转换，使用该属性可以控制元素的旋转、缩放、移动、倾斜等。 语法1transform: none|transform-functions transform function列表 transform-functions图例 详细代码示例，见transform-example-01.html transfrom-origin在介绍transform functions之前，首先要着重讲一下transform-origin这个属性。通过transform-origin我们可以指定各种transform functions变换的基点，比如用于指定元素基于指定的基点进行旋转，基于指定的进行拉伸，变形等等。transform-origin在不指定的情况下，默认值为 “transform-origin: 50%，50%”, 即指定元素的中心点。 1234567.rotate-element&#123; transform-origin: 0 100%; /**指定基点为元素的左下角**/&#125;.rotate-element2&#123; transform-origin: 20px -50px; /** 指定基点的left值为该元素left+20px, top为该元素的top-50px **/&#125; 1. 旋转(rotate)1.1 2D平面中按指定角度旋转语法rotate(angle) 示例1234.rotate-element&#123; transform: rotate(30deg) /**指定该元素旋转30度**/ transform-origin: 0 0 /**指定旋转基点为元素左上角**/ &#125; 1.2 3D立体空间中按指定角度进行旋转语法rotate(x,y,z,angle)通过x,y,z三个值确定3D空间中的一个点，从原点到该点的连线即为旋转轴。angle用于指定沿旋转轴旋转的角度，angle取正值时，沿轴顺时针旋转，取负值时，沿轴逆时针旋转。 示例123.rotate-element&#123; transform: rotate3d(0,1,0,180deg) /**指定元素沿y轴旋转180度**/ &#125; 1.3 3D空间中沿X轴旋转语法rotateX(angle) 示例123.rotate-element&#123; transform: rotateX(30deg)/**沿X轴顺时针旋转30度**/ &#125; 1.4 3D空间中沿Y轴旋转语法rotateY(angle) 示例123.rotate-element&#123; transform: rotateY(30deg)/**沿Y轴顺时针旋转30度**/ &#125; 1.5 3D空间中沿Z轴旋转语法rotateZ(angle) 示例123.rotate-element&#123; transform: rotateZ(30deg)/**沿Z轴顺时针旋转30度**/ &#125; 2. 缩放(scale)2.1 水平方向缩放语法scaleX(sx)指定元素沿水平方向双向拉伸为原来的sx倍。 示例123.scale-element&#123; transform: scaleX(2) /**沿水平方向扩大为原来的2倍长**/&#125; 2.2 垂直方向缩放语法scaleY(sy)指定元素沿垂直方向双向拉伸为原来的sy倍。 示例123.scale-element&#123; transform: scaleY(2) /**沿垂直方向拉扩大为原来的2倍长**/&#125; 2.3 水平及垂直方向同时缩放语法scale(sx,sy)指定元素沿水平方向双向拉伸为原来的sx倍,沿垂直方向双向拉伸为原来的sy倍。 示例123.scale-element&#123; transform: scaleY(2) /**沿垂直方向拉扩大为原来的2倍长**/&#125; 2.4 3D缩放语法scale3d(sx,sy,sz)指定元素沿水平方向双向拉伸为原来的sx倍,沿垂直方向双向拉伸为原来的sy倍,沿视觉方向(Z轴)双向拉伸为原来的sz倍. 示例12345.scale-element&#123; transform: scale3d(2,2,2) /**3D空间内扩大为原来的2倍**/ transform: scale3d(1,1,0.5) /**3D空间内扩大为原来的2倍**/&#125; 3. 拉伸(skew)3.1 沿X轴水平方向倾斜转换 语法skewX(angle) 示例123.skew-element&#123; transform: skewX(45deg);/**沿X轴方向做45度倾斜变换**/&#125; 3.2 沿Y轴垂直方向倾斜转换语法skewY(angle)123.skew-element&#123; transform: skewY(45deg);/**沿Y轴方向做45度倾斜变换**/&#125; 3.3 沿X轴和Y轴做2D倾斜转换语法skew(x-angle,y-angle)123.skew-element&#123; transform: skew(45deg, 45deg);/**同时沿X,Y轴方向做45度倾斜变换**/&#125; 4. 移动(translate)4.1 沿X轴方向移动元素语法translateX(dx)123.translate-element&#123; transform: translateX(30px);/**沿水平方向移动30px**/&#125; 4.2 沿Y轴方向移动元素语法translateY(dy)123.translate-element&#123; transform: translateY(30px);/**沿垂直方向移动30px**/&#125; 4.3 2D平面内沿X轴和Y轴方向移动元素语法translate(dx, dy)123.translate-element&#123; transform: translate(30px, 30px);/**同时沿X轴和Y轴移动30px**/&#125; 4.4 3D空间内移动元素语法translate3d(dx, dy, dz)123.translate-element&#123; transform: translate(30px, 30px, 30px);/**3D空间内移动元素**/&#125; 5. 矩阵(matrix)5.1 通过矩阵对元素在2D平面内做转换语法matrix(a,b,c,d,e,f)对指定元素中所有的点(x_0, y_0)按给定矩阵做变换后得到新的点(x, y) -x = ax_0 + cy_0 +ey = bx_0 + dy_0 + f 由此可见： 参数a - 控制着X轴方向的缩放 参数c - 控制着X轴随y的值产生的偏移 参数e - 控制着X轴的位移 参数b - 控制着Y轴随x的值产生的偏移 参数d - 控制着Y轴的缩放 参数f - 控制着Y轴的位移 因此，通过矩阵的转换，我们可以实现所有以上通过旋转，缩放，拉伸，位移产生的效果。 等价效果如下：matrix(sx, 0, 0, sy, 0, 0) == scale(sx, sy);matrix(cosθ, sinθ, -sinθ, cosθ, 0, 0) == rotate(θ)matrix(1, 0, 0, 1, dx, dy) == translate(dx, dy)matrix(1, tan(θy), tan(θx), 1, 0, 0) == skew(θx, θy) 5.2 通过矩阵对元素在3D空间内做转换CSS3中的3维矩阵比2维矩阵复杂很多，从2维到三维，参数从 33=9 变为 44=16 语法matrix(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p) x = ax0 + ey0 + iz0 + my = bx0 + fy0 + jz0 + nz = cx0 + gy0 + k*z0 + o 同上，通过矩阵的转换，我们可以实现所有以上通过旋转，缩放，拉伸，位移产生的3D变换效果。 transform相关的知识就先介绍到这里，下面是用rotate和transform-origin实现的一个经典的8大行星环绕太阳的动画： 效果图： 代码：见示例transform-example-02.html]]></content>
       <tags>
-        <tag>前端</tag>
         <tag>Web</tag>
+        <tag>前端</tag>
         <tag>CSS</tag>
         <tag>Animation</tag>
       </tags>
@@ -16,8 +16,8 @@
     <url>%2F2019%2F12%2F13%2FCSS3%20Animation%20Basic%2F</url>
     <content type="text"><![CDATA[写在前面在前端开发中，很多地方不可避免地需要使用一些动画特效。我们无须借助Javascript、Flash等技术，单纯通过CSS3便能满足大部分需求。通过CSS样式，我们可以控制元素的大小，颜色，位置等等，而CSS3中动画的基本原理就是使元素的样式在指定时间间隔内从一种样式变换为另一种样式的效果。 所以CSS3动画中，两个最基本的要素便是时刻与样式。在CSS3中，时刻与样式的联系与控制便是通过@keyframes来实现的。 @keyframes即关键帧，我们通过@keyframes可以定义在不同的时刻网页中元素相应CSS的样式，浏览器会帮助我们实现中间的样式过渡，从而就能创建出当前样式逐渐改变为下一时刻新样式的动画效果。 @keyframes的使用@keyframes中我们通过 from/to关键字或者百分比来控制动画的不同时刻，然后指定不同时刻的样式来控制动画。 示例 1 - 通过from/to来控制时刻123456789101112131415161718192021@keyframes first-animation&#123; from &#123;background: red;&#125; /** 起始时样式**/ to &#123;background：yellow; &#125; /** 结束时样式**/&#125;@-moz-keyframes first-animation /** To support the Firefox browser **/&#123; from &#123;background: red;&#125; to &#123;background：yellow; &#125;&#125;@-webkit-keyframes first-animation /**To support Safari &amp; Chrome browser **/ from &#123;background: red;&#125; to &#123;background：yellow; &#125;&#125;@-o-keyframes first-animation /**To support Opera browser **/ from &#123;background: red;&#125; to &#123;background：yellow; &#125;&#125; 示例 2 - 通过百分比来控制时刻12345678910111213141516171819202122@keyframes first-animation&#123; 0% &#123;background: red;&#125; /**起始时样式 **/ 100% &#123;background：yellow; &#125; /**结束时样式 **/&#125;@-moz-keyframes first-animation /** To support the Firefox browser **/&#123; 0% &#123;background: red;&#125; 100% &#123;background：yellow; &#125;&#125;@-webkit-keyframes first-animation /** To support Safari &amp; Chrome browser **/ 0% &#123;background: red;&#125; 100% &#123;background：yellow; &#125;&#125;@-o-keyframes first-animation /** To support Opera browser **/ 0% &#123;background: red;&#125; 100% &#123;background：yellow; &#125;&#125; 示例1和示例2可以实现相同的效果，然而用百分比我们可以通过改变百分比的值更加精细的控制样式的动态变化。 CSS3 动画通过@keyframes我们定义了动画，然后需要把它绑定到对应的网页元素上，才能产生动画效果。至少以下两项动画属性绑定到对应的元素上才能产生动画： 动画的名称 动画时长 示例把定义好的keyframes - “first-animation”绑定到div元素，并指定动画时长为5秒. 123456div&#123; animation: first-animation 5s; -moz-animation: first-animation 5s; -webkit-animation: first-animation 5s; -o-animation: first-animation 5s&#125; 完整代码，请参见css-animation-example-01 CSS3 动画属性@keyframes定义动画的具体内容。 animation绑定通过@keyframes创建的动画到指定元素上。 animation-name指定@keyframes动画的名称。 animation-duration指定动画完成一个周期所需要的时间, 默认是0 animation-timing-function指定动画的速度曲线, 默认为 ease。 animation-delay指定动画何时开始，默认为0 animation-iteration-count指定动画的播放次数，默认为1若需不间断执行，则可指定为infinite animation-direction指定动画是否在下一周期逆向播放，默认为 normal，即正常播放。另可取值为以下值 -reverse - 反向播放alternate - 奇数次正向，偶数次反向alternate-reverse - 奇数次反向，偶数次正向 animation-play-state动画状态 - 是否正在运行或者暂停，默认为running animation-fill-mode指定元素在动画执行时间之外的状态 使用示例123456789101112131415161718192021222324252627282930313233343536div&#123; animation-name: first-animation; animation-duration: 5s; animation-timing-function: linear; animation-delay: 2s; animation-iteration-count: infinite; animation-direction: alternate; animation-play-state: running; /** Firefox: **/ -moz-animation-name: myfirst; -moz-animation-duration: 5s; -moz-animation-timing-function: linear; -moz-animation-delay: 2s; -moz-animation-iteration-count: infinite; -moz-animation-direction: alternate; -moz-animation-play-state: running; /** Safari 和 Chrome: **/ -webkit-animation-name: myfirst; -webkit-animation-duration: 5s; -webkit-animation-timing-function: linear; -webkit-animation-delay: 2s; -webkit-animation-iteration-count: infinite; -webkit-animation-direction: alternate; -webkit-animation-play-state: running; /** Opera: **/ -o-animation-name: myfirst; -o-animation-duration: 5s; -o-animation-timing-function: linear; -o-animation-delay: 2s; -o-animation-iteration-count: infinite; -o-animation-direction: alternate; -o-animation-play-state: running;&#125; 简写的动画属性12345678910111213div&#123; animation: myfirst 5s linear 2s infinite alternate; /** Firefox: **/ -moz-animation: myfirst 5s linear 2s infinite alternate; /** Safari 和 Chrome: **/ -webkit-animation: myfirst 5s linear 2s infinite alternate; /** Opera: **/ -o-animation: myfirst 5s linear 2s infinite alternate;&#125;]]></content>
       <tags>
-        <tag>前端</tag>
         <tag>Web</tag>
+        <tag>前端</tag>
         <tag>CSS</tag>
         <tag>Animation</tag>
       </tags>
@@ -74,8 +74,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>Angular</tag>
         <tag>前端</tag>
+        <tag>Angular</tag>
         <tag>“框架”</tag>
       </tags>
   </entry>
@@ -153,6 +153,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Javascript中的闭包]]></title>
+    <url>%2F2017%2F07%2F10%2FJavascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[什么是闭包闭包(closure)是指在JavaScript中，将外部函数中的局部变量封闭起来的(内部)函数。(被封闭起来的变量与封闭它的函数具有相同的生命周期。) 示例如下： 123456789function func()&#123; var local = "local variable"; var inner = function()&#123; console.log(local); &#125; return inner;&#125; 示例中内部函数inner持有外部函数func的局部变量local，这样就构成了一个作用域(闭包)，通过该作用域我们可以访问及修改外部访问不到的内部变量。 闭包的作用管理私有变量和私有方法，将对变量的管理封装在安全环境之中。外层函数执行之后，它的局部变量本来应该全部销毁，但是由于闭包的存在，之后执行内部函数，通过它仍然可以访问到外层函数的变量。 123456789101112131415161718192021222324252627function func()&#123; var name = "Charlie"; return &#123; setName: function(new_name)&#123; name = new_name; &#125;, getName: function()&#123; return name; &#125; &#125;;&#125;var f = func();console.log(f.name);// 打印结果：// undefinedconsole.log(f.getName())// 打印结果：// Charlief.setName("Teddy");console.log(f.getName())// 打印结果：// Teddy]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>闭包</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Cache相关的HTTP请求/响应头]]></title>
     <url>%2F2017%2F07%2F10%2FCache%E7%9B%B8%E5%85%B3%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E5%A4%B4%2F</url>
     <content type="text"><![CDATA[常见的HTTP请求/响应头有很多，以下介绍几种cache相关的： Pragma Cache-Control Expires Last-Modified Etag Pragma &amp; Cache-Control用于指定所有缓存机制在整个请求/响应链中必须服从的命令，如果知道该页面是否为缓存，不仅可以控制浏览器，还可以控制HTTP协议相关的缓存或者代理服务器。 Cache-Control请求字段优先级比较高，如果和其它一些相冲突的字段(比如Expires)同时出现，则Cache-Control会覆盖其它字段。Pragma的作用和Cache-Control类似，也是在HTTP头中包含一个特殊指令，使相关的服务器来遵守，Pragma:no-cache 和 Cache-Control:no-cache的作用是一样的。 浏览器中的强制刷新(Ctrl + F5)就是通过发起请求时加上请求头 Pragma:no-cache 和 Cache-Control:no-cache 实现的。 Expires通常格式为Expires:Sat,25Feb201712:22:17GMT,后面跟着日期和时间，超过这个时间值后，缓存内容将失效，也就是浏览器在发出请求之前会检查这个页面的字段，如果页面已经过期，就重新向服务器发起请求。 Last-Modified &amp; EtagLast-Modified一般用于表示一个服务器上的资源的最后修改时间，资源可以是静态或者是动态的。一般服务端在响应头中返回一个Last-Modified字段，告诉浏览器这个页面的最后修改时间，浏览器再次请求时在请求头中增加一个If-Modified-Since:Sat,25Feb201712:22:17GMT,询问当前缓存的页面是否是最新的，如果是最新的就返回304，告诉浏览器是最新的，服务器也不会传输新的数据。 Etag与Last-Modified功能类似，作用是让服务器给每个页面分配一个唯一的编号，然后通过编号来区分当前页面是否为最新。这种方式比Last-Modified更灵活，但是在后端的Web服务器有多台时就比较难处理，因为每个web服务器都要记住网站的所有资源，否则这个编号就没有意义了。]]></content>
@@ -163,18 +175,6 @@
         <tag>cache</tag>
         <tag>http</tag>
         <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Javascript中的闭包]]></title>
-    <url>%2F2017%2F07%2F10%2FJavascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85%2F</url>
-    <content type="text"><![CDATA[什么是闭包闭包(closure)是指在JavaScript中，将外部函数中的局部变量封闭起来的(内部)函数。(被封闭起来的变量与封闭它的函数具有相同的生命周期。) 示例如下： 123456789function func()&#123; var local = "local variable"; var inner = function()&#123; console.log(local); &#125; return inner;&#125; 示例中内部函数inner持有外部函数func的局部变量local，这样就构成了一个作用域(闭包)，通过该作用域我们可以访问及修改外部访问不到的内部变量。 闭包的作用管理私有变量和私有方法，将对变量的管理封装在安全环境之中。外层函数执行之后，它的局部变量本来应该全部销毁，但是由于闭包的存在，之后执行内部函数，通过它仍然可以访问到外层函数的变量。 123456789101112131415161718192021222324252627function func()&#123; var name = "Charlie"; return &#123; setName: function(new_name)&#123; name = new_name; &#125;, getName: function()&#123; return name; &#125; &#125;;&#125;var f = func();console.log(f.name);// 打印结果：// undefinedconsole.log(f.getName())// 打印结果：// Charlief.setName("Teddy");console.log(f.getName())// 打印结果：// Teddy]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-        <tag>闭包</tag>
       </tags>
   </entry>
   <entry>
@@ -253,8 +253,8 @@
     <url>%2F2015%2F07%2F27%2FWeb%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%2F</url>
     <content type="text"><![CDATA[一般来说，Web前端指网站业务逻辑之前的部分，包括浏览器加载，网站视图模型，图片服务，CDN服务等，主要的优化手段有以下几种： 减少http请求HTTP协议是无状态的应用层协议，意味着每次HTTP请求都需要建立通信链路，进行数据传输，而在服务端，每个HTTP请求都需要启动独立的线程去处理。这些通信和服务的开销都很昂贵，减少了HTTP请求的数目可以有效提高访问性能。 减少HTTP请求的主要手段： 合并CSS 合并Javascript 合并图片 使用浏览器缓存对于一个网站而言，CSS，Javascript，图标等静态资源文件的更新频率都比较低，但这些文件有几乎是每次页面请求都需要的，所以把这些静态资源缓存在浏览器中可以很好的改善网站的性能。通过设置HTTP请求头中的Cache-Control和Expires属性，可以设定浏览器缓存，缓存的时间可以是数天也可以是几个月。在有些时候静态资源文件变化需要及时应用到客户端浏览器，在这种情况下，可以通过改变文件命名来实现。 大量使用浏览器缓存策略的网站在更新静态资源时，应该用批量更新的方法，并有时间间隔，以免用户浏览器突然大量缓存失效，大量用户集中更新缓存，可能会造成服务器负载骤增及网络堵塞的状况。 服务端启用压缩在服务器端对文件进行压缩，在浏览器端对文件解压缩，可用有效减少通信传输的信息量。一般来说，启用GZIP等压缩方式可以对HTML，CSS，Javascript等文本文件达到80%的压缩率。 压缩对服务器和浏览器产生一定的压力，在通信带宽良好，而服务器资源不足的情况下要权衡考虑。 CSS引用放在页面最上方，Javascript引用放在页面最下方浏览器会在加载完全部CSS之后才会对整个页面进行渲染，因此最好的做法是把CSS引用放在页面最上方，让浏览器尽快下载完CSS文件。Javascript则相反，浏览器在加载Javascript之后立即执行，有可能会阻塞真个页面，造成页面显示缓慢。 如果页面解析时需要用到Javascript，这时放在页面底部就不合适了。 减少Cookie传输Cookie包含在每次请求和响应中，太大的Cookie会严重影响数据传输，因此哪些数据需要写入Cookie需要慎重考虑，尽量减少Cookie中传输的数据量。对于一些静态资源的访问，如CSS，Javascript等，发送Cookie是没有意义的，可以考虑静态资源使用独立域名访问，减少Cookie传输的次数。 CDN加速CDN(Content Distribute Network, 内容分发网络)的本质仍然是一个缓存，而且是将数据缓存在离用户最近的地方，使用户以最快速度获取数据。CDN可以缓存一般的静态资源，如图片，文件，CSS，Script脚本及静态网页等，这些都是访问频度比较高的文件，缓存在CDN可以极大改善网页的打开速度。 反向代理传统代理服务器位于浏览器一侧，代理浏览器将HTTP请求发送到互联网上，而反向代理服务器位于网站机房的一侧，代理网站Web服务器接收HTTP请求。来自互联网的请求必须经过代理服务器，相当于在Web服务器和外部网络之间建立了一个屏障，可以保护Web服务器防御外部的网络攻击，也可以配置缓存功能加速Web请求，而且还可以通过反向代理实现负载均衡的功能。 参考：《大型网站技术架构》 李智慧 著]]></content>
       <tags>
-        <tag>前端</tag>
         <tag>Web</tag>
+        <tag>前端</tag>
         <tag>性能</tag>
         <tag>优化</tag>
       </tags>
