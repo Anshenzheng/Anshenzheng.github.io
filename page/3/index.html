@@ -357,6 +357,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2016/07/16/Java-NIO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Annan An">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知乐园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java-NIO/" itemprop="url">Java NIO</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T22:51:43+08:00">2016-07-16</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/07/16/Java-NIO/" class="leancloud_visitors" data-flag-title="Java NIO">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="NIO模型原理"><a href="#NIO模型原理" class="headerlink" title="NIO模型原理"></a>NIO模型原理</h3><p>Channel: Channel是一个在TCP连接之间的抽象，一个TCP链接可以对应多个管道，而不是以前的方式只有一个通信信道，减少了TCP连接次数。</p>
+<p>UDP：采用相同方式，也是抽象为管道。</p>
+<p>通过selector(选择器)，相当于管家，管理所有的IO事件(Connection/accept，客户端服务端的读写等)。</p>
+<h4 id="Selector管理IO事件"><a href="#Selector管理IO事件" class="headerlink" title="Selector管理IO事件"></a>Selector管理IO事件</h4><p>当IO事件注册给selector时，selector会给它们分配key值(可以简单理解为事件的标签), 当I/O事件完成后，会通过key值找到相应的管道，然后通过管道发送数据和接受数据等操作.
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/16/Java-NIO/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2016/06/08/JMS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -857,7 +999,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -991,7 +1133,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">43</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1038,7 +1188,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
