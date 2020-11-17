@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="作者：Dmitri Pavlutin译者：前端小智来源：dmitripavlutin.comhttps:&#x2F;&#x2F;dmitripavlutin.com&#x2F;react-usestate-hook-guide&#x2F;  状态是隐藏在组件中的信息，组件可以在父组件不知道的情况下修改其状态。我更偏爱函数组件，因为它们足够简单，要使函数组件具有状态管理，可以useState() Hook。本文会逐步讲解如何使用use">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单易懂的React useState() Hook指南">
+<meta property="og:url" content="https://anshenzheng.github.io/2020/11/15/%E7%AE%80%E5%8D%95%E6%98%93%E6%87%82%E7%9A%84React-useState-Hook%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="知乐园">
+<meta property="og:description" content="作者：Dmitri Pavlutin译者：前端小智来源：dmitripavlutin.comhttps:&#x2F;&#x2F;dmitripavlutin.com&#x2F;react-usestate-hook-guide&#x2F;  状态是隐藏在组件中的信息，组件可以在父组件不知道的情况下修改其状态。我更偏爱函数组件，因为它们足够简单，要使函数组件具有状态管理，可以useState() Hook。本文会逐步讲解如何使用use">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VGaWFBVmFBelY0Uk40bVFLMUZ4WWp0eWZNRmNYTkNZdmQxdnhIb2VkaGNWVUppYkJMVnFObUkyQS82NDA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VySDdrUXhkYk5pYXZPQlcyZ1pIckNIVnFDRlFxaWFqSGcyT2ppY2NVM2hsWWxTSTlRaWM3QnFpY3p5dy82NDA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3UwMXVPeU1wMVJkUWliVXBaanY1dUZpYVNLd1ZrQWRxS0JEb2VPSXlSRmVvd1lESjZpY1NVamZGb1EvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3UxcE8zV3dFRnYxbFdkQlNOOGVpYXkwVndyZVZsTUNLSzdVdWlhZ1lxcmY5TUhTbDVZanFuRUVMQS82NDA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VxV2liRUFHc1cyTlNmU2M2TzJCQXFLdTJNSkVKMjB4MTNVZzViVWYyR29vT0Njd0NzZnFhZkZnLzY0MA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VodDVjN1Vra1JPYlJPMUN5YVVGY0JOVGtBNXBQcWwxSlN5RVBpY2FzZFdmOE5admljVnA2Y3F5Zy82NDA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VMZVRSdmljak9qQ2FEbHprQlB3RUUzeWFKcFZmMnZkMFk2MUpld05nYVIxZVVNYzBvYTVBV3N3LzY0MA?x-oss-process=image/format,png">
+<meta property="article:published_time" content="2020-11-15T14:16:51.000Z">
+<meta property="article:modified_time" content="2020-11-17T02:35:42.506Z">
+<meta property="article:author" content="Annan An">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="State">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VGaWFBVmFBelY0Uk40bVFLMUZ4WWp0eWZNRmNYTkNZdmQxdnhIb2VkaGNWVUppYkJMVnFObUkyQS82NDA?x-oss-process=image/format,png">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="知乐园" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://anshenzheng.github.io/2020/11/15/简单易懂的React-useState-Hook指南/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>简单易懂的React useState() Hook指南 | 知乐园</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知乐园</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-futbol-o"></i> <br />关于</a>
+</li>
+
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://anshenzheng.github.io/2020/11/15/%E7%AE%80%E5%8D%95%E6%98%93%E6%87%82%E7%9A%84React-useState-Hook%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Annan An">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知乐园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">简单易懂的React useState() Hook指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-15T22:16:51+08:00">2020-11-15</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/11/15/%E7%AE%80%E5%8D%95%E6%98%93%E6%87%82%E7%9A%84React-useState-Hook%E6%8C%87%E5%8D%97/" class="leancloud_visitors" data-flag-title="简单易懂的React useState() Hook指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>作者：Dmitri Pavlutin<br>译者：前端小智<br>来源：dmitripavlutin.com<br><a href="https://dmitripavlutin.com/react-usestate-hook-guide/" target="_blank" rel="noopener">https://dmitripavlutin.com/react-usestate-hook-guide/</a></p>
+</blockquote>
+<p>状态是隐藏在组件中的信息，组件可以在父组件不知道的情况下修改其状态。<br>我更偏爱函数组件，因为它们足够简单，要使函数组件具有状态管理，可以useState() Hook。<br>本文会逐步讲解如何使用useState() Hook。此外，还会介绍一些常见useState() 坑。</p>
+<h3 id="1-使用-useState-进行状态管理"><a href="#1-使用-useState-进行状态管理" class="headerlink" title="1. 使用 useState() 进行状态管理"></a>1. 使用 <code>useState()</code> 进行状态管理</h3><p>无状态的函数组件没有状态，如下所示(部分代码):<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> &lt;div className=<span class="string">'bulb-off'</span> /&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以找 codesandbox 尝试一下。<br>运行效果：<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VGaWFBVmFBelY0Uk40bVFLMUZ4WWp0eWZNRmNYTkNZdmQxdnhIb2VkaGNWVUppYkJMVnFObUkyQS82NDA?x-oss-process=image/format,png" alt=""></p>
+<p>如何添加一个按钮来打开/关闭灯泡呢？为此，需要具有状态的函数组件，也就是有状态函数组件。<br>useState()是实现灯泡开关状态的 Hoook，将状态添加到函数组件需要4个步骤:<br>启用状态、初始化、读取和更新。</p>
+<h4 id="1-1-启用状态"><a href="#1-1-启用状态" class="headerlink" title="1.1 启用状态"></a>1.1 启用状态</h4><p>要将Bulbs转换为有状态组件，需要告诉 React：<br>从’react’包中导入useState钩子，然后在组件函数的顶部调用useState()。</p>
+<p>如下所示：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	... = useState(...);</span><br><span class="line">	<span class="keyword">return</span> &lt;div className=<span class="string">"bulb-off"</span>/&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在Bulbs函数的第一行调用useState()（暂时不要考Hook的参数和返回值）。<br>重要的是，在组件内部调用 Hook 会使该函数成为有状态的函数组件。<br>启用状态后，下一步是初始化它。</p>
+<h4 id="1-2-初始化状态"><a href="#1-2-初始化状态" class="headerlink" title="1.2 初始化状态"></a>1.2 初始化状态</h4><p>开始时，灯泡关闭，对应到状态应使用false初始化 Hook：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	... = useState(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">return</span> &lt;div className=<span class="string">"bulb-off"</span> /&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>useState(false)用false初始化状态。<br>启用和初始化状态之后，如何读取它?来看看useState(false)返回什么。</p>
+<h4 id="1-3-读取状态"><a href="#1-3-读取状态" class="headerlink" title="1.3 读取状态"></a>1.3 读取状态</h4><p>当 hook useState(initialState)被调用时，它返回一个数组，该数组的第一项是状态值<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> stateArray = useState(<span class="literal">false</span>); stateArray[<span class="number">0</span>]; <span class="comment">// =&gt; 状态值</span></span><br></pre></td></tr></table></figure><br>读取组件的状态<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> stateArray = useState(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">return</span> &lt;div className=&#123;stateArray[<span class="number">0</span>]? <span class="string">'bulb-on'</span>:<span class="string">'bulb-off'</span> &#125; /&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><Bulbs>组件状态初始化为false，可以打开 codesandbox 看看效果。<br>useState(false)返回一个数组，第一项包含状态值，该值当前为false(因为状态已用false初始化)。<br>可以使用数组解构来将状态值提取到变量on上：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [on] = useState(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">return</span> &lt;div className=&#123;on? <span class="string">'bulb-on'</span>:<span class="string">'bulb-off'</span>&#125; /&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>on状态变量保存状态值。<br>状态已经启用并初始化，现在可以读取它了。但是如何更新呢?再来看看useState(initialState)返回什么。</p>
+<h4 id="1-4-更新状态"><a href="#1-4-更新状态" class="headerlink" title="1.4 更新状态"></a>1.4 更新状态</h4><p>用值更新状态<br>我们已经知道，useState(initialState)返回一个数组，其中第一项是状态值，第二项是一个更新状态的函数。<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, setState] = useState(initialState);</span><br><span class="line"><span class="comment">// 将状态更改为'newState'并触发重新渲染</span></span><br><span class="line">setState(newState); <span class="comment">//重新渲染'state'后的值为'newState'</span></span><br></pre></td></tr></table></figure><br> 要更新组件的状态，请使用新状态调用更新器函数setState(newState)。组件重新渲染后，状态接收新值newState。<br>当点击开灯按钮时将灯泡开关状态更新为true，点击关灯时更新为 false。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [on, setOn] = useState(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">const</span> lightOn = <span class="function"><span class="params">()</span>=&gt;</span>setOn(<span class="literal">true</span>);</span><br><span class="line">	<span class="keyword">const</span> lightOff = <span class="function"><span class="params">()</span>=&gt;</span>setOn(<span class="literal">false</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&lt;div className=&#123;on ? <span class="string">'bulb-on'</span> : <span class="string">'bulb-off'</span>&#125; /&gt;</span><br><span class="line">			&lt;button onClick=&#123;lightOn&#125;&gt;开灯&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">			&lt;button onClick=&#123;lightOff&#125;&gt;关灯&lt;/</span>button&gt;</span><br><span class="line">		&lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">	);</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>打开 codesandbox 自行尝试一下。<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VySDdrUXhkYk5pYXZPQlcyZ1pIckNIVnFDRlFxaWFqSGcyT2ppY2NVM2hsWWxTSTlRaWM3QnFpY3p5dy82NDA?x-oss-process=image/format,png" alt=""></p>
+<p>单击开灯按钮时，lightOn()函数将on更新为true: setOn(true)。<br>单击关灯时也会发生相同的情况，只是状态更新为false。 <br>状态一旦改变，React 就会重新渲染组件，on变量获取新的状态值。<br>状态更新作为对提供一些新信息的事件的响应。这些事件包括按钮单击、HTTP 请求完成等，确保在事件回调或其他 Hook 回调中调用状态更新函数。</p>
+<h5 id="使用回调更新状态"><a href="#使用回调更新状态" class="headerlink" title="使用回调更新状态"></a>使用回调更新状态</h5><p>当使用前一个状态计算新状态时，可以使用回调更新该状态:<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, setState] = useState(initialState);</span><br><span class="line">...</span><br><span class="line">setState(<span class="function"><span class="params">prevState</span> =&gt;</span> nextState);</span><br><span class="line">...</span><br></pre></td></tr></table></figure><br>示例:<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Toggle a boolean</span></span><br><span class="line"><span class="keyword">const</span> [toggled, setToggled] = useState(<span class="literal">false</span>);</span><br><span class="line">setToggled(<span class="function"><span class="params">toggled</span> =&gt;</span> !toggled);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Increase a counter</span></span><br><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">setCount(<span class="function"><span class="params">count</span> =&gt;</span> count + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add an item to array</span></span><br><span class="line"><span class="keyword">const</span> [items, setItems] = useState([]);</span><br><span class="line">setItems(<span class="function"><span class="params">items</span> =&gt;</span>...items, <span class="string">'New Item'</span>)</span><br></pre></td></tr></table></figure><br>之后，通过这种方式重新实现电灯的示例：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [on, setOn] = useState(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">const</span> lightSwitch = <span class="function"><span class="params">()</span>=&gt;</span> setOn(<span class="function"><span class="params">on</span>=&gt;</span>!on);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&lt;div className=&#123;on ? <span class="string">'bulb-on'</span>:<span class="string">'bulb-off'</span>&#125; /&gt;</span><br><span class="line">			&lt;button onClick=&#123;lightSwitch&#125;&gt;开灯/关灯&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>打开 codesandbox 自行尝试一下。<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3UwMXVPeU1wMVJkUWliVXBaanY1dUZpYVNLd1ZrQWRxS0JEb2VPSXlSRmVvd1lESjZpY1NVamZGb1EvNjQw?x-oss-process=image/format,png" alt=""><br>setOn(on =&gt; !on)使用函数更新状态。</p>
+<h4 id="1-5-小结一波"><a href="#1-5-小结一波" class="headerlink" title="1.5 小结一波"></a>1.5 小结一波</h4><p>调用useState() Hook 来启用函数组件中的状态。 <br>useState(initialValue)的第一个参数initialValue是状态的初始值。 <br>        [state, setState] = useState(initialValue)返回一个包含2个元素的数组:状态值和状态更新函数。 <br>        使用新值调用状态更新器函数setState(newState)更新状态。或者，可以使用一个回调setState(prev =&gt; next)来调用状态更新器，该回调将返回基于先前状态的新状态。 <br>        调用状态更新器后，React 确保重新渲染组件，以使新状态变为当前状态。 </p>
+<h3 id="2-多种状态"><a href="#2-多种状态" class="headerlink" title="2. 多种状态"></a>2. 多种状态</h3><p>通过多次调用useState()，一个函数组件可以拥有多个状态。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponents</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [state1, setState1] = useState(initial1);</span><br><span class="line">	<span class="keyword">const</span> [state2, setState2] = useState(initial2);</span><br><span class="line">	<span class="keyword">const</span> [state3, setState3] = useState(initial3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的，要确保对useState()的多次调用在渲染之间始终保持相同的顺序。<br>我们添加一个按钮添加灯泡，并添加一个新状态来保存灯泡数量，单击该按钮时，将添加一个新灯泡。<br>新的状态count 包含灯泡的数量，初始值为1：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [on, setOn] = useState(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">const</span> [count, setCount] = useState(<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">const</span> lightSwitch = <span class="function"><span class="params">()</span> =&gt;</span> setOn(<span class="function"><span class="params">on</span> =&gt;</span> !on);</span><br><span class="line">	<span class="keyword">const</span> addBulbs = <span class="function"><span class="params">()</span>=&gt;</span>setCount(<span class="function"><span class="params">count</span> =&gt;</span>count +<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">const</span> bulb = &lt;div className=&#123;on? <span class="string">'bulb-on'</span>: <span class="string">'bulb-off'</span>&#125; /&gt;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;&gt;</span><br><span class="line">			&lt;div className=<span class="string">"bulbs"</span>&gt;&#123;bulbs&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">			&lt;button onClick=&#123;lightSwitch&#125;&gt;开关&lt;/</span>button&gt;</span><br><span class="line">			&lt;button onClick=&#123;addBulbs&#125;&gt;添加灯泡&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打开演示，然后单击添加灯泡按钮：灯泡数量增加，单击开/关按钮可打开/关闭灯泡<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3UxcE8zV3dFRnYxbFdkQlNOOGVpYXkwVndyZVZsTUNLSzdVdWlhZ1lxcmY5TUhTbDVZanFuRUVMQS82NDA?x-oss-process=image/format,png" alt=""></p>
+<pre><code>[on, setOn] = useState(false) 管理开/关状态 
+[count, setCount] = useState(1)管理灯泡数量。 
+</code></pre><p>多个状态可以在一个组件中正确工作。</p>
+<h3 id="3-状态的延迟初始化"><a href="#3-状态的延迟初始化" class="headerlink" title="3. 状态的延迟初始化"></a>3. 状态的延迟初始化</h3><p>每当 React 重新渲染组件时，都会执行useState(initialState)。如果初始状态是原始值（数字，布尔值等），则不会有性能问题。<br>当初始状态需要昂贵的性能方面的操作时，可以通过为useState(computeInitialState)提供一个函数来使用状态的延迟初始化，如下所示：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params">&#123;bigJsonData&#125;</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [value, setValue] = useState(</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">getInitialState</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">const</span> object = <span class="built_in">JSON</span>.parse(bigJsonData); <span class="comment">//expensive operation</span></span><br><span class="line">			<span class="keyword">return</span> object.initialValue;</span><br><span class="line">		&#125;</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>getInitialState()仅在初始渲染时执行一次，以获得初始状态。 在以后的组件渲染中，不会再调用getInitialState(), 从而跳过费时的操作。</p>
+<h3 id="4-useState-中的坑"><a href="#4-useState-中的坑" class="headerlink" title="4. useState() 中的坑"></a>4. useState() 中的坑</h3><p>现在咱们基本已经初步掌握了如何使用useState()，尽管如此，咱们必须注意在使用useState()时可能遇到的常见问题。</p>
+<h4 id="4-1-在哪里调用-useState"><a href="#4-1-在哪里调用-useState" class="headerlink" title="4.1 在哪里调用 useState()"></a>4.1 在哪里调用 <code>useState()</code></h4><p>在使用useState() Hook 时，必须遵循 Hook 的规则<br>    .    仅顶层调用 Hook ：不能在循环，条件，嵌套函数等中调用useState()。在多个useState()调用中，渲染之间的调用顺序必须相同。 <br>    .    仅从React 函数调用 Hook:必须仅在函数组件或自定义钩子内部调用useState()。 <br>来看看useState()的正确用法和错误用法的例子。<br>有效调用useState()</p>
+<ul>
+<li>useState()在函数组件的顶层被正确调用</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//Good</span></span><br><span class="line">	<span class="keyword">const</span> [on, setOn] = useState(<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以相同的顺序正确地调用多个useState()</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//Good</span></span><br><span class="line">	<span class="keyword">const</span> [on, setOn] = useState(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">const</span> [count, setCount] = useState(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>useState()在自定义钩子的顶层被正确调用</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleHook</span>(<span class="params">initial</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//Good</span></span><br><span class="line">	<span class="keyword">const</span> [on, setOn] = useState(initial);</span><br><span class="line">	<span class="keyword">return</span> [on, <span class="function"><span class="params">()</span>=&gt;</span>setOn(!on)];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bulbs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [on, toggle] = toggleHook(<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="useState的无效调用"><a href="#useState的无效调用" class="headerlink" title="useState的无效调用"></a>useState的无效调用</h4><p>在条件中调用useState()是不正确的<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Switch</span>(<span class="params">&#123;isSwitchEnabled&#125;</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(isSwitchEnabled)&#123;</span><br><span class="line">		<span class="comment">//Bad</span></span><br><span class="line">		<span class="keyword">const</span> [on, setOn] = useState(<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在嵌套函数中调用useState()也是不对的</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Switch</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> on = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">let</span> setOn = <span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">enableSwitch</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//Bad</span></span><br><span class="line">	[on, setOn] = useState(<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;button onClick=&#123;enableSwitch&#125;&gt;</span><br><span class="line">			Enable light <span class="keyword">switch</span> state</span><br><span class="line">		&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">	);</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-2-过时状态"><a href="#4-2-过时状态" class="headerlink" title="4.2 过时状态"></a>4.2 过时状态</h4><p>闭包是一个从外部作用域捕获变量的函数。<br>闭包（例如事件处理程序，回调）可能会从函数组件作用域中捕获状态变量。由于状态变量在渲染之间变化，因此闭包应捕获具有最新状态值的变量。否则，如果闭包捕获了过时的状态值，则可能会遇到过时的状态问题。<br>来看看一个过时的状态是如何表现出来的。组件<DelayedCount>延迟3秒计数按钮点击的次数。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DelayedCount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">const</span> handleClickAsync= <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">		setTimeout(</span><br><span class="line">			<span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				setCount(count + <span class="number">1</span>）;</span><br><span class="line">			&#125;,<span class="number">3000</span></span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;count&#125;</span><br><span class="line">		&lt;button onClick=&#123;handleClickAsync&#125;&gt;Increase <span class="keyword">async</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">	&lt;/</span>div&gt;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打开演示，快速多次点击按钮，会发现count变量并不能正确记录实际点击的次数，有些点击还会被吃掉。<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VxV2liRUFHc1cyTlNmU2M2TzJCQXFLdTJNSkVKMjB4MTNVZzViVWYyR29vT0Njd0NzZnFhZkZnLzY0MA?x-oss-process=image/format,png" alt=""><br>delay()是一个过时的闭包， 它从初始渲染中捕获了过时的count变量。<br>为了解决这个问题，可以使用函数方法来更新count的状态<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DelayedCount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">const</span> handleClickAsync = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">		setTimeout(</span><br><span class="line">			<span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				setCount(<span class="function"><span class="params">count</span> =&gt;</span> count+<span class="number">1</span>);</span><br><span class="line">			&#125;,<span class="number">3000</span></span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;div&gt;</span><br><span class="line">			&#123;count&#125;</span><br><span class="line">			&lt;button onClick=&#123;handleClickAsync&#125;&gt;Increase <span class="keyword">async</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>div&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在etCount(count =&gt; count + 1)在delay()中正确更新计数状态。React 确保将最新状态值作为参数提供给更新状态函数，过时闭包的问题解决了。<br>打开演示，快速单击按钮。延迟过去后，count 能正确表示点击次数。</p>
+<h4 id="4-3-复杂状态管理"><a href="#4-3-复杂状态管理" class="headerlink" title="4.3 复杂状态管理"></a>4.3 复杂状态管理</h4><p>useState()用于管理简单状态。对于复杂的状态管理，可以使用useReducer() hook。它为需要多个状态操作的状态提供了更好的支持。<br>假设需要编写一个最喜欢的电影列表。用户可以添加电影，也可以删除已有的电影，实现方式大致如下：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FavoriteMovies</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [movies, setMovies] = useState([&#123;name:<span class="string">'heat'</span>&#125;]);</span><br><span class="line">	<span class="keyword">const</span> add = <span class="function"><span class="params">movie</span>=&gt;</span>setMovies([...movies, movie]);</span><br><span class="line">	<span class="keyword">const</span> remove = <span class="function"><span class="params">index</span>=&gt;</span>&#123;</span><br><span class="line">		setMovies(</span><br><span class="line">			...movies.slice(<span class="number">0</span>, index),</span><br><span class="line">			...movies.slice(index+<span class="number">1</span>)</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		<span class="comment">// use add(movie) and remove(index)...</span></span><br><span class="line">	)</span><br><span class="line">	;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>尝试演示：添加和删除自己喜欢的电影。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VodDVjN1Vra1JPYlJPMUN5YVVGY0JOVGtBNXBQcWwxSlN5RVBpY2FzZFdmOE5admljVnA2Y3F5Zy82NDA?x-oss-process=image/format,png" alt=""></p>
+<p>状态列表需要几个操作:添加和删除电影，状态管理细节使组件混乱。<br>更好的解决方案是将复杂的状态管理提取到reducer中：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useReducer&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state, action</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">switch</span>(action.type)&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'add'</span>:</span><br><span class="line">			<span class="keyword">return</span> [...state, action.item];</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'remove'</span>:</span><br><span class="line">			<span class="keyword">return</span> [</span><br><span class="line">				...state.slice(<span class="number">0</span>, action.index),</span><br><span class="line">				...state.slice(action.index+<span class="number">1</span>)</span><br><span class="line">			];</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FavoriteMovies</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [state, dispatch] = useReducer(reducer, [&#123;name: <span class="string">'Heat'</span>&#125;]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		<span class="comment">// Use dispatch(&#123;type:'add', item: movie&#125;)</span></span><br><span class="line">		<span class="comment">// and dispatch(&#123;type:'remove', index&#125;)</span></span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>reducer管理电影的状态，有两种操作类型：</p>
+<ul>
+<li>“add”将新电影插入列表 - “remove”从列表中按索引删除电影 <br>尝试演示并注意组件功能没有改变。但是这个版本的<FavoriteMovies>更容易理解，因为状态管理已经被提取到reducer中。<br>还有一个好处:可以将reducer 提取到一个单独的模块中，并在其他组件中重用它。另外，即使没有组件，也可以对reducer 进行单元测试。<br>这就是关注点分离的威力:组件渲染UI并响应事件，而reducer 执行状态操作。<h4 id="4-4-状态-vs-引用"><a href="#4-4-状态-vs-引用" class="headerlink" title="4.4 状态 vs 引用"></a>4.4 状态 vs 引用</h4>考虑这样一个场景:咱们想要计算组件渲染的次数。<br>一种简单的实现方法是初始化countRender状态，并在每次渲染时更新它(使用useEffect() hook)<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState, useEffect&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CountMyRenders</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [countRender, setCountRender] = useState(<span class="number">0</span>);</span><br><span class="line">	</span><br><span class="line">	useEffect(<span class="function"><span class="keyword">function</span> <span class="title">afterRender</span>)(<span class="params"></span>)</span>&#123;</span><br><span class="line">		setCountRender(<span class="function"><span class="params">countRender</span> =&gt;</span> countRender + <span class="number">1</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;div&gt;I<span class="string">'ve rendered &#123;countRender&#125; times&lt;/div&gt;</span></span><br><span class="line"><span class="string">	);</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+useEffect()在每次渲染后调用afterRender()回调。但是一旦countRender状态更新，组件就会重新渲染。这将触发另一个状态更新和另一个重新渲染，依此类推。<br>可变引用useRef()保存可变数据，这些数据在更改时不会触发重新渲染，使用可变的引用改造一下<CountMyRenders> ：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useRef, useEffect&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CountMyRenders</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> countRenderRef = useRef(<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	useEffect(<span class="function"><span class="keyword">function</span> <span class="title">afterRender</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		countRenderRef.current ++;</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		&lt;div&gt;I<span class="string">'ve rendered &#123;countRenderRef.current&#125; times&lt;/div&gt;</span></span><br><span class="line"><span class="string">	&#125;;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+打开演示并单击几次按钮来触发重新渲染。<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2dpZi9MRFBMbHRtTnk1NjhNckFqSU9DMzVyazNjRGlhc1AyY3VMZVRSdmljak9qQ2FEbHprQlB3RUUzeWFKcFZmMnZkMFk2MUpld05nYVIxZVVNYzBvYTVBV3N3LzY0MA?x-oss-process=image/format,png" alt=""><br>每次渲染组件时，countRenderRef可变引用的值都会使countRenderRef.current ++递增。重要的是，更改不会触发组件重新渲染。<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3>要使函数组件有状态，请在组件的函数体中调用useState()。<br>useState(initialState)的第一个参数是初始状态。返回的数组有两项:当前状态和状态更新函数。<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, setState] = useState(initialState);</span><br></pre></td></tr></table></figure>
+使用 setState(newState)来更新状态值。另外，如果需要根据先前的状态更新状态，可以使用回调函数setState(prevState =&gt; newState)。</li>
+</ul>
+<p>在单个组件中可以有多个状态:调用多次useState()。</p>
+<p>当初始状态开销很大时，延迟初始化很方便。使用计算初始状态的回调调用useState(computeInitialState)，并且此回调仅在初始渲染时执行一次。</p>
+<p>必须确保使用useState()遵循 Hook 规则。</p>
+<p>当闭包捕获过时的状态变量时，就会出现过时状态的问题。可以通过使用一个回调来更新状态来解决这个问题，这个回调会根据先前的状态来计算新的状态。</p>
+<p>最后，您将使用useState()来管理一个简单的状态。为了处理更复杂的状态，一个更好的的选择是使用useReducer() hook。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请作者吃颗糖吧</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Wechat.jpeg" alt="Annan An 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/AliPay.jpeg" alt="Annan An 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/State/" rel="tag"># State</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/20/Spark-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" rel="next" title="Spark 集群搭建">
+                <i class="fa fa-chevron-left"></i> Spark 集群搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Annan An" />
+            
+              <p class="site-author-name" itemprop="name">Annan An</p>
+              <p class="site-description motion-element" itemprop="description">千里之行, 始于足下</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用-useState-进行状态管理"><span class="nav-number">1.</span> <span class="nav-text">1. 使用 useState() 进行状态管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-启用状态"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 启用状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-初始化状态"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 初始化状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-读取状态"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 读取状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-更新状态"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 更新状态</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用回调更新状态"><span class="nav-number">1.4.1.</span> <span class="nav-text">使用回调更新状态</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-小结一波"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 小结一波</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-多种状态"><span class="nav-number">2.</span> <span class="nav-text">2. 多种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-状态的延迟初始化"><span class="nav-number">3.</span> <span class="nav-text">3. 状态的延迟初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-useState-中的坑"><span class="nav-number">4.</span> <span class="nav-text">4. useState() 中的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-在哪里调用-useState"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 在哪里调用 useState()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#useState的无效调用"><span class="nav-number">4.2.</span> <span class="nav-text">useState的无效调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-过时状态"><span class="nav-number">4.3.</span> <span class="nav-text">4.2 过时状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-复杂状态管理"><span class="nav-number">4.4.</span> <span class="nav-text">4.3 复杂状态管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-状态-vs-引用"><span class="nav-number">4.5.</span> <span class="nav-text">4.4 状态 vs 引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-总结"><span class="nav-number">5.</span> <span class="nav-text">5. 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Annan An</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Jco0PO4JGXXJJB1mvmQIOyus-gzGzoHsz", "5K4RnHGh9iAxmU9OuEJFsWxv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
