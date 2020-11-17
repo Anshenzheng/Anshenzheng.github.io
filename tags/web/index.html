@@ -102,7 +102,7 @@
   <meta name="description" content="千里之行, 始于足下">
 <meta property="og:type" content="website">
 <meta property="og:title" content="知乐园">
-<meta property="og:url" content="https://anshenzheng.github.io/tags/Web/index.html">
+<meta property="og:url" content="https://anshenzheng.github.io/tags/web/index.html">
 <meta property="og:site_name" content="知乐园">
 <meta property="og:description" content="千里之行, 始于足下">
 <meta property="og:locale" content="zh_CN">
@@ -118,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="https://anshenzheng.github.io/tags/Web/"/>
+  <link rel="canonical" href="https://anshenzheng.github.io/tags/web/"/>
 
 
 
@@ -128,7 +128,7 @@
   };
 </script>
 
-  <title>标签: Web | 知乐园</title>
+  <title>标签: web | 知乐园</title>
   
 
 
@@ -216,7 +216,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -225,7 +225,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -234,7 +234,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -243,7 +243,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -252,7 +252,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-futbol-o"></i> <br />关于</a>
 </li>
 
@@ -348,7 +348,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Web<small>标签</small>
+        <h1>web<small>标签</small>
         </h1>
       </div>
 
@@ -360,37 +360,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/12/22/CSS3%20Animation%20Advance_Transform/" itemprop="url">
+            <a class="post-title-link" href="/2017/07/10/Cache%E7%9B%B8%E5%85%B3%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E5%A4%B4/" itemprop="url">
               
-                <span itemprop="name">CSS3 Animation Advance - Transform Functions</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-12-22T23:23:06+08:00"
-              content="2019-12-22" >
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/12/13/CSS3%20Animation%20Basic/" itemprop="url">
-              
-                <span itemprop="name">CSS3 Animation Basic</span>
+                <span itemprop="name">Cache相关的HTTP请求/响应头</span>
               
             </a>
         
@@ -398,37 +370,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2019-12-13T19:45:57+08:00"
-              content="2019-12-13" >
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/27/Web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="url">
-              
-                <span itemprop="name">Web前端性能优化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-07-27T19:45:57+08:00"
-              content="2015-07-27" >
-          07-27
+              datetime="2017-07-10T22:02:49+08:00"
+              content="2017-07-10" >
+          07-10
         </time>
       </div>
 
@@ -487,7 +431,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
@@ -1233,6 +1177,66 @@
           } else {
             
               var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
+ newcounter = new Counter();
               /* Set ACL */
               var acl = new AV.ACL();
               acl.setPublicReadAccess(true);
