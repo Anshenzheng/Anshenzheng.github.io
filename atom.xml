@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://anshenzheng.github.io/"/>
-  <updated>2020-11-26T04:42:11.041Z</updated>
+  <updated>2020-11-26T16:24:44.717Z</updated>
   <id>https://anshenzheng.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web全景Pannellum专题二</title>
+    <link href="https://anshenzheng.github.io/2020/11/26/Web%E5%85%A8%E6%99%AFPannellum%E4%B8%93%E9%A2%98%E4%BA%8C/"/>
+    <id>https://anshenzheng.github.io/2020/11/26/Web全景Pannellum专题二/</id>
+    <published>2020-11-26T15:41:15.000Z</published>
+    <updated>2020-11-26T16:24:44.717Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>今天给大家介绍一下Pannellum用来控制全景图展示的常用参数之一 - autoRotate。</p><h3 id="Auto-Rotate-自动旋转"><a href="#Auto-Rotate-自动旋转" class="headerlink" title="Auto Rotate 自动旋转"></a>Auto Rotate 自动旋转</h3><h4 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h4><p>在加载全景图的时候，我们可以通过制定<em>autoRotate</em>参数来实现全景图加载成功后进行自动旋转。<br><strong>参数名：</strong>autoRotate<br><strong>类型：</strong>number<br><strong>说明：</strong><br><em>autoRotate</em>的取值表示每秒全景图旋转的角度。<br>取正值时，代表观察者向右旋转视角；取负值时，代表观察者向左旋转视角。</p><p>如果只设定一个<em>autoRotate</em>参数，那么在用户手动拖动全景图旋转后，全景图就不再自动执行旋转动作。如果想要用户操作后仍执行自动旋转，则需要另一个参数<em>autoRotateInactivityDelay</em></p><p><strong>参数名：</strong>autoRotateInactivityDelay<br><strong>类型：</strong>number<br><strong>说明：</strong><br>取值代表用户停止操作指定的毫秒之后，全景图开始继续自动旋转。</p><blockquote><p>经笔者测试，autoRotateInactivityDelay参数在iframe模式中并不能生效。</p></blockquote><h4 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h4><iframe width="600" height="400" allowfullscreen autoRotateInactivityDelay="1000" style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https://pannellum.org/images/jfk.jpg&autoLoad=true&author=annan&autoRotate=-2"></iframe><h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><p>iframe模式</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">width</span>=<span class="string">"600"</span> <span class="attr">height</span>=<span class="string">"400"</span> <span class="attr">allowfullscreen</span> <span class="attr">style</span>=<span class="string">"border-style:none;"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">src</span>=<span class="string">"https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https://pannellum.org/images/jfk.jpg<span class="symbol">&amp;amp;</span>amp;autoRotate=-2"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure><p>应用模式<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Auto rotate<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#panorama</span> &#123;</span></span><br><span class="line">        width: 600px;</span><br><span class="line">        height: 400px;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"panorama"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">pannellum.viewer(<span class="string">'panorama'</span>, &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="string">"type"</span>: <span class="string">"equirectangular"</span>,</span></span><br><span class="line"><span class="actionscript">    <span class="string">"panorama"</span>: <span class="string">"https://pannellum.org/images/jfk.jpg"</span>,</span></span><br><span class="line"><span class="actionscript">    <span class="string">"autoRotate"</span>: <span class="number">-2</span></span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;今天给大家介绍一下Pannellum用来控制全景图展示的常用参数之一 - autoRotate。&lt;/p&gt;
+&lt;h3 id=&quot;Auto-Rotate-自动旋转&quot;&gt;&lt;a href=
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://anshenzheng.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="全景" scheme="https://anshenzheng.github.io/tags/%E5%85%A8%E6%99%AF/"/>
+    
+      <category term="Pannellum" scheme="https://anshenzheng.github.io/tags/Pannellum/"/>
+    
+      <category term="参数" scheme="https://anshenzheng.github.io/tags/%E5%8F%82%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Web全景Pannellum专题一</title>
@@ -633,32 +663,6 @@
       <category term="javascript" scheme="https://anshenzheng.github.io/tags/javascript/"/>
     
       <category term="prototype" scheme="https://anshenzheng.github.io/tags/prototype/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高数常用定理及使用</title>
-    <link href="https://anshenzheng.github.io/2017/07/08/%E9%AB%98%E6%95%B0%E5%B8%B8%E7%94%A8%E5%AE%9A%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
-    <id>https://anshenzheng.github.io/2017/07/08/高数常用定理及使用/</id>
-    <published>2017-07-08T05:37:44.000Z</published>
-    <updated>2019-04-05T04:15:47.386Z</updated>
-    
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h3 id="有界性定理"><a href="#有界性定理" class="headerlink" title="有界性定理"></a>有界性定理</h3><p>要求：只用不证<br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%9C%89%E7%95%8C%E6%80%A7%E5%AE%9A%E7%90%86.png?raw=true" alt=""></p><h3 id="最值定理"><a href="#最值定理" class="headerlink" title="最值定理"></a>最值定理</h3><p>要求：只用不证<br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%9C%80%E5%80%BC%E5%AE%9A%E7%90%86.png?raw=true" alt=""></p><h3 id="介值定理"><a href="#介值定理" class="headerlink" title="介值定理"></a>介值定理</h3><p>要求：只用不证<a id="more"></a><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%BB%8B%E5%80%BC%E5%AE%9A%E7%90%861.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%BB%8B%E5%80%BC%E5%AE%9A%E7%90%862.png?raw=true" alt=""></p><h3 id="积分中值定理"><a href="#积分中值定理" class="headerlink" title="积分中值定理"></a>积分中值定理</h3><p><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86.png?raw=true" alt=""></p><h3 id="积分保号定理"><a href="#积分保号定理" class="headerlink" title="积分保号定理"></a>积分保号定理</h3><p><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%A7%AF%E5%88%86%E4%BF%9D%E5%8F%B7%E6%80%A7%E5%AE%9A%E7%90%86.png?raw=true" alt=""></p><h3 id="零点定理"><a href="#零点定理" class="headerlink" title="零点定理"></a>零点定理</h3><p>要求：只用不证<br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E9%9B%B6%E7%82%B9%E5%AE%9A%E7%90%86.png?raw=true" alt=""></p><h3 id="费马定理"><a href="#费马定理" class="headerlink" title="费马定理"></a>费马定理</h3><p>要求：会用会证<br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E8%B4%B9%E9%A9%AC%E5%AE%9A%E7%90%86.png?raw=true" alt=""></p><h3 id="罗尔定理"><a href="#罗尔定理" class="headerlink" title="罗尔定理"></a>罗尔定理</h3><p>要求：会用会证（最重要）<br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%BD%97%E5%B0%94%E5%AE%9A%E7%90%86%E4%BD%BF%E7%94%A81.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%BD%97%E5%B0%94%E5%AE%9A%E7%90%86%E4%BD%BF%E7%94%A82.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%BD%97%E5%B0%94%E5%AE%9A%E7%90%86%E4%BD%BF%E7%94%A83.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%BD%97%E5%B0%94%E5%AE%9A%E7%90%86%E4%BD%BF%E7%94%A84.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%BD%97%E5%B0%94%E5%AE%9A%E7%90%86%E4%BD%BF%E7%94%A85.png?raw=true" alt=""></p><p>若题设条件“=”较多，则优先考虑使用罗尔定理。</p><h3 id="拉格朗日定理"><a href="#拉格朗日定理" class="headerlink" title="拉格朗日定理"></a>拉格朗日定理</h3><p><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%862.png?raw=true" alt=""></p><h3 id="柯西中值定理"><a href="#柯西中值定理" class="headerlink" title="柯西中值定理"></a>柯西中值定理</h3><p>要求：会用会证<br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%9F%AF%E8%A5%BF%E5%AE%9A%E7%90%861.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%9F%AF%E8%A5%BF%E5%AE%9A%E7%90%862.png?raw=true" alt=""></p><h3 id="泰勒定理（公式）"><a href="#泰勒定理（公式）" class="headerlink" title="泰勒定理（公式）"></a>泰勒定理（公式）</h3><p>要求：只用不证</p><h4 id="带拉格朗日余项的公式"><a href="#带拉格朗日余项的公式" class="headerlink" title="带拉格朗日余项的公式"></a>带拉格朗日余项的公式</h4><p><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%B3%B0%E5%8B%92%E5%85%AC%E5%BC%8F1.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%B3%B0%E5%8B%92%E5%85%AC%E5%BC%8F2.png?raw=true" alt=""></p><h4 id="带佩亚诺余项的公式"><a href="#带佩亚诺余项的公式" class="headerlink" title="带佩亚诺余项的公式"></a>带佩亚诺余项的公式</h4><p><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%BD%A9%E4%BA%9A%E8%AF%BA.png?raw=true" alt=""></p><h4 id="麦克劳林公式（0点展开）"><a href="#麦克劳林公式（0点展开）" class="headerlink" title="麦克劳林公式（0点展开）"></a>麦克劳林公式（0点展开）</h4><p><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E9%BA%A6%E5%85%8B%E5%8A%B3%E6%9E%97.png?raw=true" alt=""><br><img src="https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E9%BA%A6%E5%85%8B%E5%8A%B3%E6%9E%972.png?raw=true" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;有界性定理&quot;&gt;&lt;a href=&quot;#有界性定理&quot; class=&quot;headerlink&quot; title=&quot;有界性定理&quot;&gt;&lt;/a&gt;有界性定理&lt;/h3&gt;&lt;p&gt;要求：只用不证&lt;br&gt;&lt;img src=&quot;https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%9C%89%E7%95%8C%E6%80%A7%E5%AE%9A%E7%90%86.png?raw=true&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;最值定理&quot;&gt;&lt;a href=&quot;#最值定理&quot; class=&quot;headerlink&quot; title=&quot;最值定理&quot;&gt;&lt;/a&gt;最值定理&lt;/h3&gt;&lt;p&gt;要求：只用不证&lt;br&gt;&lt;img src=&quot;https://github.com/Anshenzheng/kao-yan-bi-ji/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%9C%80%E5%80%BC%E5%AE%9A%E7%90%86.png?raw=true&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;介值定理&quot;&gt;&lt;a href=&quot;#介值定理&quot; class=&quot;headerlink&quot; title=&quot;介值定理&quot;&gt;&lt;/a&gt;介值定理&lt;/h3&gt;&lt;p&gt;要求：只用不证
-    
-    </summary>
-    
-      <category term="考研" scheme="https://anshenzheng.github.io/categories/%E8%80%83%E7%A0%94/"/>
-    
-    
-      <category term="高数" scheme="https://anshenzheng.github.io/tags/%E9%AB%98%E6%95%B0/"/>
-    
-      <category term="考研" scheme="https://anshenzheng.github.io/tags/%E8%80%83%E7%A0%94/"/>
     
   </entry>
   
